@@ -1,29 +1,31 @@
 #include <iostream>
 using namespace std;
+
 int main (void)
 {
-  int five, three, fifteen;
-  int UpperLimit;
-  int sum53 = 0, sum15 = 0;
-  int sumtotal = 0;
-  cout << "Please enter a number";
-  cin >> UpperLimit;
-  for (five = 0; five < UpperLimit; five += 5)
-  {
-    sum53 = sum53 + five;
-  }
-  
-  for (three = 0; three < UpperLimit; three += 3)
-  {
-    sum53 = sum53 + three; 
-  }
-  
-  for (fifteen = 0; fifteen < UpperLimit; fifteen += 15)
-  {
-    sum15 = sum15 + fifteen; 
-  } 
-  
-  sumtotal = sum53 - sum15;
-  
-  cout << sumtotal;
+  int x,y,z;
+  int sum=0, sum15=0;
+  int upperlimit;
+  
+  cout << "Please enter an upperlimit limit" << endl;
+  cin >> upperlimit;
+  
+  for (x=0; x<upperlimit; x+=3)
+  {
+    sum += x;
+  }
+  
+  for (y=0; y<upperlimit; y+=5)
+  {
+    sum += y;
+  }
+  
+  for (z=0; z<upperlimit; z+=15)
+  {
+    sum15 += z;
+  }
+  
+  sum = sum - sum15;
+  
+  cout << sum;
 }
