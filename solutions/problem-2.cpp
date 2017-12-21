@@ -1,20 +1,24 @@
 #include <iostream>
 using namespace std;
 
-int main ()
+int main (void)
 {
-  int F1 = 1, F2 = 1, FNext=0, Feven = 0;
+  int F1 = 1;
+  int F2 = 1;
+  int Fnext = 0;
+  int sum = 0;
   
-  while (F1 < 4000000)
+  while (F1<4000000)
   {
-  FNext = F1 + F2;
-  F1 = F2;
-  F2 = FNext;
-  
-  if (FNext%2 == 0)
+    Fnext = F1 + F2;
+    F1 = F2;
+    F2 = Fnext;
+    
+    if (Fnext % 2 == 0)
     {
-      Feven = Feven + FNext; 
+      sum += Fnext;
     }
   }
-  cout << Feven;
+  
+  cout << sum;
 }
