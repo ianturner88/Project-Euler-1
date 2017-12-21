@@ -4,23 +4,29 @@ using namespace std;
 
 int main (void)
 {
-  int upperlimit = 100, square, difference, sumsquare;
-  int sum = 0;
+  int integer = 1;
+  int upperlimit;
+  int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0;
   
-  for (int i = 0; i <= upperlimit; i++)
+  cout << "Please enter an upperlimit" <<endl;
+  cin >> upperlimit;
+  
+  for (integer; integer < upperlimit + 1; integer++)
   {
-    sum = pow(i,2);
-    sumsquare += sum;
+    sum1 += pow(integer,2);
   }
   
-  for (int i = 0; i <= upperlimit; i++)
+  integer = 1;
+  
+  while (integer < upperlimit + 1)
   {
-    square += i;
+    sum2 += integer;
+    integer++;
   }
   
-  square = pow (square,2);
-
-  difference = square - sumsquare;
+  sum3 = pow(sum2, 2);
   
-  cout << difference;
+  sum4 = sum3 - sum1;
+  
+  cout << sum4;
 }
