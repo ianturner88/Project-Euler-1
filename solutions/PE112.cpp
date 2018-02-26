@@ -10,11 +10,10 @@ int main (void)
 	double percentagecheck = 0;
 	int a, b;
 	int dummynumber;
-	int subtraction;
 	int count;
 	int power;
 
-	while (percentagecheck != .5)
+	while (percentagecheck != .99)
 	{
 		decreasing = 1;
 		increasing = 1;
@@ -32,7 +31,7 @@ int main (void)
 		dummynumber = number;
 		power = 0;
 
-		// increasing number
+		// decreasing number (66420)
 		while (dummynumber > 10 && decreasing == 1)
 		{
 			a = dummynumber % 10;
@@ -52,7 +51,7 @@ int main (void)
 
 		dummynumber = number;
 
-		// decreasing number
+		// increasing number (134468)
 		while (dummynumber > 10 && increasing == 1 && count > 1)
 		{
 			a = dummynumber / pow(10, count - 1);
@@ -62,6 +61,8 @@ int main (void)
 			b = b % 10;
 			
 			count--;
+			
+			increasing = 0;
 			
 			if (b > a || b == a)
 			{
@@ -75,7 +76,6 @@ int main (void)
 		}
 
 		percentagecheck = bouncycount / number;
-		cout << number << endl;
 	}
 
 	cout << number << endl;
