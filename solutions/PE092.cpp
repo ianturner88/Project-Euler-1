@@ -29,7 +29,7 @@ int main (void)
 			}
 			
 			dummynumber = sum;
-			sum = 0;
+			//sum = 0;
 		}
 		
 		if (dummynumber == 89)
