@@ -4,60 +4,48 @@ using namespace std;
 
 int main (void)
 {
-	long long int n = 0;
-	long long int p1;
-	long long int p2;
-	long long int divisor;
-	long long int dc1, dc2;
-	long long int sum = 0;
-	//10000000
-	while (n < 10000000)
+	int n = 8;
+	int divisor;
+	int dc, previousdc = 0;
+	int nsqrt;
+	int pc = 0;
+	
+	while (n < pow(10, 7))
 	{
 		n++;
 		
-		p1 = n;
+		nsqrt = pow(n, 0.5);
 		
-		p2 = n;
-		p2++;
+		divisor = 1;
 		
-		divisor = 0;
+		dc = 2;
 		
-		dc1 = 0;
-		
-		while (divisor < p1/2)
+		// checks the number of divisors of n
+		while (divisor < nsqrt )
 		{
 			divisor++;
 			
-			if (p1 % divisor == 0)
+			if (n % divisor == 0)
 			{
-				dc1++;
+				dc += 2;
 			}
 		}
 		
-		divisor = 0;
-		
-		dc2 = 0;
-		
-		while (divisor < p2/2) 
+		//for numbers like 9, this code double counts the case of 3, so 1 is subtracted. 
+		if (divisor == nsqrt)
 		{
-			divisor++;
-			
-			if (p2 % divisor == 0)
-			{
-				dc2++;
-			}
+			dc--;
 		}
 		
-		if (dc1 == dc2)
+		// checks if n & n + 1 have the same number of divisors
+		if (dc == previousdc)
 		{
-			sum++;
+			pc++;
 		}
 		
-		if (n % 10000 == 0)
-		{
-			cout << "sum: " << sum << "  " << "number: " << n << endl;	
-		}
-		
+		// stores the previous number's number of divisors!
+		previousdc = dc;
 	}
-	cout << sum;
+	
+	cout << pc;
 }
