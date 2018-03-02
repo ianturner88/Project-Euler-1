@@ -4,13 +4,13 @@ using namespace std;
 
 int main (void)
 {
-	int n = 0;
+	int n = 1;
 	int divisor;
 	int dc, pdc = 0;
 	float nsqrt;
 	int pc = 0;
 	
-	while (n < 5)
+	while (n < pow(10,7))
 	{
 		n++;
 		
@@ -42,7 +42,7 @@ int main (void)
 		if (dc == pdc)
 		{
 			pc++;
-			cout << n << endl;
+			//cout << "(" << n << ", " << n+1 << ")" << endl;
 		}
 		
 		// stores the previous number's number of divisors!
