@@ -5,7 +5,7 @@ using namespace std;
 
 int main (void)
 {
-	int n = 144;
+	int n = 2;
 	int r;
 	int rsum;
 	int answer = 0;
@@ -34,12 +34,6 @@ int main (void)
 			
 			sum += rsum;	
 		}
-		
-		//8! = 40320     
-		//1! = 1 (40321)        
-		//3! = 6 (40327)         
-		//6! = 720 (41047)             
-		//8! = 40320 (81367)
 			
 		if (sum == n)
 		{
