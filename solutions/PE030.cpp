@@ -12,7 +12,7 @@ int main (void)
   int dummysum = 0;
   int count = 0;
   
-  while (number < pow(10,7))
+  while (number < pow(10,5))
   {
     number++;
     dummy = number;
