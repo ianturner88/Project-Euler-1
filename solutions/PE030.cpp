@@ -12,7 +12,7 @@ int main (void)
   int dummysum = 0;
   int count = 0;
   
-  while (number < 355000)
+  while (number < pow(10,7))
   {
     number++;
     dummy = number;
@@ -22,10 +22,10 @@ int main (void)
     while (dummy != 0)
     {
       remainder = dummy % 10;
-      remainder = pow (remainder, 4);
+      remainder = pow (remainder, 5);
       dummysum += remainder;
       dummy = dummy / 10;
-      cout << "Number: " << number << "   Sum: " << dummysum << endl;
+      //cout << "Number: " << number << "   Sum: " << dummysum << endl;
     }
     
     if (dummysum == number)
