@@ -24,7 +24,7 @@ int main (void)
 		for (x = 0; x < size; x++)
 		{
 			// left to right horizontally
-			if (x + 3 < size)
+			if ((x + 3) < size)
 			{
 				maintenant = matrix[x][y] * matrix[x + 1][y] * matrix[x + 2][y] * matrix[x + 3][y];
 				
@@ -35,7 +35,7 @@ int main (void)
 			}
 			
 			// top to bottom
-			if (x + 3 < size)
+			if ((x + 3) < size)
 			{
 				maintenant = matrix[x][y] * matrix[x][y + 1] * matrix[x][y + 2] * matrix[x][y + 3];
 				
@@ -46,7 +46,7 @@ int main (void)
 			} 
 			
 			// rightside is down
-			if (x + 3 < size)
+			if ((x + 3) < size)
 			{
 				maintenant = matrix[x][y] * matrix[x + 1][y + 1] * matrix[x + 2][y + 2] * matrix[x + 3][y + 3];
 				
@@ -57,9 +57,9 @@ int main (void)
 			}
 			
 			// leftside is down
-			if (x > 0)
+			if ((x + 3) < size)
 			{
-				maintenant = matrix[x - 20][y -20] * matrix[x - 19][y - 19] * matrix[x - 18][y - 18] * matrix[x - 17][y - 17];
+				maintenant = matrix[x][y] * matrix[x + 1][y - 1] * matrix[x + 2][y - 2] * matrix[x + 3][y - 3];
 				
 				if (maintenant > answer)
 				{
