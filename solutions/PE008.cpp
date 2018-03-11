@@ -11,7 +11,7 @@ int main (void)
 	int StringLength;
 	int span;
 	string digits;
-	int long long best = 0;
+	int long long best = 1;
 	int long long current = 0;
 	int start = 0;
 	int i;
@@ -34,7 +34,7 @@ int main (void)
 		{
 			for (i = 0; i < span; i++)
 			{
-				current *= 	digits[start + i] - '0';
+				current *=	digits[start + i] - '0';
 			}
 			
 			if (current > best)
