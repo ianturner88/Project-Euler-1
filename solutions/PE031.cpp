@@ -10,41 +10,49 @@ int main()
 	int x, y, z, w, v, u, t, s;
 	int upperlimit = 201;
 	
-	for (x = 0; x < 3; x += 1)
+	// 2 pound = 200
+	for (x = 0; x < upperlimit && sum < upperlimit; x += 200)
 	{
 		sum = x;
 		
-		for (y = 0; y < 4 && sum < upperlimit; y += 2)
+		// 1 pound = 100
+		for (y = 0; y < upperlimit && sum < upperlimit; y += 100)
 		{
 			
 			sum = x + y;
 			
-			for (z = 0; z < 6 && sum < upperlimit; z += 5)
+			// 50 pence = 50
+			for (z = 0; z < upperlimit && sum < upperlimit; z += 5)
 			{
 				
 				sum = x + y + z;
 				
-				for (w = 0; w < 11 && sum < upperlimit; z += 20)
+				// 20 pence = 20
+				for (w = 0; w < upperlimit && sum < upperlimit; w += 20)
 				{
 					
 					sum = x + y + z + w;
 					
-					for (v = 0; v < 21 && sum < upperlimit; v += 10)
+					// 10 pence = 10
+					for (v = 0; v < upperlimit && sum < upperlimit; v += 10)
 					{
 						
 						sum = x + y + z + w + v;
 						
-						for (u = 0; u < 41 && sum < upperlimit; u += 4)
+						// 5 pence = 5
+						for (u = 0; u < upperlimit && sum < upperlimit; u += 5)
 						{
 							
 							sum = x + y + z + w + u;
 							
-							for (t = 0; t < 101 && sum < upperlimit; t += 2)
+							// 2 pence = 2
+							for (t = 0; t < upperlimit && sum < upperlimit; t += 2)
 							{
 								
 								sum = x + y + z + w + u + t;
 								
-								for (s = 0; s < 201 && sum < upperlimit; s += 1)
+								// 1 pence = 1
+								for (s = 0; s < upperlimit && sum < upperlimit; s += 1)
 								{
 									sum = x + y + z + w + v + u + t + s;
 									
