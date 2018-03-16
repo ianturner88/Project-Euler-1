@@ -8,51 +8,37 @@ int main()
 	int count = 0;
 	int sum = 0;
 	int x, y, z, w, v, u, t, s;
-	int upperlimit = 201;
 	
 	// 2 pound = 200
-	for (x = 0; x < 201; x += 200)
+	for (s = 0; s < 201; s += 200)
 	{
-		//sum = x;
 		
 		// 1 pound = 100
-		for (y = 0; y < 301; y += 100)
+		for (t = 0; t < 201; t += 100)
 		{
-			
-			//sum = x + y;
-			
+		
 			// 50 pence = 50
-			for (z = 0; z < 51; z += 5)
+			for (u = 0; u < 201; u += 50)
 			{
-				
-				//sum = x + y + z;
-				
+		
 				// 20 pence = 20
-				for (w = 0; w < 101; w += 20)
+				for (v = 0; v < 201; v += 20)
 				{
-					
-					//sum = x + y + z + w;
-					
+		
 					// 10 pence = 10
-					for (v = 0; v < 21; v += 10)
+					for (w = 0; w < 201; w += 10)
 					{
-						
-						//sum = x + y + z + w + v;
-						
+		
 						// 5 pence = 5
-						for (u = 0; u < 41; u += 5)
+						for (x = 0; x < 201; x += 5)
 						{
-							
-							//sum = x + y + z + w + u;
-							
+		
 							// 2 pence = 2
-							for (t = 0; t < 101; t += 2)
+							for (y = 0; y < 201; y += 2)
 							{
-								
-								//sum = x + y + z + w + u + t;
-								
+		
 								// 1 pence = 1
-								for (s = 0; s < 201; s += 1)
+								for (z = 0; z < 201; z += 1)
 								{
 									sum = x + y + z + w + v + u + t + s;
 									
