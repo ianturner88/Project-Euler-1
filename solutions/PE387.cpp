@@ -1,20 +1,22 @@
+//https://projecteuler.net/problem=387
+
 #include <bits/stdc++.h>
 using namespace std;
 
 // initialize the function generating primes
-void Eratosthenes(int n);
+void Harshad(int n);
 
 int main (void)
 {
 	// we test the code for the case of Harshad numbers below 10000 where the sum of the strong, right truncatable Harshad primes is 90619
 	int n = 10000;
 	
-	Eratosthenes(n);
+	Harshad(n);
 }
 
-void Eratosthenes(int n)
+void Harshad(int n)
 {
-	int digitsum;
+	int digitsum = 0;
 	int testcase;
 	int flag;
 	int remainder;
@@ -58,14 +60,13 @@ void Eratosthenes(int n)
 			}
 		}
 		
+		testcase = p / 10;
+		
 		// if the flag is up, we divide the once right truncated prime by the value of its digits
 		if (flag == 1)
 		{
 			HarshadPrime = testcase / digitsum;
 		}
-		
-		// we set the flag to zero
-		flag = 0;
 		
 		// here, we see if the HarshadPrime is truly a prime
 		if (prime[HarshadPrime] == true)
@@ -73,4 +74,6 @@ void Eratosthenes(int n)
 			digitsum += HarshadPrime;
 		}
 	}
+	
+	cout << digitsum;
 }
