@@ -9,34 +9,34 @@ void Harshad(int n);
 int main (void)
 {
 	// we test the code for the case of Harshad numbers below 10000 where the sum of the strong, right truncatable Harshad primes is 90619
-	int n = 10000;
+	long long int n = 200;
 	
 	Harshad(n);
 }
 
 void Harshad(int n)
 {
-	int digitsum = 0;
-	int testcase;
-	int flag;
-	int remainder;
-	int HarshadPrime;
+	long long int digitsum = 0;
+	long long int testcase;
+	long long int flag;
+	long long int remainder;
+	long long int HarshadPrime;
 	
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
 	
-	
 	// in this for loop, we identify all the prime numbers
-	for(int p = 2; p*p <= n; p++)
+	for(long long int p = 2; p*p <= n; p++)
 	{
-		for(int i = 2*p; i <= n; i += p)
+		for(long long int i = 2*p; i <= n; i += p)
 		{
 			prime[i] = false;
 		}
 	}
 	
+	int o = 7;
 	// in this for loop, we take all the known prime numbers and begin identifying strong, right truncatable Harshad primes
-	for (int p = 2; p <= n; p++)
+	for (long long int p = 101; p <= n; p++)
 	{
 		flag = 0;
 		
@@ -69,7 +69,7 @@ void Harshad(int n)
 		}
 		
 		// here, we see if the HarshadPrime is truly a prime
-		if (prime[HarshadPrime] == true)
+		if (prime[HarshadPrime] == true && flag == 1)
 		{
 			digitsum += HarshadPrime;
 		}
