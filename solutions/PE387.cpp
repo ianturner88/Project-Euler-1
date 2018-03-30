@@ -18,16 +18,16 @@ void Harshad(int n)
 {
 	long long int digitsum = 0;
 	long long int testcase;
-	long long int flag;
+	int flag;
 	long long int HarshadPrime;
 	long long int dummytestcase;
 	int sum = 0;
-	int a;
+	int a, i, p;
 	
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
 	
-	// in this for loop, we identify all the prime numbers
+	// in this for loop, we make an array that identifies all numbers as either prime or not
 	for(long long int p = 2; p*p <= n; p++)
 	{
 		for(long long int i = 2*p; i <= n; i += p)
@@ -36,73 +36,54 @@ void Harshad(int n)
 		}
 	}
 	
-	// in this for loop, we take all the known prime numbers and begin identifying strong, right truncatable Harshad primes
+	// here we check each slot. If the number is prime, we begin the algorithm required by the question
 	for (long long int p = 2011; p <= n; p++)
 	{
 		flag = 0;
 		
-		//if the integer is prime, we truncate the rightmost digit & set the flag to 1
+		// we check if the number is prime
 		if (prime[p] == true)
 		{
+			// if the number is prime, we hack off the right most digit
 			testcase = p / 10;
 			flag = 1;
 		}
 		
-		// if the flag is up, we sum up the digits
+		// We need to check if the testcase divided by the sum of its digits is prime 
 		if (flag == 1)
 		{
-			while(testcase > 1 && flag == 1)
+			// we set the sum of the digits to zero
+			digitsum = 0;
+			
+			// we tabulate the sum of the digits
+			while (testcase > 0)
 			{
-				dummytestcase = testcase;
-				
-				digitsum = 0;
-				
-				while (dummytestcase > 0)
-				{
-					digitsum += dummytestcase % 10;
-					dummytestcase = dummytestcase / 10;
-				}
-				
-				flag = 0;
-				
-				if (testcase % digitsum == 0)
-				{
-					a = testcase / digitsum;
-					
-					if (prime[a] == true)
-					{
-						flag = 1;
-					}
-				}
-				
+				digitsum += testcase % 10;
 				testcase = testcase / 10;
 			}
-		}
-		
-		testcase = p / 10;
-		
-		if (testcase == 0 || digitsum == 0)
-		{
+			
+			// if the sum of digits evenly divides into the testcase, we set 'a' equal to the resulting number
+			if (testcase % digitsum == 0)
+			{
+				a = testcase / digitsum;
+			}
+			
 			flag = 0;
-		}
-		
-		// if the flag is up, we divide the once right truncated prime by the value of its digits
-		if (flag == 1 && testcase % digitsum == 0)
-		{
-			HarshadPrime = testcase / digitsum;
-		}
-		
-		else
-		{
-			flag = 0;
-		}
-		
-		// here, we see if the HarshadPrime is truly a prime
-		if (prime[HarshadPrime] == true && flag == 1)
-		{
-			sum += p;
+			
+			// if a is prime, the chase is on!
+			if (prime[a] == 1)
+			{
+				flag = 1;
+			}
+			
+			// we need to see if initial integer p is a Harshad number all the way through. 
+			if (flag == 1)
+			{
+				while (testcase > 1)
+				{
+					
+				}
+			}
 		}
 	}
-	
-	cout << sum;
 }
