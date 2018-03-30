@@ -19,9 +19,10 @@ void Harshad(int n)
 	long long int digitsum = 0;
 	long long int testcase;
 	long long int flag;
-	long long int remainder;
 	long long int HarshadPrime;
-	int sum;
+	long long int dummytestcase;
+	int sum = 0;
+	int a;
 	
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
@@ -35,9 +36,8 @@ void Harshad(int n)
 		}
 	}
 	
-	int o = 7;
 	// in this for loop, we take all the known prime numbers and begin identifying strong, right truncatable Harshad primes
-	for (long long int p = 10; p <= n; p++)
+	for (long long int p = 2011; p <= n; p++)
 	{
 		flag = 0;
 		
@@ -51,28 +51,56 @@ void Harshad(int n)
 		// if the flag is up, we sum up the digits
 		if (flag == 1)
 		{
-			digitsum = 0;
-			
-			while(testcase > 0)
+			while(testcase > 1 && flag == 1)
 			{
-				remainder = testcase % 10;
+				dummytestcase = testcase;
+				
+				digitsum = 0;
+				
+				while (dummytestcase > 0)
+				{
+					digitsum += dummytestcase % 10;
+					dummytestcase = dummytestcase / 10;
+				}
+				
+				flag = 0;
+				
+				if (testcase % digitsum == 0)
+				{
+					a = testcase / digitsum;
+					
+					if (prime[a] == true)
+					{
+						flag = 1;
+					}
+				}
+				
 				testcase = testcase / 10;
-				digitsum += remainder;
 			}
 		}
 		
 		testcase = p / 10;
 		
+		if (testcase == 0 || digitsum == 0)
+		{
+			flag = 0;
+		}
+		
 		// if the flag is up, we divide the once right truncated prime by the value of its digits
-		if (flag == 1)
+		if (flag == 1 && testcase % digitsum == 0)
 		{
 			HarshadPrime = testcase / digitsum;
+		}
+		
+		else
+		{
+			flag = 0;
 		}
 		
 		// here, we see if the HarshadPrime is truly a prime
 		if (prime[HarshadPrime] == true && flag == 1)
 		{
-			sum += HarshadPrime;
+			sum += p;
 		}
 	}
 	
