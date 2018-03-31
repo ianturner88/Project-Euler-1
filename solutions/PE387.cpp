@@ -22,7 +22,7 @@ void Harshad(int n)
 	long long int HarshadPrime;
 	long long int dummytestcase;
 	int sum = 0;
-	int a, i, p, c;
+	int a, i, p, c, b;
 	int remainder;
 	
 	bool prime[n + 1];
@@ -38,9 +38,11 @@ void Harshad(int n)
 	}
 	
 	// here we check each slot. If the number is prime, we begin the algorithm required by the question
-	for (long long int p = 2011; p <= n; p++)
+	for (long long int p = 181; p <= n; p++)
 	{
 		flag = 0;
+		
+		b = p;
 		
 		// we check if the number is prime
 		if (prime[p] == true)
@@ -57,10 +59,11 @@ void Harshad(int n)
 			digitsum = 0;
 			
 			// we tabulate the sum of the digits
-			while (testcase > 0)
+			dummytestcase = testcase;
+			while (dummytestcase > 0)
 			{
-				digitsum += testcase % 10;
-				testcase = testcase / 10;
+				digitsum += dummytestcase % 10;
+				dummytestcase = dummytestcase / 10;
 			}
 			
 			// if the sum of digits evenly divides into the testcase, we set 'a' equal to the resulting number
@@ -69,12 +72,15 @@ void Harshad(int n)
 				a = testcase / digitsum;
 			}
 			
-			flag = 0;
-			
 			// if a is prime, the chase is on!
 			if (prime[a] == 1)
 			{
 				flag = 1;
+			}
+			
+			else
+			{
+				flag = 0;
 			}
 			
 			// we need to see if initial integer p is a Harshad number all the way through. 
@@ -87,13 +93,15 @@ void Harshad(int n)
 				{
 					remainder = dummytestcase % 10;
 					digitsum += remainder; 
+					
+					dummytestcase = dummytestcase / 10;
 				}
 				
-				if (dummytestcase % digitsum == 0)
+				if (testcase % digitsum == 0)
 				{
 					flag = 1;
 					
-					c = dummytestcase / digitsum;
+					c = testcase / digitsum;
 				}
 				
 				else
@@ -108,6 +116,10 @@ void Harshad(int n)
 					flag = 0;
 				}
 			}
+			
+			sum += p;
 		}
 	}
+	
+	cout << sum;
 }
