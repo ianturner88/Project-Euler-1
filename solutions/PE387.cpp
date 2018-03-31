@@ -22,7 +22,8 @@ void Harshad(int n)
 	long long int HarshadPrime;
 	long long int dummytestcase;
 	int sum = 0;
-	int a, i, p, r, c;
+	int a, i, p, c;
+	int remainder;
 	
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
@@ -62,9 +63,6 @@ void Harshad(int n)
 				testcase = testcase / 10;
 			}
 			
-			testcase = p;
-			testcase = testcase / 10;
-			
 			// if the sum of digits evenly divides into the testcase, we set 'a' equal to the resulting number
 			if (testcase % digitsum == 0)
 			{
@@ -80,46 +78,36 @@ void Harshad(int n)
 			}
 			
 			// we need to see if initial integer p is a Harshad number all the way through. 
-			if (flag == 1)
+			while (flag == 1)
 			{
-				testcase = p;
+				dummytestcase = testcase;
 				digitsum = 0;
 				
-				while (testcase > 1 && flag == 1)
+				while (dummytestcase > 0)
 				{
-					testcase  = testcase / 10;
-					dummytestcase = testcase;
-					digitsum = 0;
-					flag = 0;
-					
-					while (dummytestcase > 0)
-					{
-						r = dummytestcase % 10;
-						digitsum += r; 
-						
-						dummytestcase = dummytestcase / 10;
-					}
-					
-					if (testcase % digitsum == 0)
-					{
-						flag = 1;
-						
-						c = testcase / digitsum;
-					}
-					
-					if (flag == 1 && c == 1)
-					{
-						flag = 0;
-					}
+					remainder = dummytestcase % 10;
+					digitsum += remainder; 
 				}
 				
-				if (flag == 1)
+				if (dummytestcase % digitsum == 0)
 				{
-					sum += p;
+					flag = 1;
+					
+					c = dummytestcase / digitsum;
+				}
+				
+				else
+				{
+					flag = 0;
+				}
+				
+				testcase = testcase / 10;
+				
+				if (c == 1)
+				{
+					flag = 0;
 				}
 			}
 		}
 	}
-	
-	cout << sum;
 }
