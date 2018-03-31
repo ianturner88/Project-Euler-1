@@ -9,7 +9,7 @@ void Harshad(int n);
 int main (void)
 {
 	// we test the code for the case of Harshad numbers below 10000 where the sum of the strong, right truncatable Harshad primes is 90619
-	long long int n = 10000;
+	long long int n = 1000;
 	
 	Harshad(n);
 }
@@ -117,7 +117,12 @@ void Harshad(int n)
 				}
 			}
 			
-			sum += p;
+			if (c == 1)
+			{
+				sum += p;
+			}
+			
+			c = 0;
 		}
 	}
 	
