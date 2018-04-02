@@ -1,28 +1,3 @@
-/* #include <iostream>
-using namespace std;
-
-void passReference (int &x, int &y);
-
-int main ()
-{
-    int value = 10;
-    int dog = 400;
-    passReference(value, dog);
-
-    cout << value << " " << dog << endl;
-
-return 0;
-}
-
-void passReference (int &x, int &y){
-
-    x = 2;
-    y = 1;
-}
-*/
-/////////////////////
-
-
 #include <iostream>
 using namespace std;
 
