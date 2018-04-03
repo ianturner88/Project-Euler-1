@@ -1,9 +1,7 @@
 #include<iostream>
 using namespace std;
 
-void sum3(int &x, int &u);
-void sum5(int &y, int &u);
-void sum15(int &z, int &u);
+void calcsum(int &x, int &u, int &h);
 void sumlimit(int &x, int &y, int &z, int &s);
 void answer(int &a, int &b, int &c, int &s);
 void upperlimit(int &u);
@@ -17,9 +15,16 @@ int main ()
 	int sum = 0;
 	
 	upperlimit(ul);
-	sum3(a, ul);
-	sum5(b, ul);
-	sum15(c, ul);
+	
+	int h = 3;
+	calcsum(a, ul, h);
+	
+	h = 5;
+	calcsum(b, ul, h);
+	
+	h = 15;
+	calcsum(c, ul, h);
+	
 	sumlimit(a, b, c, sum);
 	answer(a, b, c, sum);
 }
@@ -38,27 +43,11 @@ void answer(int &a, int &b, int &c, int &s)
 	cout << s;
 }
 
-void sum3(int &x, int &u)
+void calcsum(int &x, int &u, int &h)
 {
-	for (int m = 0; m < u; m += 3)
+	for (int m = 0; m < u; m += h)
 	{
 		x += m;
-	}
-}
-
-void sum5(int &y, int &u)
-{
-	for (int m = 0; m < u; m += 5)
-	{
-		y += m;
-	}
-}
-
-void sum15(int &z, int &u)
-{
-	for (int m = 0; m < u; m += 15)
-	{
-		z += m;
 	}
 }
 
