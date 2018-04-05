@@ -25,18 +25,24 @@ int main (void)
 			}
 		}
 	
-		for(long long int p = 2; p <= n; p++)
+		for(long long int c = 2; c <= n; c++)
 		{
-			if (prime[p] == true)
+			
+			
+			
+			for(long long int b = c; b <= n; b++)
 			{
-				sum += p;
-				count++;
-			}
-		
-			if (prime[sum] == true && prime[p] == true && sum < n)
-			{
-				possiblesum = sum;
-				answercount = count;
+				if (prime[b] == true)
+				{	
+					sum += c;
+					count++;
+				}
+				
+				if (prime[sum] == true && prime[b] == true && sum < n)
+				{	
+					possiblesum = sum;
+					answercount = count;
+				}
 			}
 		}
 	}	
