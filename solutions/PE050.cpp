@@ -3,7 +3,9 @@ using namespace std;
 
 int main (void)
 {
-	long long int n = 0;
+	long long int n = 50;
+	long long int a = 0;
+	
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
 	long long int sum = 0;
@@ -13,7 +15,7 @@ int main (void)
 	long long int possiblecount = 0;
 	long long int answercount = 1;
 	
-	while (n < 50)
+	while (a < 50)
 	{
 		for(long long int p = 2; p*p <= n; p++)
 		{
