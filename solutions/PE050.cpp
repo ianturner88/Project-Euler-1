@@ -30,6 +30,7 @@ int main (void)
 			if (prime[c] == true)
 			{
 				sum = 0;
+				count = 0;
 				
 				for (long long int b = c; b <= n; b++)
 				{
@@ -39,7 +40,7 @@ int main (void)
 						count++;
 					}
 					
-					if (prime[sum] == true && prime[b] == true && sum < n)
+					if (prime[sum] == true && prime[b] == true && sum < n && count > answercount)
 					{
 						possiblesum = sum;
 						answercount = count;
@@ -47,6 +48,8 @@ int main (void)
 				}
 			}
 		}
+		
+		a = 51;
 	}
 	
 	cout << possiblesum << ": " << answercount;
