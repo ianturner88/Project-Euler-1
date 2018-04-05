@@ -1,19 +1,9 @@
 #include <bits/stdc++.h>
 using namespace std;
 
-void Eratosthenes(int n);
-
 int main (void)
 {
-	long long int n = 1000;
-	
-	cout << "The answer is: " << endl;
-	
-	Eratosthenes(n);
-}
-
-void Eratosthenes(int n)
-{
+	long long int n = 0;
 	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
 	long long int sum = 0;
@@ -23,28 +13,31 @@ void Eratosthenes(int n)
 	long long int possiblecount = 0;
 	long long int answercount = 1;
 	
-	for(long long int p = 2; p*p <= n; p++)
+	while (n < 50)
 	{
-		for(long long int i = 2*p; i <= n; i += p)
+		for(long long int p = 2; p*p <= n; p++)
 		{
-			prime[i] = false;
+			for(long long int i = 2*p; i <= n; i += p)
+			{
+				prime[i] = false;
+			}
 		}
-	}
 	
-	for(long long int p = 2; p <= n; p++)
-	{
-		if (prime[p] == true)
+		for(long long int p = 2; p <= n; p++)
 		{
-			sum += p;
-			count++;
-		}
+			if (prime[p] == true)
+			{
+				sum += p;
+				count++;
+			}
 		
-		if (prime[sum] == true && prime[p] == true && sum < n)
-		{
-			possiblesum = sum;
-			answercount = count;
+			if (prime[sum] == true && prime[p] == true && sum < n)
+			{
+				possiblesum = sum;
+				answercount = count;
+			}
 		}
-	}
+	}	
 	
 	cout << possiblesum << ": " << answercount;
 }
