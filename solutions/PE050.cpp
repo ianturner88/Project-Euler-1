@@ -27,25 +27,27 @@ int main (void)
 	
 		for(long long int c = 2; c <= n; c++)
 		{
-			
-			
-			
-			for(long long int b = c; b <= n; b++)
+			if (prime[c] == true)
 			{
-				if (prime[b] == true)
-				{	
-					sum += c;
-					count++;
-				}
+				sum = 0;
 				
-				if (prime[sum] == true && prime[b] == true && sum < n)
-				{	
-					possiblesum = sum;
-					answercount = count;
+				for (long long int b = c; b <= n; b++)
+				{
+					if (prime[b] == true)
+					{
+						sum += b;
+						count++;
+					}
+					
+					if (prime[sum] == true && prime[b] == true && sum < n)
+					{
+						possiblesum = sum;
+						answercount = count;
+					}
 				}
 			}
 		}
-	}	
+	}
 	
 	cout << possiblesum << ": " << answercount;
-}
+}	
