@@ -3,7 +3,7 @@ using namespace std;
 
 int main (void)
 {
-	int n = 1000;
+	int n = 1000000;
 	bool prime[n];
 	memset(prime, true, sizeof(prime));
 	
@@ -42,7 +42,7 @@ int main (void)
 				}
 				
 				// if the sum of consecutive primes is prime, we update answers for both the count and sum - so long as the new count and sum are greater than the previous count and sum
-				if (prime[sum] == true && prime[b] == true && sum < n && count > answercount)
+				if (sum < n && prime[sum] == true && prime[b] == true && count > answercount)
 				{
 					answersum = sum;
 					answercount = count;
