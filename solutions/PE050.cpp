@@ -3,47 +3,49 @@ using namespace std;
 
 int main (void)
 {
-	int n = 1000;
-	int a = 0;
+	long long int n = 450;
+	long long int a = 0;
 	
-	int prime[n];
-	memset(prime, 1, sizeof(prime));
+	bool prime[n + 1];
+	memset(prime, true, sizeof(prime));
+	long long int sum = 0;
+	long long int count = 0;
+	long long int possiblesum = 0;
+	long long int answersum = 1;
+	long long int possiblecount = 0;
+	long long int answercount = 1;
 	
-	int sum = 0;
-	int count = 0;
+	for(long long int p = 2; p*p <= n; p++)
+	{
+		for(long long int i = 2*p; i <= n; i += p)
+			{
+				prime[i] = false;
+			}
+	}
 	
-	int possiblesum = 0;
-	
-	int possiblecount = 0;
-	
-	for(int p = 2; p*p <= n; p++)
-		for(int i = 2*p; i <= n; i += p)
-				prime[i] = 0;
-			
-	
-	for(int c = 2; c <= n; c++)
-		if (prime[c])
+	for(long long int c = 2; c <= n; c++)
+	{
+		if (prime[c] == true)
 		{
 			sum = 0;
 			count = 0;
 				
-			for (int b = c; b <= n; b++)
+			for (long long int b = c; b <= n; b++)
 			{
-			 
-				if (prime[b])
+				if (prime[b] == true)
 				{
 					sum += b;
 					count++;
 				}
 					
-				if (prime[b] && sum < n && count > possiblecount)
+				if (prime[sum] == true && prime[b] == true && sum < n && count > answercount)
 				{
 					possiblesum = sum;
-					possiblecount = count;
+					answercount = count;
 				}
 			}
 		}
+	}
 	
-	
-	cout << possiblesum << ": " << possiblecount;
+	cout << possiblesum << ": " << answercount;
 }
