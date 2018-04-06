@@ -7,7 +7,7 @@ int main (void)
 	bool prime[n];
 	memset(prime, true, sizeof(prime));
 	
-	int sum = 0;
+	long long int sum = 0;
 	int answersum = 1;
 	
 	int count = 0;
@@ -32,7 +32,7 @@ int main (void)
 			sum = 0;
 			count = 0;
 				
-			for (int b = c; b <= n; b++)
+			for (int b = c; b <= n && sum < n; b++)
 			{
 				//if the next number to be added to the set of consecutive primes is prime, we increase the count and update the sum
 				if (prime[b] == true)
