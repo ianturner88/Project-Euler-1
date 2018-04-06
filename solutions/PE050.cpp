@@ -3,9 +3,9 @@ using namespace std;
 
 int main (void)
 {
-	int n = 50;
-	int prime[n];
-	memset(prime, 1, sizeof(prime));
+	int n = 1000;
+	bool prime[n];
+	memset(prime, true, sizeof(prime));
 	
 	int sum = 0;
 	int answersum = 1;
@@ -18,7 +18,7 @@ int main (void)
 	{
 		for(int i = 2*p; i <= n; i += p)
 			{
-				prime[i] = 0;
+				prime[i] = false;
 			}
 	}
 	
@@ -26,7 +26,7 @@ int main (void)
 	for(int c = 2; c <= n; c++)
 	{
 		// if the suggested starting point is prime, we start adding consecutive primes
-		if (prime[c] == 1)
+		if (prime[c] == true)
 		{
 			//we initialize the sum and count to be 0 for each new starting point
 			sum = 0;
@@ -35,14 +35,14 @@ int main (void)
 			for (int b = c; b <= n; b++)
 			{
 				//if the next number to be added to the set of consecutive primes is prime, we increase the count and update the sum
-				if (prime[b] == 1)
+				if (prime[b] == true)
 				{
 					sum += b;
 					count++;
 				}
 				
 				// if the sum of consecutive primes is prime, we update answers for both the count and sum - so long as the new count and sum are greater than the previous count and sum
-				if (prime[sum] == 1 && prime[b] == 1 && sum < n && count > answercount)
+				if (prime[sum] == true && prime[b] == true && sum < n && count > answercount)
 				{
 					answersum = sum;
 					answercount = count;
