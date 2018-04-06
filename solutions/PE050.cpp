@@ -3,9 +3,9 @@ using namespace std;
 
 int main (void)
 {
-	int n = 1000;
+	int n = 50;
 	int prime[n];
-	memset(prime, true, sizeof(prime));
+	memset(prime, 1, sizeof(prime));
 	
 	int sum = 0;
 	int answersum = 1;
