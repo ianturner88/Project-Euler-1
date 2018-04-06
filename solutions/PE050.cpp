@@ -3,49 +3,53 @@ using namespace std;
 
 int main (void)
 {
-	long long int n = 450;
-	long long int a = 0;
-	
-	bool prime[n + 1];
+	int n = 1000;
+	int prime[n];
 	memset(prime, true, sizeof(prime));
-	long long int sum = 0;
-	long long int count = 0;
-	long long int possiblesum = 0;
-	long long int answersum = 1;
-	long long int possiblecount = 0;
-	long long int answercount = 1;
 	
-	for(long long int p = 2; p*p <= n; p++)
+	int sum = 0;
+	int answersum = 1;
+	
+	int count = 0;
+	int answercount = 1;
+	
+	// we find all multiples of primes below n
+	for(int p = 2; p*p <= n; p++)
 	{
-		for(long long int i = 2*p; i <= n; i += p)
+		for(int i = 2*p; i <= n; i += p)
 			{
-				prime[i] = false;
+				prime[i] = 0;
 			}
 	}
 	
-	for(long long int c = 2; c <= n; c++)
+	// we initialize a starting point and count consecutive primes until n
+	for(int c = 2; c <= n; c++)
 	{
-		if (prime[c] == true)
+		// if the suggested starting point is prime, we start adding consecutive primes
+		if (prime[c] == 1)
 		{
+			//we initialize the sum and count to be 0 for each new starting point
 			sum = 0;
 			count = 0;
 				
-			for (long long int b = c; b <= n; b++)
+			for (int b = c; b <= n; b++)
 			{
-				if (prime[b] == true)
+				//if the next number to be added to the set of consecutive primes is prime, we increase the count and update the sum
+				if (prime[b] == 1)
 				{
 					sum += b;
 					count++;
 				}
-					
-				if (prime[sum] == true && prime[b] == true && sum < n && count > answercount)
+				
+				// if the sum of consecutive primes is prime, we update answers for both the count and sum - so long as the new count and sum are greater than the previous count and sum
+				if (prime[sum] == 1 && prime[b] == 1 && sum < n && count > answercount)
 				{
-					possiblesum = sum;
+					answersum = sum;
 					answercount = count;
 				}
 			}
 		}
 	}
-	
-	cout << possiblesum << ": " << answercount;
+	// the program is done!
+	cout << answersum << ": " << answercount;
 }
