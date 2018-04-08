@@ -45,7 +45,7 @@ int main (void)
 	int count = 0;
 	int sum = 0;
 	
-	for (int p = 6; count != 38; p++)
+	for (int p = 6; p < n; p++)
 	{	
 		z = p;
 		
