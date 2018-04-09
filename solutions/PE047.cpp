@@ -17,11 +17,11 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 4;
+	int limit = 3;
 	int a, b, w, y, z;
 	int homestretch = 0;
 	
-	for (z = 644; homestretch < limit; z++)
+	for (z = 0; homestretch < limit; z++)
 	{
 		y = 2;
 		a = z;
@@ -40,19 +40,14 @@ int main (void)
 					a = a / y;
 				}
 				
-				if (count == limit && homestretch == 0)
+				if ((count == limit && homestretch == 0) || (homestretch > 0 && count == limit && b == (z - 1)))
 				{
 					homestretch++;
 				}
 				
-				if (homestretch == 1 && b != (z - 1))
+				else
 				{
 					homestretch = 0;
-				}
-				
-				else 
-				{
-					homestretch++;
 				}
 			}
 		}
