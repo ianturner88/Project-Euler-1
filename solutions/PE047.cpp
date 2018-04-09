@@ -16,29 +16,29 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 4;
+	int limit = 2;
 	int a, y, z;
 	int homestretch = 0;
 	
-	for (z = 3; homestretch < limit; z++)
+	for (z = 14; homestretch < limit; z++)
 	{
 		y = 2;
 		a = z;
 		
 		for (y = 2; y <= z/2; y++)
 		{
-			if (prime[y] == true && a > 1)
+			if (prime[y] == true && a % y == 0 && a > 1)
 			{
 				count++;
 				
-				a = z;
+				//a = z;
 				
 				while (a % y == 0)
 				{
 					a = a / y;
 				}
 				
-				if (count == 3)
+				if (count == limit)
 				{
 					homestretch++;
 				}
