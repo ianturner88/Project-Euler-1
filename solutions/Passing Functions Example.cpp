@@ -22,9 +22,7 @@ int main (void)
 
 void gather(int prime[], int size)
 {
-	int i = 0;
-	
-	for (prime[i]; i <= size; i++)
+	for (int i = 0; i <= size; i++)
 	{
 		cout << "Please enter the next prime" << endl;
 		cin >> prime[i];
@@ -33,9 +31,7 @@ void gather(int prime[], int size)
 
 void output(int prime[], int size)
 {
-	int i = 0;
-	
-	for (prime[i]; i <= size; i++)
+	for (int i = 0; i <= size; i++)
 	{
 		cout << "The next prime is: " << prime[i] << endl;
 	}
