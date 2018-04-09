@@ -16,10 +16,11 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 3;
+	int limit = 4;
 	int a, y, z;
+	int homestretch = 0;
 	
-	for (z = 3; count < limit; z++)
+	for (z = 3; homestretch < limit; z++)
 	{
 		y = 2;
 		a = z;
@@ -35,6 +36,11 @@ int main (void)
 				while (a % y == 0)
 				{
 					a = a / y;
+				}
+				
+				if (count == 3)
+				{
+					homestretch++;
 				}
 			}
 		}
