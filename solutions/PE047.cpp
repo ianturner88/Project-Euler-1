@@ -17,8 +17,8 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 3;
-	int a, b, w, y, z;
+	int limit = 2;
+	int a, b = 0, w, y, z;
 	int homestretch = 0;
 	
 	for (z = 0; homestretch < limit; z++)
@@ -27,7 +27,7 @@ int main (void)
 		a = z;
 		count = 0;
 		w = z / 2;
-		b = z - 1;
+		b = 0;
 		
 		for (y = 2; y <= w && a != 1; y++)
 		{
@@ -43,9 +43,10 @@ int main (void)
 				if ((count == limit && homestretch == 0) || (homestretch > 0 && count == limit && b == (z - 1)))
 				{
 					homestretch++;
+					b = z;
 				}
 				
-				else
+				if (homestretch == 1 && b != (z - 1))
 				{
 					homestretch = 0;
 				}
