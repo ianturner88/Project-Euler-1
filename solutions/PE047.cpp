@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <math.h>
 using namespace std;
 
 int main (void)
@@ -16,29 +17,40 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 2;
-	int a, y, z;
+	int limit = 4;
+	int a, b, w, y, z;
 	int homestretch = 0;
 	
-	for (z = 14; homestretch < limit; z++)
+	for (z = 644; homestretch < limit; z++)
 	{
 		y = 2;
 		a = z;
+		count = 0;
+		w = z / 2;
+		b = z - 1;
 		
-		for (y = 2; y <= z/2; y++)
+		for (y = 2; y <= w && a != 1; y++)
 		{
 			if (prime[y] == true && a % y == 0 && a > 1)
 			{
 				count++;
-				
-				//a = z;
 				
 				while (a % y == 0)
 				{
 					a = a / y;
 				}
 				
-				if (count == limit)
+				if (count == limit && homestretch == 0)
+				{
+					homestretch++;
+				}
+				
+				if (homestretch == 1 && b != (z - 1))
+				{
+					homestretch = 0;
+				}
+				
+				else 
 				{
 					homestretch++;
 				}
@@ -46,5 +58,5 @@ int main (void)
 		}
 	}
 	
-	cout << z; 
+	cout << z << endl; 
 }
