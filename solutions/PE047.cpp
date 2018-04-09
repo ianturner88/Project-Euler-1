@@ -6,10 +6,11 @@ int main (void)
 	int n = 1000000;
 	bool prime [n];
 	memset(prime, true, sizeof(prime));
+	int i = 2;
 
-	for (int p = 0; p <= n; p++)
+	for (long long int p = 2; p * p <= n; p++)
 	{
-		for (i = p; i < n; i += p)
+		for (long long int i = 2 * p; i <= n; i += p)
 		{
 			prime[i] == false;
 		}
@@ -18,7 +19,7 @@ int main (void)
 	int count = 0;
 	int a = 0;
 	
-	for (p = 2; count < 2; p++)
+	for (int p = 2; count < 2 && p < n; p++)
 	{
 		if (prime[p] == true && a > 1 && a % p == 0)
 		{
@@ -31,5 +32,5 @@ int main (void)
 		}
 	}
 	
-	cout << count; 
+	cout << a; 
 }
