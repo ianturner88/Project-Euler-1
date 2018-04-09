@@ -33,6 +33,8 @@ int main (void)
 			homestretch = 0;
 		}
 		
+		// write in an else statement
+		
 		for (y = 2; y <= w && a != 1; y++)
 		{
 			if (prime[y] == true && a % y == 0 && a > 1)
