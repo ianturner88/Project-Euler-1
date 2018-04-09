@@ -17,7 +17,7 @@ int main (void)
 	}
 	
 	int count = 0;
-	int limit = 3;
+	int limit = 4;
 	int a, b = 0, w, y, z;
 	int homestretch = 0;
 	
@@ -27,7 +27,11 @@ int main (void)
 		a = z;
 		count = 0;
 		w = z / 2;
-		//b = 0;
+		
+		if (prime[z] == true)
+		{
+			homestretch = 0;
+		}
 		
 		for (y = 2; y <= w && a != 1; y++)
 		{
@@ -46,7 +50,7 @@ int main (void)
 					b = z;
 				}
 				
-				if (homestretch == 1 && b != z && a == 1)
+				if (homestretch >= 1 && b != z && (a == 1 || a == z))
 				{
 					homestretch = 0;
 				}
