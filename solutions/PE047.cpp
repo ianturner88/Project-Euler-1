@@ -4,33 +4,41 @@ using namespace std;
 int main (void)
 {
 	int n = 1000000;
-	bool prime [n];
+	bool prime[n + 1];
 	memset(prime, true, sizeof(prime));
-	int i = 2;
-
-	for (long long int p = 2; p * p <= n; p++)
+	
+	for(long long int p = 2; p*p <= n; p++)
 	{
-		for (long long int i = 2 * p; i <= n; i += p)
+		for(long long int i = 2*p; i <= n; i += p)
 		{
-			prime[i] == false;
+			prime[i] = false;
 		}
 	}
 	
 	int count = 0;
-	int a = 0;
+	int limit = 3;
+	int a, y, z;
 	
-	for (int p = 2; count < 2 && p < n; p++)
+	for (z = 3; count < limit; z++)
 	{
-		if (prime[p] == true && a > 1 && a % p == 0)
+		y = 2;
+		a = z;
+		
+		for (y = 2; y <= z/2; y++)
 		{
-			while (a % p == 0)
+			if (prime[y] == true && a > 1)
 			{
-				a = a / p;
+				count++;
+				
+				a = z;
+				
+				while (a % y == 0)
+				{
+					a = a / y;
+				}
 			}
-			
-			count++;
 		}
 	}
 	
-	cout << a; 
+	cout << z; 
 }
