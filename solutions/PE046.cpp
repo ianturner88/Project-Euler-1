@@ -17,44 +17,35 @@ int main (void)
 	}
 	
 	int flag = 1;
-	int Goldbach = 5775;
-	int square, p, check;
+	int square, squaredummy, p, check, Goldbach = 7;
 	
-	while (flag == 1)
-	{
-		Goldbach += 2;
-		check = 0;
-		
-		if (prime[Goldbach] == false)
-		{ 	
-			while (check != Goldbach && flag != 0 && check < Goldbach)
-			{
-				for (square = 1; square < Goldbach && check < Goldbach; square++)
-				{	
-					square = 2 * pow(square, 2);
+	
+		for (Goldbach; flag == 1; Goldbach += 2)
+		{
+				if (prime[Goldbach] == false)
+				{ 	
+					flag = 0;
+					
+					for (square = 1; square < Goldbach && flag != 1; square++)
+					{	
+						squaredummy = 2 * pow(square, 2);
 				
-					for (p = 2; p < Goldbach && check < Goldbach; p++)
-					{
-						
+						for (p = 2; p < Goldbach && flag != 1; p++)
+						{
+	
 						if (prime[p] == true)
 						{
-							check = p + square;
-							
+							check = p + squaredummy;
+								
 							if (check == Goldbach)
 							{
 								flag = 1;
-							}
-							
-							else
-							{
-								flag = 0;
 							}	
 						}
-					}
+						}
+					}	
 				}	
-			}
 		}
-	}
 	
-	cout << Goldbach;
+	cout << Goldbach - 2;
 }
