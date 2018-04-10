@@ -17,7 +17,7 @@ int main (void)
 	}
 	
 	int flag = 1;
-	int Goldbach = 25;
+	int Goldbach = 5775;
 	int square, p, check;
 	
 	while (flag == 1)
@@ -26,7 +26,7 @@ int main (void)
 		check = 0;
 		
 		if (prime[Goldbach] == false)
-		{
+		{ 	
 			while (check != Goldbach && flag != 0 && check < Goldbach)
 			{
 				for (square = 1; square < Goldbach && check < Goldbach; square++)
@@ -36,16 +36,19 @@ int main (void)
 					for (p = 2; p < Goldbach && check < Goldbach; p++)
 					{
 						
-						check = p + square;
-						
-						if (check == Goldbach)
+						if (prime[p] == true)
 						{
-							flag = 1;
-						}
-						
-						else
-						{
-							flag = 0;
+							check = p + square;
+							
+							if (check == Goldbach)
+							{
+								flag = 1;
+							}
+							
+							else
+							{
+								flag = 0;
+							}	
 						}
 					}
 				}	
