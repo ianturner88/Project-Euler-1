@@ -60,5 +60,10 @@ int main (void)
 		}
 	}
 	
-	cout << z - limit << endl; 
+	int i;
+	
+	for (i = z; i < (z + limit); i++)
+	{
+		cout << i << endl;
+	} 
 }
