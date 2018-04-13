@@ -16,23 +16,23 @@ int main ()
 	myVector.push_back(724);
 	myVector.push_back(312);
 	myVector.push_back(34);
+		
+	//myVector.insert()
+	//myVector.insert(myVector.begin(), new value)
+	myVector.insert(myVector.begin(), 16);
 	
-	cout << "Vector: ";
+	//returns the vector's size
+	//myVector.size()
+	cout << "The vector's size is: " << myVector.size();
+	cout << endl;
 	
+	//prints out all the elements of the vector
+	cout << "The vector's elements are: ";	
 	for (unsigned int i = 0; i < myVector.size(); i++)
 	{
 		cout << myVector[i] << " ";
 	}
 	cout << endl;
-	
-	//returns the vector's size
-	//myVector.size()
-	
-	cout << "The vector's size is: " << myVector.size();
-	cout << endl;
-	
-	//myVector.insert()
-	
 	
 	return 0;
 }
