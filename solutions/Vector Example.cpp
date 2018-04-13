@@ -24,5 +24,9 @@ int main ()
 	
 	cout << endl;
 	
+	cout << "The vector's size is: "<< myVector.size();
+	
+	cout << endl;
+	
 	return 0;
 }
