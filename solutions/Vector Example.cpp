@@ -21,6 +21,7 @@ int main ()
 	//myVector.insert(myVector.begin(), new value)
 	myVector.insert(myVector.begin(), 16);
 	
+	//adds the integer 16 two slots after the beginning
 	myVector.insert(myVector.begin() + 2, 16);
 	
 	//returns the vector's size
