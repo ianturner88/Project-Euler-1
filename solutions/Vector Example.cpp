@@ -5,8 +5,10 @@ using namespace std;
 int main ()
 {
 	//vector<DataType> NameOfVector
-	
 	vector<int> myVector;
+	
+	//adds an element to the end of the vector & resizes the vector
+	//myVector.push_back()
 	
 	myVector.push_back(298);
 	myVector.push_back(78);
@@ -21,12 +23,16 @@ int main ()
 	{
 		cout << myVector[i] << " ";
 	}
-	
 	cout << endl;
 	
-	cout << "The vector's size is: "<< myVector.size();
+	//returns the vector's size
+	//myVector.size()
 	
+	cout << "The vector's size is: " << myVector.size();
 	cout << endl;
+	
+	//myVector.insert()
+	
 	
 	return 0;
 }
