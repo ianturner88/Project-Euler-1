@@ -9,5 +9,5 @@ int main (void)
 	
 	cout << number << endl; //returns the number 88
 	cout << *pNumber << endl; //returns the value stored at the memory address of pNumber
-	cout << &number << endl; //the memory address of number
+	cout << &number << endl; //The '&' latched on to a variable returns the address of the variable
 }
