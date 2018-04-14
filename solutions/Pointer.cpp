@@ -3,11 +3,11 @@ using namespace std;
 
 int main (void)
 {
-	int number = 88;
-	int *pNumber;
-	pNumber = &number;
+	int number = 88; //declares the integer variable to have a value of 88
+	int *pNumber; //declares a pointer of type integer
+	pNumber = &number; //assigns the address of the variable number to the pointer pNumber
 	
-	cout << number << endl;
-	cout << *pNumber << endl;
-	cout << &number << endl;
+	cout << number << endl; //returns the number 88
+	cout << *pNumber << endl; //returns the value stored at the memory address of pNumber
+	cout << &number << endl; //the memory address of number
 }
