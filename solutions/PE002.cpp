@@ -8,15 +8,12 @@ void Answer(bool prime[], int n);
 int main (void)
 {
 	long long int n = 100;
-	long long int sum = 0;
-	long long int p;
 	
 	bool prime[n + 1];
 	memset(prime, false, sizeof(prime));
 	
 	Fibonacci(prime, n);
 	Answer(prime, n);
-	
 }
 
 void Fibonacci(bool prime[], int n)
