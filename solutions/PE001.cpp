@@ -1,84 +1,58 @@
-#include<iostream>
+#include <iostream>
 using namespace std;
 
-int calcsum(int u, int h);
-int sumlimit(int x, int y, int z);
-void answer(int a, int b, int c, int s);
-int upperlimit();
+int Upperlimit();
+int multiples(int variable, int upperlimit);
+int answer(int three, int five, int fifteen);
 
-int main()
+int main(void)
 {
-	int a = 0;
-	int b = 0;
-	int c = 0;
-	int ul = 0;
-	int sum = 0;
+	int three = 0;
+	int five = 0;
+	int fifteen = 0;
 
-	ul = upperlimit();
+	int upperlimit = Upperlimit();
 
-	int h = 3;
-	a = calcsum(ul, h);
+	three = multiples(3, upperlimit);
+	five = multiples(5, upperlimit);
+	fifteen = multiples(15, upperlimit);
 
-	h = 5;
-	b = calcsum(ul, h);
-
-	h = 15;
-	c = calcsum(ul, h);
-
-	sumlimit(a, b, c);
-	answer(a, b, c, sum);
+	cout << answer(three, five, fifteen) << endl;
 
 	system("pause");
 }
 
-
-int upperlimit()
+int Upperlimit()
 {
-	/* The user enters the upperlimit.
-	'void' when not returning something.
-	Here, u is being returned, so we have 
-	the return type 'int' */ 
+	/* Asks the user for the upperlimit */
+	
+	int upperlimit;
 
-	int u;
+	cout << "Enter the upperlimit:" << endl;
+	cin >> upperlimit;
 
-	cout << "Enter the upperlimit: " << endl;
-	cin >> u;
-
-	return u;
+	return upperlimit;
 }
 
-void answer(int a, int b, int c, int s)
+int multiples(int variable, int upperlimit)
 {
-	/* void because there's no return. 
-	may pass by value in as much as we like. 
-	don't use pass by reference because the values
-	are constnat and being output */ 
-	
-	cout << a << endl;
-	cout << b << endl;
-	cout << c << endl;
-	cout << s;
-}
+	/* Calculates the sum of the multiples
+	of 3, 5, & 15 below the given upperlimit */
 
-int calcsum(int u, int h)
-{
-	/* calculate the sum of the multiples 
-	of 3, 5, & 15 that are less than the
-	upperlimit */
+	int sum = 0;
 	
-	int x = 0;
-
-	for (int m = 0; m < u; m += h)
+	for (int multiple = 0; multiple < upperlimit; multiple += variable)
 	{
-		x += m;
+		sum += multiple;
 	}
 
-	return x;
+	return sum;
 }
 
-int sumlimit(int x, int y, int z)
+int answer(int three, int five, int fifteen)
 {
-	// the function is given the value of the summation 
+	/* Sets the value of the function
+	to the answer */
 
-	return  x + y - z;
+	return three + five - fifteen;
 }
