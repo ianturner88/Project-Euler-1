@@ -64,8 +64,7 @@ int calcsum(int u, int h)
 {
 	/* calculate the sum of the multiples 
 	of 3, 5, & 15 that are less than the
-	upperlimit
-	*/
+	upperlimit */
 	
 	int x = 0;
 
