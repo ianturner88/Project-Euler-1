@@ -1,41 +1,53 @@
 #include<iostream>
 using namespace std;
 
-void calcsum(int &x, int &u, int &h);
-void sumlimit(int &x, int &y, int &z, int &s);
-void answer(int &a, int &b, int &c, int &s);
-void upperlimit(int &u);
+int calcsum(int u, int h);
+int sumlimit(int x, int y, int z);
+void answer(int a, int b, int c, int s);
+int upperlimit();
 
-int main ()
+int main()
 {
 	int a = 0;
 	int b = 0;
 	int c = 0;
 	int ul = 0;
 	int sum = 0;
-	
-	upperlimit(ul);
-	
+
+	ul = upperlimit();
+
 	int h = 3;
-	calcsum(a, ul, h);
-	
+	a = calcsum(ul, h);
+
 	h = 5;
-	calcsum(b, ul, h);
-	
+	b = calcsum(ul, h);
+
 	h = 15;
-	calcsum(c, ul, h);
-	
-	sumlimit(a, b, c, sum);
+	c = calcsum(ul, h);
+
+	sumlimit(a, b, c);
 	answer(a, b, c, sum);
+
+	system ("pause");
 }
 
-void upperlimit(int &u)
+
+int upperlimit()
 {
+	int u;
+
 	cout << "Please enter the upperlimit" << endl;
 	cin >> u;
+
+	return u;
+
+	// 'void' when not returning something - here, u is being returned, so we have the return type 'int' 
 }
 
-void answer(int &a, int &b, int &c, int &s)
+///////////
+
+
+void answer(int a, int b, int c, int s)
 {
 	cout << a << endl;
 	cout << b << endl;
@@ -43,15 +55,27 @@ void answer(int &a, int &b, int &c, int &s)
 	cout << s;
 }
 
-void calcsum(int &x, int &u, int &h)
+// void because there's no return. may pass by value in as much as we like. don't use pass by reference because the values are
+// are constnat and being output b
+
+///////////////
+
+int calcsum(int u, int h)
 {
+	int x = 0;
+	
 	for (int m = 0; m < u; m += h)
 	{
 		x += m;
 	}
+
+	return x;
 }
 
-void sumlimit(int &x, int &y, int &z, int &s)
+/////////////////////
+
+int sumlimit(int x, int y, int z)
 {
-	s = x + y - z;
+	return  x + y - z;
 }
+// the function is given the value of the summation 
