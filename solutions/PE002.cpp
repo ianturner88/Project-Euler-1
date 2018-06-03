@@ -1,55 +1,52 @@
-#include <bits/stdc++.h>
-#include <math.h>
+#include<iostream>
 using namespace std;
 
-void Fibonacci(bool prime[], int);
-void Answer(bool prime[], int n);
+void Fibonacci(long int &f1, long int &f2, long int &fnext);
+bool Is_Even(long int fnext);
+void Sum(long int &sum, long int &fibonacci);
 
-int main (void)
+int main(void)
 {
-	long long int n = 1000000;
-	
-	bool prime[n + 1];
-	memset(prime, false, sizeof(prime));
-	
-	Fibonacci(prime, n);
-	Answer(prime, n);
+	long int upperlimit = 4000000;
+	long int fibonacci = 0;
+	long int f1 = 1, f2 = 2, fnext = 3;
+	long int sum = 0;
+
+	while (fibonacci < upperlimit)
+	{
+		Fibonacci(f1, f2, fnext);
+		fibonacci = fnext;
+		if (Is_Even(fibonacci) == true)
+		{
+			Sum(sum, fibonacci);
+		}
+	}
+
+	cout << sum + 2 << endl;
+
+	system("pause");
 }
 
-void Fibonacci(bool prime[], int n)
+void Fibonacci(long int &f1, long int &f2, long int &fnext)
 {
-	long long int Fnext, F1 = 1, F2 = 1;
+	f1 = f2;
+	f2 = fnext;
+	fnext = f1 + f2;
+}
+
+bool Is_Even(long int fnext)
+{
 	int flag = 0;
-	
-	while (flag == 0)
+
+	if (fnext % 2 == 0)
 	{
-		if (Fnext % 2 == 0)
-		{
-			prime[Fnext] = true;
-		}
-		
-		Fnext = F1 + F2;
-		F1 = F2;
-		F2 = Fnext;
-		
-		if (Fnext > n || F1 > n || F2 > n)
-		{
-			flag = 1;
-		}
+		flag = 1;
 	}
+
+	return flag;
 }
 
-void Answer(bool prime[], int n)
+void Sum(long int &sum, long int &fibonacci)
 {
-	long long int sum = 0;
-	
-	for (long long int p = 0; p < n; p++)
-	{
-		if (prime[p] == true)
-		{
-			sum += p;	
-		}
-	}
-	
-	cout << sum;
+	sum += fibonacci;
 }
