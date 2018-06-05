@@ -2,7 +2,7 @@
 using namespace std;
 
 bool Is_Prime(bool prime[], int upperlimit);
-int Division(bool prime[], int Big_Number, int testcase);
+int Division(bool prime[], int big_number, int testcase);
 
 int main(void)
 {
@@ -36,13 +36,16 @@ int Division(bool prime[], int big_number, int testcase)
 	int flag = 0;
 	testcase = testcase + 1;
 	
-	while (flag = 0)
+	while (flag == 0)
 	{
 		testcase--;
 		
-		if (big_number % testcase == 00)
+		if (prime[testcase] == true)
 		{
-			flag = 1;
+			if (big_number % testcase == 0)
+			{
+				flag = 1;
+			}
 		}
 	}
 
