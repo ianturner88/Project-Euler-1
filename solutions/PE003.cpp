@@ -1,33 +1,50 @@
-#include <iostream>
+#include<iostream>
 using namespace std;
-//process specifications & data dictionaries
-int main (void)
+
+bool Is_Prime(bool prime[], int upperlimit);
+int Division(bool prime[], int Big_Number, int testcase);
+
+int main(void)
 {
-  long int big = 600851475143;
-  int small = 2;
-  int primechecker, largestprime=0;
-  bool isPrime=0;
-  
-  for (small; small <= big / 2; small++)
-  {
-    if (big%small==0)
-    {
-      isPrime=1;
-      for (primechecker = 2; primechecker <= small/2; primechecker++)
-      {
-        if (small%primechecker==0)
-        {
-          isPrime = 0;
-          break;
-        }
-        
-        else
-        {
-          isPrime = 1;
-          largestprime = small;
-        }
-      }
-    if(isPrime) cout << largestprime << endl;
-    }
-  }
+	const long long int big_number = 600851475143;
+	const long long int upperlimit = big_number / 2;
+	
+	bool prime[upperlimit];
+	memset(prime, true, sizeof(prime));
+
+	Is_Prime(prime, upperlimit);
+	Division(prime, big_number, upperlimit);
+
+	cout << Division(prime, big_number, upperlimit);
+}
+
+bool Is_Prime(bool prime[], int upperlimit)
+{
+	for (int multiple = 1; multiple <= upperlimit; multiple++)
+	{
+		for (multiple; multiple <= upperlimit; multiple += multiple)
+		{
+			prime[multiple] = false;
+		}
+	}
+
+	return prime;
+}
+
+int Division(bool prime[], int big_number, int testcase)
+{
+	int flag = 0;
+	testcase = testcase + 1;
+	
+	while (flag = 0)
+	{
+		testcase--;
+		
+		if (big_number % testcase == 00)
+		{
+			flag = 1;
+		}
+	}
+
+	return testcase;
 }
