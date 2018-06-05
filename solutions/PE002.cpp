@@ -3,7 +3,6 @@ using namespace std;
 
 void Fibonacci(long int &f1, long int &f2, long int &fnext);
 bool Is_Even(long int fnext);
-void Sum(long int &sum, long int &fibonacci);
 
 int main(void)
 {
@@ -14,11 +13,15 @@ int main(void)
 
 	while (fibonacci < upperlimit)
 	{
+		/* fibonacci is increased until fibonacci
+		equals the upperlimit.
+		fibonacci is checked to see if it's even*/
+		
 		Fibonacci(f1, f2, fnext);
 		fibonacci = fnext;
 		if (Is_Even(fibonacci) == true)
 		{
-			Sum(sum, fibonacci);
+			sum += fibonacci;
 		}
 	}
 
@@ -29,6 +32,7 @@ int main(void)
 
 void Fibonacci(long int &f1, long int &f2, long int &fnext)
 {
+	/*A fibonacci # generator*/
 	f1 = f2;
 	f2 = fnext;
 	fnext = f1 + f2;
@@ -36,6 +40,8 @@ void Fibonacci(long int &f1, long int &f2, long int &fnext)
 
 bool Is_Even(long int fnext)
 {
+	/*check the value of even*/
+	
 	int flag = 0;
 
 	if (fnext % 2 == 0)
@@ -44,9 +50,4 @@ bool Is_Even(long int fnext)
 	}
 
 	return flag;
-}
-
-void Sum(long int &sum, long int &fibonacci)
-{
-	sum += fibonacci;
 }
