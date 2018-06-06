@@ -1,39 +1,66 @@
-#include <iostream>
-#include <math.h>
+/* Question: A palindromic number reads the same both ways. The largest 
+palindrome made from the product of two 2-digit numbers is 9009 = 91 × 99. 
+Find the largest palindrome made from the product of two 3-digit numbers.
+*/
+
+#include<iostream>
 using namespace std;
 
-int main (void)
+int Palindrome(int answer);
+void Divisor_First(int &answer, int &flag);
+int Divisor_Second(int first_divisor);
+
+int main(void)
 {
-  int threedigit = 999;
-  int product = 0;
-  int limit = 0;
-  int firstdivisor = 0, seconddivisor = 0;
-  int palindrome = 0;
-  int dummyfirstdivisor = 0;
-  int firstfinal = 0;
-  
-  while (threedigit > 100)
-  {
-    threedigit--;
-    
-    product = threedigit*1000 + (threedigit%10)*100 + (threedigit/10)%10*10 + (threedigit/100)%10;
-    
-    limit = sqrt(product);
-    firstdivisor = 1000;
-    
-    while (firstdivisor > limit)
-      {
-      firstdivisor--;
-      dummyfirstdivisor = firstdivisor;
-        
-        if (product % firstdivisor == 0)
-        {
-          threedigit = 0;
-          seconddivisor = product / firstdivisor;
-          firstfinal = firstdivisor;
-          firstdivisor = 0;
-        }
-      }    
-    }
-    cout << product << " " << firstfinal << " " << seconddivisor;
+	int flag = 0;
+	int answer = 987;
+
+	while (flag == 0)
+	{
+		Palindrome(answer);
+		if (Divisor_First(flag) == 1)
+		{
+			Divisor_Second();
+		}
+	}
+}
+
+int Palindrome(int answer)
+{
+	int testcase;
+	
+	answer--;
+
+	testcase = (answer / 100) * 1000 + ((answer / 10) % 10) * 10000 + ((answer % 10) * 100000) + answer;
+
+	return testcase;
+}
+
+void Divisor_First(int &answer, int &flag)
+{
+	int divisor = 100;
+	int testcase = answer;
+
+	while (divisor < (testcase / 2) && flag == 0)
+	{
+		if (testcase % divisor == 0)
+		{
+			flag = 1;
+		}
+
+		else
+		{
+			divisor++;
+		}
+	}
+}
+
+int Divisor_Second(int first_divisor)
+{
+	int second_divisor = testcase / first_divisor;
+
+	if (sizeof(second_divisor) == 3)
+	{
+
+	}
 }
