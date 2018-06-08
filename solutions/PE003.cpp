@@ -1,39 +1,42 @@
 #include<iostream>
 using namespace std;
 
-bool Is_Prime(bool prime[], int upperlimit);
-int Division(bool prime[], int big_number, int testcase);
+void Is_Prime(bool prime[], long long int &testcase);
+void Division(bool prime[], long long  int &big_number, long long int &testcase);
 
 int main(void)
 {
-	const long long int big_number = 600851475143;
-	const long long int upperlimit = big_number / 2;
+	long long int big_number = 600851475143;
+	long long int testcase = big_number / 2;
 	
-	bool prime[upperlimit];
+	bool prime[300425737571];
 	memset(prime, true, sizeof(prime));
 
-	Is_Prime(prime, upperlimit);
-	Division(prime, big_number, upperlimit);
+	Is_Prime(prime, testcase);
+	Division(prime, big_number, testcase);
 
-	cout << Division(prime, big_number, upperlimit);
+	cout << testcase << endl;
+
+	system("pause");
 }
 
-bool Is_Prime(bool prime[], int upperlimit)
+void Is_Prime(bool prime[], long long int &testcase)
 {
-	for (int multiple = 1; multiple <= upperlimit; multiple++)
+	long long int p, i;
+	
+	for (p = 2; p <= testcase; p++)
 	{
-		for (multiple; multiple <= upperlimit; multiple += multiple)
+		for (i = 2 * p; i <= testcase; i += p)
 		{
-			prime[multiple] = false;
+			prime[i] = false;
 		}
 	}
-
-	return prime;
 }
 
-int Division(bool prime[], int big_number, int testcase)
+void Division(bool prime[], long long int &big_number, long long int &testcase)
 {
 	int flag = 0;
+
 	testcase = testcase + 1;
 	
 	while (flag == 0)
@@ -48,6 +51,4 @@ int Division(bool prime[], int big_number, int testcase)
 			}
 		}
 	}
-
-	return testcase;
 }
