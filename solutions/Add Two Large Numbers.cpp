@@ -1,44 +1,79 @@
-#include<bits/stdc++.h>
+#include<iostream>
+#include<string>
 using namespace std;
 
-void Berlin(N1, N2);
+void Length_Check(string &str1, string &str2);
+void Length_Calculate(string &answer, string &str1, string &str2, int &length_difference, int &n1, int &n2);
+void Add_LSB(string &answer, string &str1, string &str2, int &carry, int &n1, int &n2, int &sum, int &length_difference);
+void Add_MSB(string &answer, string &str1, string &str2, int &carry, int &n1, int &n2, int &sum);
+void Carry(int &carry, string &answer);
+void Reverse(string &answer);
 
-int main (void)
+int main()
 {
-	string N1 = '1297';
-	string N2 = '3829';
-	Berlin (NumberOne, NumberTwo);
+	string str1 = "3165", str2 = "5457", answer;
+	int length_difference = 0, carry = 0;
+	int n1 = 0, n2 = 0, sum = 0;
+
+	Length_Check(str1, str2);
+	Length_Calculate(answer, str1, str2, length_difference, n1, n2);
+	Add_LSB(answer, str1, str2, carry, n1, n2, sum, length_difference);
+	Add_MSB(answer, str1, str2, carry, n1, n2, sum);
+	Carry(carry, answer);
+	Reverse(answer);
+
+	cout << answer << endl;
+
+	system("pause");
 }
 
-Berlin(N1, N2)
+void Length_Check(string &str1, string &str2)
 {
-	// find the longer of the two numbers and make the longer one N1
-	if (N1.length < N2.length)
+	if (str1.length() > str2.length())
 	{
-		swap(N1, N2);
+		swap(str1, str2);
 	}
-	
-	// find the length of the two strings (aka numbers) to setup a counter
-	int L1 = N1.length;
-	int L2 = N2.length;
-	
-	// the sum is the value of the N1's & N2's [int i] spot are added together and stored in 'sum'
-	int sum = 0;
-	
-	// carry will always have a value of 1 or 0 and is the 10's spot value of the variable 'sum'. For example, 9 + 9 would give a carry of 1
-	int carry = 0;
-	
-	// we set a counter equal to one less than the smaller number's size. So if 19 and 2300 were added, we would only add 19 + 00 in this loop 
-	for (int i = L1 - 1; i >= 0; i--)
+}
+
+void Length_Calculate(string &answer, string &str1, string &str2, int &length_difference, int &n1, int &n2)
+{
+	n1 = str1.length();
+	n2 = str2.length();
+
+	length_difference = n2 - n1;
+}
+
+void Add_LSB(string &answer, string &str1, string &str2, int &carry, int &n1, int &n2, int &sum, int &length_difference)
+{
+	for (int i = n1 - 1; i >= 0; i--)
 	{
-		sum = ((N1[i] - '0') + (N2[i] - '0') + carry);
-		carry = sum / 10; 
+		sum = (str1[i] -'0') + (str2[i + length_difference] - '0') + carry;
+		int test1 = (str1[i] - '0');
+		int test2 = (str2[i + length_difference] - '0');
+		carry = sum / 10;
+		answer.push_back(sum % 10 + '0');
 	}
-	
-	// we have not yet added the 23 in 2300 to the sum - which is what we do in this loop.
-	// there is no need for a carry since N2 has no values to be added with N1
-	for (int i = L1 - L2 - 1; i >= 0; i--)
+}
+
+void Add_MSB(string &answer, string &str1, string &str2, int &carry, int &n1, int &n2, int &sum)
+{	
+	for (int i = n2 - n1 - 1; i >= 0; i--)
 	{
-		sum = (N1[i] - '0');
+		sum = (str2[i] - '0');
+		carry = sum / 10;
+		answer.push_back(sum % 10 + '0');
 	}
+}
+
+void Carry(int &carry, string &answer)
+{
+	if (carry == 1)
+	{
+		answer.push_back(carry + '0');
+	}
+}
+
+void Reverse(string &answer)
+{
+	reverse(answer.begin(), answer.end());
 }
