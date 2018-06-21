@@ -10,10 +10,10 @@ void Reverse(string &fibonacci_next);
 
 int main()
 {
-	string fibonacci1 = "1", fibonacci2 = "1", fibonacci_next = "2";
+	string fibonacci1 = "8", fibonacci2 = "13", fibonacci_next = "21";
 	int length_difference, carry, count = 0, n1, n2, n3 = 1, sum;
 	
-	while (n3 != 1000)
+	while (n3 != 3)
 	{
 		Length_Calculator(n1, n2, n3, length_difference, fibonacci1, fibonacci2, fibonacci_next);
 		Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
@@ -67,7 +67,7 @@ void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference,
 	
 	int remainder;
 	
-	for (int i = n2 - n1 - 1; i <= 0; i--)
+	for (int i = n2 - n1 - 1; i >= 0; i--)
 	{
 		remainder = (fibonacci2[i] - '0');
 		
