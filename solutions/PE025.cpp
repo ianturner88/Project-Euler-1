@@ -4,19 +4,21 @@ using namespace std;
 
 void Length_Calculator(int &n1, int &n2, int &n3, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next);
 void Fibonacci_Generator(string &fibonacci1, string &fibonacci2, string &fibonacci_next);
+void Fibonacci_Next(string &fibonacci_next);
 void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int &length_difference, int &carry, int &n1, int &n2, int &sum);
 void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2);
 void Reverse(string &fibonacci_next);
 
 int main()
 {
-	string fibonacci1 = "8", fibonacci2 = "13", fibonacci_next = "21";
-	int length_difference, carry, count = 0, n1, n2, n3 = 1, sum;
+	string fibonacci1 = "1", fibonacci2 = "1", fibonacci_next = "2";
+	int length_difference, carry = 0, count = 0, n1, n2, n3 = 1, sum = 0;
 	
 	while (n3 != 3)
 	{
 		Length_Calculator(n1, n2, n3, length_difference, fibonacci1, fibonacci2, fibonacci_next);
 		Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
+		Fibonacci_Next(fibonacci_next);
 		Add_LSB(fibonacci1, fibonacci2, fibonacci_next, length_difference, carry, n1, n2, sum);
 		Add_MSB(fibonacci2, fibonacci_next, length_difference, n1, n2);
 		
@@ -47,18 +49,48 @@ void Fibonacci_Generator(string &fibonacci1, string &fibonacci2, string &fibonac
 	fibonacci2 = fibonacci_next;
 }
 
+void Fibonacci_Next(string &fibonacci_next)
+{
+	string replacement = "0";
+
+	fibonacci_next = replacement;
+}
+
 void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int &length_difference, int &carry, int &n1, int &n2, int &sum)
 {
 	/*Add the least significant bits of both numbers*/
 
-	for (int i = n1 - 1; i >= 0; i--)
+	if (n1 == n2)
 	{
-		sum = (fibonacci1[i] - '0') + (fibonacci2[i + length_difference] - '0') + carry;
+		for (int i = n1 - 1; i >= 0; i--)
+		{
+			int test1 = (fibonacci1[i] - '0');
+			int test2 = (fibonacci2[i + length_difference] - '0');
 
-		fibonacci_next.push_back(sum % 10 + '0');
+			sum = (fibonacci1[i] - '0') + (fibonacci2[i + length_difference] - '0') + carry;
 
-		carry = sum / 10;
+			fibonacci_next.push_back(sum % 10 + '0');
+
+			carry = sum / 10;
+		}
 	}
+
+	else
+	{
+		for (int i = n1 - 1; i >= 0; i--)
+		{
+			int test1 = (fibonacci1[i] - '0');
+			int test2 = (fibonacci2[i + length_difference] - '0');
+
+			sum = (fibonacci1[i] - '0') + (fibonacci2[i + length_difference] - '0') + carry;
+
+			fibonacci_next.push_back(sum % 10 + '0');
+
+			carry = sum / 10;
+		}
+	}
+	
+	fibonacci_next.erase(fibonacci_next.begin());
 }
 
 void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2)
