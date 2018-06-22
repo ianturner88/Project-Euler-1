@@ -2,13 +2,14 @@
 #include<iostream>
 using namespace std;
 
-void Length_Calculator(int &n1, int &n2, int &n3, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next);
+void Length_Calculator(int &n1, int &n2, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next);
 void Fibonacci_Generator(string &fibonacci1, string &fibonacci2, string &fibonacci_next);
 void Fibonacci_Next(string &fibonacci_next);
 void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int &length_difference, int &carry, int &n1, int &n2, int &sum);
-void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2);
+void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2, int &carry);
 void Carry(string &fibonacci_next, int &carry);
-void Reverse(string &fibonacci_next);
+void ReverseFNext(string &fibonacci_next);
+void ReverseF1andF2(string &fibonacci1, string &fibonacci2);
 
 int main()
 {
@@ -18,27 +19,27 @@ int main()
 	while (n3 != 3)
 	{
 		Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
+		ReverseF1andF2(fibonacci1, fibonacci2);
 		Fibonacci_Next(fibonacci_next);
-		Length_Calculator(n1, n2, n3, length_difference, fibonacci1, fibonacci2, fibonacci_next);
+		Length_Calculator(n1, n2, length_difference, fibonacci1, fibonacci2, fibonacci_next);
 		Add_LSB(fibonacci1, fibonacci2, fibonacci_next, length_difference, carry, n1, n2, sum);
-		Add_MSB(fibonacci2, fibonacci_next, length_difference, n1, n2);
+		Add_MSB(fibonacci2, fibonacci_next, length_difference, n1, n2, carry);
 		Carry(fibonacci_next, carry);
 		
 		count++;
 	}
 
-	Reverse(fibonacci_next);
+	ReverseFNext(fibonacci_next);
 	
 	cout << "The index number of the first fibonacci number with 1 000 digits is: " << count << endl << endl;
 
 	cout << "The " << count << " fibonacci number is " << fibonacci_next;
 }
 
-void Length_Calculator(int &n1, int &n2, int &n3, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next)
+void Length_Calculator(int &n1, int &n2, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next)
 {
 	n1 = fibonacci1.length();
 	n2 = fibonacci2.length();
-	//n3 = fibonacci_next.length();
 
 	length_difference = n2 - n1;
 }
@@ -62,29 +63,13 @@ void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int
 {
 	/*Add the least significant bits of both numbers*/
 
-	if (n1 == n2)
 	{
-		for (int i = n1 - 1; i >= 0; i--)
+		for (int i = 0; i < n1; i++)
 		{
 			int test1 = (fibonacci1[i] - '0');
-			int test2 = (fibonacci2[i + length_difference] - '0');
+			int test2 = (fibonacci2[i] - '0');
 
 			sum = (fibonacci1[i] - '0') + (fibonacci2[i] - '0') + carry;
-
-			fibonacci_next.push_back(sum % 10 + '0');
-
-			carry = sum / 10;
-		}
-	}
-
-	else
-	{
-		for (int i = n1 - 1; i >= 0; i--)
-		{
-			int test1 = (fibonacci1[i] - '0');
-			int test2 = (fibonacci2[i + length_difference] - '0');
-
-			sum = (fibonacci1[i] - '0') + (fibonacci2[i + length_difference] - '0') + carry;
 
 			fibonacci_next.push_back(sum % 10 + '0');
 
@@ -95,16 +80,17 @@ void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int
 	fibonacci_next.erase(fibonacci_next.begin());
 }
 
-void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2)
+void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2, int &carry)
 {
 	/*Add the most sigificant digits of n2, the larger number*/
 	
 	int remainder;
 	
-	for (int i = n2 - n1 - 1; i >= 0; i--)
+	for (int i = n2 - n1; i < n2; i++)
 	{
-		remainder = (fibonacci2[i] - '0');
-		
+		remainder = ((fibonacci2[i] - '0') + carry);
+		carry = remainder / 10;
+
 		fibonacci_next.push_back(remainder + '0');
 	}
 }
@@ -117,7 +103,13 @@ void Carry(string &fibonacci_next, int &carry)
 	}
 }
 
-void Reverse(string &fibonacci_next)
+void ReverseFNext(string &fibonacci_next)
 {
 	reverse(fibonacci_next.begin(), fibonacci_next.end());
+}
+
+void ReverseF1andF2(string &fibonacci1, string &fibonacci2)
+{
+	reverse(fibonacci1.begin(), fibonacci1.end());
+	reverse(fibonacci2.begin(), fibonacci2.end());
 }
