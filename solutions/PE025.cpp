@@ -7,6 +7,7 @@ void Fibonacci_Generator(string &fibonacci1, string &fibonacci2, string &fibonac
 void Fibonacci_Next(string &fibonacci_next);
 void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int &length_difference, int &carry, int &n1, int &n2, int &sum);
 void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference, int &n1, int &n2);
+void Carry(string &fibonacci_next, int &carry);
 void Reverse(string &fibonacci_next);
 
 int main()
@@ -21,6 +22,7 @@ int main()
 		Fibonacci_Next(fibonacci_next);
 		Add_LSB(fibonacci1, fibonacci2, fibonacci_next, length_difference, carry, n1, n2, sum);
 		Add_MSB(fibonacci2, fibonacci_next, length_difference, n1, n2);
+		Carry(fibonacci_next, carry);
 		
 		count++;
 	}
@@ -104,6 +106,14 @@ void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference,
 		remainder = (fibonacci2[i] - '0');
 		
 		fibonacci_next.push_back(remainder + '0');
+	}
+}
+
+void Carry(string &fibonacci_next, int &carry)
+{
+	if (carry == 1)
+	{
+		fibonacci_next.push_back(carry + '0');
 	}
 }
 
