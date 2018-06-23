@@ -13,14 +13,12 @@ void ReverseAllFibonacciNumbers(string &fibonacci1, string &fibonacci2, string &
 
 int main()
 {
-	string fibonacci1 = "13", fibonacci2 = "21", fibonacci_next = "34";
-	int length_difference, carry = 0, count = 7, n1, n2, n3 = 1, sum = 0;
+	string fibonacci1 = "55", fibonacci2 = "89", fibonacci_next = "144";
+	int length_difference, carry = 0, count = 12, n1, n2, n3 = 1, sum = 0;
 	
 	ReverseAllFibonacciNumbers(fibonacci1, fibonacci2, fibonacci_next);
-	//Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
-	//Fibonacci_Next(fibonacci_next);
 
-	while (n3 != 3)
+	while (n3 != 1000)
 	{
 		Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
 		Fibonacci_Next(fibonacci_next);
@@ -28,7 +26,8 @@ int main()
 		Add_LSB(fibonacci1, fibonacci2, fibonacci_next, length_difference, carry, n1, n2, sum);
 		Add_MSB(fibonacci2, fibonacci_next, length_difference, n1, n2, carry);
 		Carry(fibonacci_next, carry);
-		
+		Length_Calculator(n1, n2, n3, length_difference, fibonacci1, fibonacci2, fibonacci_next);
+
 		count++;
 	}
 
@@ -36,7 +35,11 @@ int main()
 	
 	cout << "The index number of the first fibonacci number with 1 000 digits is: " << count << endl << endl;
 
-	cout << "The " << count << " fibonacci number is " << fibonacci_next;
+	cout << "The " << count << " fibonacci number is " << fibonacci_next << endl;
+
+	system("pause");
+
+	return 0;
 }
 
 void Length_Calculator(int &n1, int &n2, int &n3, int &length_difference, string &fibonacci1, string &fibonacci2, string &fibonacci_next)
@@ -74,6 +77,8 @@ void Add_LSB(string &fibonacci1, string &fibonacci2, string &fibonacci_next, int
 	/*Add the least significant bits of both numbers*/
 
 	{
+		carry = 0;
+		
 		for (int i = 0; i < n1; i++)
 		{
 			int test1 = (fibonacci1[i] - '0');
@@ -96,13 +101,18 @@ void Add_MSB(string &fibonacci2, string &fibonacci_next, int &length_difference,
 	/*Add the most sigificant digits of n2, the larger number*/
 	
 	int remainder;
+	int increment = n1;
 	
 	for (int i = n2 - n1 - 1; i >= 0; i--)
 	{
-		remainder = ((fibonacci2[i] - '0') + carry);
+		int test = fibonacci2[increment];
+		
+		remainder = ((fibonacci2[increment] - '0') + carry);
 		carry = remainder / 10;
 
 		fibonacci_next.push_back(remainder + '0');
+
+		increment++;
 	}
 }
 
