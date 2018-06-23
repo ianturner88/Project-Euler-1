@@ -6,21 +6,26 @@ void Set_Str1_and_Str2(string &str1, string &str2, string &str3);
 void Clear_Str3(string &str3);
 void Length_Calculator(string &str1, int &n1);
 void Add_Digits(string &str1, string &str2, string &str3, int &n1, int &carry);
+void Carry(int &carry, string &str3);
+void Reverse(string &str3);
 
 int main()
 {
 	int addition_limit = 2, exponent = 0, n1, carry = 0;
 	string str1 = "1", str2, str3 = "1";
 
-	while (exponent < 15)
+	while (exponent < 1000)
 	{
 		Set_Str1_and_Str2(str1, str2, str3);
 		Clear_Str3(str3);
 		Length_Calculator(str1, n1);
 		Add_Digits(str1, str2, str3, n1, carry);
+		Carry(carry, str3);
 
 		exponent++;
 	}
+
+	Reverse(str3);
 
 	cout << str3 << endl;
 
@@ -65,5 +70,25 @@ void Add_Digits(string &str1, string &str2, string &str3, int &n1, int &carry)
 
 void Clear_Str3(string &str3)
 {
+	/* Clear out str3 so that str1 & str2 can be added together and 
+	placed into str3.*/
+	
 	str3 = "0";
+}
+
+void Carry(int &carry, string &str3)
+{
+	/* If there is a 'final' carry, add the carry*/
+	
+	if (carry == 1)
+	{
+		str3.push_back(carry + '0');
+	}
+
+	carry = 0;
+}
+
+void Reverse(string &str3)
+{
+	reverse(str3.begin(), str3.end());
 }
