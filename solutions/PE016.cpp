@@ -5,29 +5,46 @@ using namespace std;
 void Set_Str1_and_Str2(string &str1, string &str2, string &str3);
 void Clear_Str3(string &str3);
 void Length_Calculator(string &str1, int &n1);
-void Add_Digits(string &str1, string &str2, string &str3, int &n1, int &carry);
+void Add_Digits(string &str1, string &str2, string &str3, int &string_length, int &carry);
 void Carry(int &carry, string &str3);
 void Reverse(string &str3);
+void Digit_Return(string &str3, int &string_length, int &digit);
+void Add_LSB(string &str4, int &digit);
 
 int main()
 {
-	int addition_limit = 2, exponent = 0, n1, carry = 0;
-	string str1 = "1", str2, str3 = "1";
+	int addition_limit = 2, exponent = 0, string_length, carry = 0, digit, sum;
+	string str1 = "1", str2, str3 = "1", str4 = "0";
 
-	while (exponent < 1000)
+	while (exponent < 15)
 	{
 		Set_Str1_and_Str2(str1, str2, str3);
 		Clear_Str3(str3);
-		Length_Calculator(str1, n1);
-		Add_Digits(str1, str2, str3, n1, carry);
+		Length_Calculator(str1, string_length);
+		Add_Digits(str1, str2, str3, string_length, carry);
 		Carry(carry, str3);
 
 		exponent++;
 	}
 
 	Reverse(str3);
+	Length_Calculator(str3, string_length);
 
-	cout << str3 << endl;
+	string_length--;
+
+	while (string_length >= 0)
+	{
+		Digit_Return(str3, string_length, digit);
+		Add_LSB(str4, digit);
+		string_length--;
+	}
+
+	Carry(carry, str4);
+	Reverse(str4);
+
+	str4.erase(str4.begin());
+
+	//cout << str3 << endl;
 
 	system("pause");
 
@@ -42,12 +59,12 @@ void Set_Str1_and_Str2(string &str1, string &str2, string &str3)
 	str2 = str3;
 }
 
-void Length_Calculator(string &str1, int &n1)
+void Length_Calculator(string &str1, int &string_length)
 {
 	/*We calculate the length of str1. This is needed for a
 	subsequent for loop.*/
 	
-	n1 = str1.length();
+	string_length = str1.length();
 }
 
 void Add_Digits(string &str1, string &str2, string &str3, int &n1, int &carry)
@@ -91,4 +108,17 @@ void Carry(int &carry, string &str3)
 void Reverse(string &str3)
 {
 	reverse(str3.begin(), str3.end());
+}
+
+void Digit_Return(string &str3, int &string_length, int &digit)
+{
+	digit = (str3[string_length] - '0');
+}
+
+void Add_LSB(string &str3, string &str4, int &digit, int &sum, int &string_length, int &carry)
+{
+	sum = (str3[string_length] - '0') + digit + carry;
+	carry = sum / 10;
+
+	str4.push_back(sum % 10 + '0');
 }
