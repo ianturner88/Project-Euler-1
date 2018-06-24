@@ -4,12 +4,12 @@ using namespace std;
 
 void Set_Str1_and_Str2(string &str1, string &str2, string &str3);
 void Clear_Str3(string &str3);
-void Length_Calculator(string &str1, int &n1);
+void Length_Calculator(string &str1, int &string_length);
 void Add_Digits(string &str1, string &str2, string &str3, int &string_length, int &carry);
 void Carry(int &carry, string &str3);
 void Reverse(string &str3);
 void Digit_Return(string &str3, int &string_length, int &digit);
-void Add_LSB(string &str4, int &digit);
+void Add_LSB(string &str3, string &str4, int &digit, int &sum, int &string_length, int &carry);
 
 int main()
 {
@@ -31,20 +31,21 @@ int main()
 	Length_Calculator(str3, string_length);
 
 	string_length--;
+	str4 = str3[string_length];
+	carry = 0;
 
 	while (string_length >= 0)
 	{
 		Digit_Return(str3, string_length, digit);
-		Add_LSB(str4, digit);
+		Add_LSB(str3, str4, digit, sum, string_length, carry);
 		string_length--;
 	}
 
 	Carry(carry, str4);
-	Reverse(str4);
-
+	
 	str4.erase(str4.begin());
 
-	//cout << str3 << endl;
+	Reverse(str4);
 
 	system("pause");
 
@@ -67,13 +68,13 @@ void Length_Calculator(string &str1, int &string_length)
 	string_length = str1.length();
 }
 
-void Add_Digits(string &str1, string &str2, string &str3, int &n1, int &carry)
+void Add_Digits(string &str1, string &str2, string &str3, int &string_length, int &carry)
 {
 	/*We add the str1 & str2 to 'simulate' multiplication*/
 	
 	int sum;
 
-	for (int i = 0; i < n1; i++)
+	for (int i = 0; i < string_length; i++)
 	{
 		sum = (str1[i] - '0') + (str2[i] - '0') + carry;
 
@@ -117,8 +118,11 @@ void Digit_Return(string &str3, int &string_length, int &digit)
 
 void Add_LSB(string &str3, string &str4, int &digit, int &sum, int &string_length, int &carry)
 {
-	sum = (str3[string_length] - '0') + digit + carry;
+	//int i = 0;
+	sum = digit + carry + (str4[1] - '0');
 	carry = sum / 10;
 
 	str4.push_back(sum % 10 + '0');
+
+	//i++;
 }
