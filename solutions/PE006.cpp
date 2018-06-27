@@ -1,32 +1,43 @@
-#include <iostream>
-#include <math.h>
+#include<iostream>
+#include<cmath> 
 using namespace std;
 
-int main (void)
+void Sum_Squares(int &x, int &sum1);
+void Square_Sum(int &x, int &sum2);
+void Answer(int &answer, int &sum1, int &sum2);
+
+int main()
 {
-  int integer = 1;
-  int upperlimit;
-  int sum1 = 0, sum2 = 0, sum3 = 0, sum4 = 0;
-  
-  cout << "Please enter an upperlimit" <<endl;
-  cin >> upperlimit;
-  
-  for (integer; integer < upperlimit + 1; integer++)
-  {
-    sum1 += pow(integer,2);
-  }
-  
-  integer = 1;
-  
-  while (integer < upperlimit + 1)
-  {
-    sum2 += integer;
-    integer++;
-  }
-  
-  sum3 = pow(sum2, 2);
-  
-  sum4 = sum3 - sum1;
-  
-  cout << sum4;
+	int x = 0, sum1 = 0, sum2 = 0, answer = 0;
+	Sum_Squares(x, sum1);
+	x = 0;
+	Square_Sum(x, sum2);
+	Answer(answer, sum1, sum2);
+
+	cout << answer;
+}
+
+void Sum_Squares(int &x, int &sum1)
+{
+	while (x < 11)
+	{
+		sum1 += pow(x, 2);
+		x++;
+	}
+}
+
+void Square_Sum(int &x, int &sum2)
+{
+	while (x < 11)
+	{
+		sum2 += x;
+		x++;
+	}
+
+	sum2 = pow(sum2, 2);
+}
+
+void Answer(int &answer, int &sum1, int &sum2)
+{
+	answer = sum2 - sum1;
 }
