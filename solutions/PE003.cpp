@@ -8,7 +8,7 @@ int main(void)
 {
 	long long int big_number = 600851475143;
 	const int parray = 300000;
-	int testcase = 6859;
+	int testcase;
 
 	bool prime[parray];
 	memset(prime, true, sizeof(prime));
