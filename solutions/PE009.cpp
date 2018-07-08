@@ -24,12 +24,8 @@ void Pythagorean_Triplet(int &a, int &b, int &c)
 		for (b = 1; b < 1000 && b < c; b++)
 		{
 			c = 1000 - a - b;
-			
-			test1 = a;
-			test2 = b;
-			test3 = c;
-				
-			if (pow(a, 2) + pow(b, 2) == pow(c, 2) && (a + b + c == 1000) && (a < b) && (b < c))
+
+			if (pow(a, 2) + pow(b, 2) == pow(c, 2) && (a < b) && (b < c))
 			{
 				Product(a, b, c);
 			}
