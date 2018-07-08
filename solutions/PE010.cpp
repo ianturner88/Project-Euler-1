@@ -1,4 +1,6 @@
 #include<iostream>
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 
 void Eratosthenes(const int &upperlimit, bool prime[]);
@@ -8,6 +10,7 @@ int main()
 {
 	const int upperlimit = 2000001;
 	long long int sum = 2;
+	string pause;
 	
 	bool prime[upperlimit];
 	memset(prime, true, sizeof(prime));
@@ -15,9 +18,9 @@ int main()
 	Eratosthenes(upperlimit, prime);
 	Answer(sum, prime, upperlimit);
 
-	cout << sum;
-
-	system("pause");
+	cout << "Sum is " << sum<<endl;
+	
+	return 0;
 }
 
 void Eratosthenes(const int &upperlimit, bool prime[])
@@ -33,9 +36,8 @@ void Eratosthenes(const int &upperlimit, bool prime[])
 
 void Answer(long long int &sum, bool prime[], const int &upperlimit)
 {
-	int n = 3;
 
-	while (n < upperlimit)
+	for (int n=3; n < upperlimit; n++)
 	{
 		if (prime[n] == true)
 		{
