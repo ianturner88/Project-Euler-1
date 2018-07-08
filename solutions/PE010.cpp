@@ -1,36 +1,45 @@
 #include<iostream>
-#include<cmath>
 using namespace std;
 
-int main (void)
+void Eratosthenes(const int &upperlimit, bool prime[]);
+void Answer(long long int &sum, bool prime[], const int &upperlimit);
+
+int main()
 {
-	int big = 4, little;
-	int long long sum = 5;
-	int upperlimit = 2000000;
-	int sqrlimit;
-	int flag;
+	const int upperlimit = 2000001;
+	long long int sum = 2;
 	
-	while (big < upperlimit)
+	bool prime[upperlimit];
+	memset(prime, true, sizeof(prime));
+	
+	Eratosthenes(upperlimit, prime);
+	Answer(sum, prime, upperlimit);
+
+	cout << sum;
+
+	system("pause");
+}
+
+void Eratosthenes(const int &upperlimit, bool prime[])
+{
+	for (long long int p = 2; p <= upperlimit; p++)
 	{
-		little = 2;
-		flag = 1;
-		big++;
-		sqrlimit = pow(big, .5);
-	
-		while (little < sqrlimit + 1)
+		for (long long int i = 2 * p; i <= upperlimit; i += p)
 		{
-			if (big % little == 0)
-			{
-				flag = 0;
-			}
-		
-			little++;
-	}
-	
-		if (flag == 1)
-		{
-			sum += big;
+			prime[i] = false;
 		}
 	}
-	cout << sum;
+}
+
+void Answer(long long int &sum, bool prime[], const int &upperlimit)
+{
+	int n = 3;
+
+	while (n < upperlimit)
+	{
+		if (prime[n] == true)
+		{
+			sum += n;
+		}
+	}
 }
