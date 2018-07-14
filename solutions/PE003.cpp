@@ -23,6 +23,8 @@ int main(void)
 
 void Is_Prime(bool prime[], int &testcase, const int &parray)
 {
+	/*A seive that identifies primes*/
+	
 	long long int p, i;
 
 	for (p = 2; p <= parray; p++)
@@ -36,6 +38,8 @@ void Is_Prime(bool prime[], int &testcase, const int &parray)
 
 void Division(bool prime[], long long  int &big_number, const int &parray, int &testcase)
 {
+	/*Finds which prime divides into the given number*/
+	
 	int flag = 0;
 	testcase = parray;
 
