@@ -3,21 +3,28 @@
 using namespace std;
 
 void Sequence(int &n, int &i, int &k);
-void Storage(int collatz[], int &i, int &k, int &n);
+void Answer(int collatz[], int &i, int &k, int &n, int &answer);
 
 int main()
 {
-	int n = 1, i = 0, k;
-	int collatz[10] = { 0 };
+	int n = 0, i = 0, k, answer = 2;
+	int collatz[100002] = { 0 };
 
-	while (n < 1000000)
+	while (i < 100000)
 	{
 		i++;
 		n = i;
-		n++;
+
 		Sequence(n, i, k);
-		Storage(collatz, i, k, n);
+		Answer(collatz, i, k, n, answer);
 	}
+
+	cout << answer << " " << collatz[answer] + 1 << endl;
+
+	/*Junk I write so the system pauses*/
+	int test;
+	cout << "Hey there!";
+	cin >> test;
 }
 
 void Sequence(int &n, int &i, int &k)
@@ -26,12 +33,10 @@ void Sequence(int &n, int &i, int &k)
 	& breaks if the sequences starts calculating an already
 	determined route.*/
 	
-	k = 1;
+	k = 0;
 
 	while (n >= i && n != 1)
-	{
-		k++;
-		
+	{	
 		if ((n % 2) == 0)
 		{
 			n = (n / 2);
@@ -41,14 +46,20 @@ void Sequence(int &n, int &i, int &k)
 		{
 			n = 3 * n + 1;
 		}
+
+		k++;
 	}
 }
 
-void Storage(int collatz[], int &i, int &k, int &n)
+void Answer(int collatz[], int &i, int &k, int &n, int &answer)
 {
 	/*Every number's collatz sequence count is stored 
 	in the arry collatz[]*/
 
 	collatz[i] = collatz[n] + k;
-	int test = collatz[i];
+
+	if (collatz[i] > answer)
+	{
+		answer = i;
+	}
 }
