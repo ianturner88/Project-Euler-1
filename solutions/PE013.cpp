@@ -2,86 +2,155 @@
 #include<string>
 using namespace std;
 
-void Length_Check(string &project_euler, int &pe_length, int &pe_digit_counter, int &ds_length, string &digit_sum);
-void Assign_Counter_Value(int &pe_digit_counter, int &pe_length);
-void Assign_Case_N(string &project_euler, int &case_n, int &pe_digit_counter);
-void Add_LSB(string &digit_sum, string &project_euler, int &case_n, int &pe_length, int &ds_length, int &carry);
-void Carry(int &carry, string &digit_sum);
-void Reverse(string &digit_sum);
+void Length_Calculator(string &project_euler, int &project_euler_number_length);
+void Retrieve_Digit(string &project_euler, int &digit_to_be_added, int &project_euler_number_length);
+void Add_LSB(int &digit_to_be_added, string &digit_sum, int &carry, string &answer);
+void Add_MSB(string &answer, int &carry, string &digit_sum);
+void Equivalence(string &digit_sum, string &answer);
+void Carry(string &answer, int &carry);
+void Reverse(string &digit_sum, string &answer);
 
 int main(void)
 {
-	string digit_sum = "0", project_euler = "9876";
-	int case_n, pe_length = 0, pe_digit_counter = 9, ds_length, carry;
+	//declaration of most variables needed
+	string project_euler = "299999999999", digit_sum = "0", answer;
+	int project_euler_number_length, n = 0, digit_sum_number_length;
+	int digit_to_be_added, carry;
 
-	Length_Check(project_euler, pe_length, pe_digit_counter, ds_length, digit_sum);
-	Assign_Counter_Value(pe_digit_counter, pe_length);
+	//determines the number of iterations the code will run for
+	Length_Calculator(project_euler, project_euler_number_length);
 
-	while (pe_digit_counter != 0)
-	{
-		Assign_Case_N(project_euler, case_n, pe_digit_counter);
-		Add_LSB(digit_sum, project_euler, case_n, pe_length, ds_length, carry);
-		Carry(carry, digit_sum);
+	//sets a hard cap on the central algorithm's number of cycles
+	int limit = project_euler_number_length;
+	
+	//the algorithm driving the function
+	while (n <= limit)
+	{	
+		//retrieves the least significant digit of the string project_euler
+		Retrieve_Digit(project_euler, digit_to_be_added, project_euler_number_length);
+		
+		//adds the least significant bits of the two strings
+		Add_LSB(digit_to_be_added, digit_sum, carry, answer);
+
+		//adds the most significant bits of the two strings
+		Add_MSB(answer, carry, digit_sum);
+
+		//adds the carry, if there is one
+		Carry(answer, carry);
+
+		//set the value of digit_sum equal to answer
+		Equivalence(digit_sum, answer);
+
+		n++;
 	}
 
-	Reverse(digit_sum);
+	Reverse(digit_sum, answer);
 
-	cout << digit_sum << endl;
+
+	int Ian;
+	cout << answer;
+	cin >> Ian;
 }
 
-void Length_Check(string &project_euler, int &pe_length, int &pe_digit_counter, int &ds_length, string &digit_sum)
+void Length_Calculator(string &project_euler, int &project_euler_number_length)
 {
-	/*Calculate the length of the two strings*/
+	/*This function calculates the length of the number who's digits
+	are to be calculated. That information is needed to determine how
+	long the code is to run for.*/
 
-	pe_length = project_euler.length();
-	ds_length = digit_sum.length();
+	project_euler_number_length = project_euler.length();
+
+	//decrement the counter by 1 to account for the starting point 0 of the string array variable project_euler
+	project_euler_number_length--;
 }
 
-void Assign_Counter_Value(int &pe_digit_counter, int &pe_length)
+void Retrieve_Digit(string &project_euler, int &digit_to_be_added, int &project_euler_number_length)
 {
-	/*Assign a counter the value of pe_length*/
+	/*This function retrieves the next digit from the variable project_euler
+	to be added to the string digit_sum*/
 
-	pe_digit_counter = pe_length;
+	//retrieve the number to be added
+	digit_to_be_added = (project_euler[project_euler_number_length] - '0');
+
+	//decrement the counter by one so that next digit is retrieved next time
+	project_euler_number_length--;
 }
 
-void Assign_Case_N(string &project_euler, int &case_n, int &pe_digit_counter)
+void Add_LSB(int &digit_to_be_added, string &digit_sum, int &carry, string &answer)
 {
-	/*Assign the int case_n the value of the 'next' digit in
-	the string project_euler.*/
+	/*Here, we add the least significant numbers of the strings. The counter
+	is used to ensure that next digit to be added to the sum is added to the 
+	least sigificant digit*/
+	
+	//
+	int test = (digit_sum[0] - '0');
+	int test1 = digit_to_be_added;
+	//
 
-	pe_digit_counter--;
-	case_n = (project_euler[pe_digit_counter] - '0');
-}
+	//the sum of the 'next' digit & the digit_sum
+	int sum = digit_to_be_added + (digit_sum[0] - '0');
 
-void Add_LSB(string &digit_sum, string &project_euler, int &case_n, int &pe_length, int &ds_length, int &carry)
-{
-	/*Add the 'latest' int from the string project_euler
-	to the solution, digit_sum.*/
+	//the sum's first digit is added to the digit_sum
+	answer.push_back(sum % 10 + '0');
 
-	int test1 = case_n;
-	int test = (digit_sum[ds_length - 1] - '0');
-	int sum1 = test + test1;
-
-	int sum = (digit_sum[ds_length - 1] - '0') + case_n;
+	//if the number is greater than 9, there is a carry
 	carry = sum / 10;
-
-	digit_sum.push_back(sum % 10 + '0');
 }
 
-void Carry(int &carry, string &digit_sum)
+void Add_MSB(string &answer, int &carry, string &digit_sum)
 {
-	/*If there's a carry - for example, 9 + 4 = 13 -
-	the carry is 1*/
+	/*This code adds the most siginficant digits of the string digit_sum. 
+	The counter is used to retrieve the next number from the variable 
+	digit_sum */
+
+	//sets a limit for the alogirthm to run
+	int upperlimit = digit_sum.length();
+
+	int MSBcounter = 1;
+
+	while (MSBcounter < upperlimit)
+	{
+		//test
+		int test = (digit_sum[MSBcounter] - '0');
+		//
+		
+		//add the most significant digits to the string digit_sum
+		int remainder = (digit_sum[MSBcounter] - '0') + carry;
+		
+		//add the MSB to the variable answer
+		answer.push_back(remainder + '0');
+
+		//if remainder is greater than 9, there's a need for a carry
+		carry = remainder / 10;
+
+		//to retrieve the next digit in the string digit_sum
+		MSBcounter++;
+	}
+}
+
+void Carry(string &answer, int &carry)
+{
+	/*If there's a carry left over from adding the most significant bits,
+	we add the carry in this function*/
 
 	if (carry == 1)
 	{
-		digit_sum.push_back(carry + '0');
+		answer.push_back(carry + '0');
 	}
 }
 
-void Reverse(string &digit_sum)
+void Equivalence(string &digit_sum, string &answer)
 {
-	/*Reverse the answer, digit_sum*/
+	/*We set digit sum equal to the value of answer
+	and reset the string answer to zero.*/
 
-	reverse(digit_sum.begin(), digit_sum.end());
+	digit_sum = answer;
+	answer = "";
+}
+
+void Reverse(string &digit_sum, string &answer)
+{
+	answer = digit_sum;
+
+	reverse(answer.begin(), answer.end());
 }
