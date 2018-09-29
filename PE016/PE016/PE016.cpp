@@ -25,4 +25,4 @@ void Generate_Second_String(string &project_euler_0, string &project_euler_1)
 
 	//set 0 pe0 equal to pe1
 	project_euler_1 = project_euler_0;
-}
+}g
