@@ -29,8 +29,6 @@ int main(void)
 		Add_LSB(pe0, pe1, answer, counter, carry);
 		//adds the carry if the MSB of LSB sum to greater than 9
 		Carry(answer, carry);
-		//sets pe0 equal to answer
-		Update_pe0(answer, pe0);
 
 		//the next power's sum will be determined
 		exponent++;

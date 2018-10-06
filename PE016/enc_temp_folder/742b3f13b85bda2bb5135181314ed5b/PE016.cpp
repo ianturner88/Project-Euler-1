@@ -29,8 +29,6 @@ int main(void)
 		Add_LSB(pe0, pe1, answer, counter, carry);
 		//adds the carry if the MSB of LSB sum to greater than 9
 		Carry(answer, carry);
-		//sets pe0 equal to answer
-		Update_pe0(answer, pe0);
 
 		//the next power's sum will be determined
 		exponent++;
@@ -96,12 +94,4 @@ void Carry(string &answer, int &carry)
 		//the carry is added to answer
 		answer.push_back(carry + '0');
 	}
-}
-
-void Update_pe0(string &answer, string &pe0)
-{
-	/*function updates the values pe0, so that
-	the next power of 2 may be found*/
-
-	pe0 = answer;
 }
