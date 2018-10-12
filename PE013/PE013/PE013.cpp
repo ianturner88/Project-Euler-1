@@ -21,7 +21,7 @@ int main(void)
 	int digit_to_be_added, carry;
 
 	//read required numbers into string
-	void ReadInFile(string &project_euler);
+	ReadInFile(project_euler);
 	//determines the number of iterations the code will run for
 	Length_Calculator(project_euler, project_euler_number_length);
 	//sets a hard cap on the central algorithm's number of cycles
@@ -160,18 +160,7 @@ void ReadInFile(string &project_euler)
 	ifstream fin("PE013.txt");
 	
 	//read file into string
-	string project_euler((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
+	string Frisco((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
 
-	//test
-	int size = project_euler.size();
-
-	for (int i = 0; i < size; i++)
-	{
-		cout << project_euler[i];
-	}
-
-	int Ian;
-
-	cin >> Ian;
-	//
+	project_euler = Frisco;
 }
