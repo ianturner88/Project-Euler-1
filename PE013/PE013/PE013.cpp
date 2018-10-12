@@ -10,7 +10,7 @@ void Add_MSB(string &answer, int &carry, string &digit_sum);
 void Equivalence(string &digit_sum, string &answer);
 void Carry(string &answer, int &carry);
 void Reverse(string &digit_sum, string &answer);
-//Colin teaching
+
 int main(void)
 {
 	//declaration of most variables needed
