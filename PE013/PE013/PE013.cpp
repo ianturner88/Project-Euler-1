@@ -1,6 +1,7 @@
-#include<iostream>
-#include <fstream>
 #include<string>
+#include<fstream>
+#include<streambuf>
+#include<iostream>
 using namespace std;
 
 void Length_Calculator(string &project_euler, int &project_euler_number_length);
@@ -10,6 +11,7 @@ void Add_MSB(string &answer, int &carry, string &digit_sum);
 void Equivalence(string &digit_sum, string &answer);
 void Carry(string &answer, int &carry);
 void Reverse(string &digit_sum, string &answer);
+void ReadInFile(string &project_euler);
 
 int main(void)
 {
@@ -18,9 +20,10 @@ int main(void)
 	int project_euler_number_length, n = 0, digit_sum_number_length;
 	int digit_to_be_added, carry;
 
+	//read required numbers into string
+	void ReadInFile(string &project_euler);
 	//determines the number of iterations the code will run for
 	Length_Calculator(project_euler, project_euler_number_length);
-
 	//sets a hard cap on the central algorithm's number of cycles
 	int limit = project_euler_number_length;
 
@@ -29,16 +32,12 @@ int main(void)
 	{
 		//retrieves the least significant digit of the string project_euler
 		Retrieve_Digit(project_euler, digit_to_be_added, project_euler_number_length);
-
 		//adds the least significant bits of the two strings
 		Add_LSB(digit_to_be_added, digit_sum, carry, answer);
-
 		//adds the most significant bits of the two strings
 		Add_MSB(answer, carry, digit_sum);
-
 		//adds the carry, if there is one
 		Carry(answer, carry);
-
 		//set the value of digit_sum equal to answer
 		Equivalence(digit_sum, answer);
 
@@ -117,13 +116,10 @@ void Add_MSB(string &answer, int &carry, string &digit_sum)
 
 		//add the most significant digits to the string digit_sum
 		int remainder = (digit_sum[MSBcounter] - '0') + carry;
-
 		//add the MSB to the variable answer
 		answer.push_back(remainder % 10 + '0');
-
 		//if remainder is greater than 9, there's a need for a carry
 		carry = remainder / 10;
-
 		//to retrieve the next digit in the string digit_sum
 		MSBcounter++;
 	}
@@ -158,10 +154,24 @@ void Reverse(string &digit_sum, string &answer)
 
 void ReadInFile(string &project_euler)
 {
-	/*reads in the numbers to be added into one string*/
+	/*reads in the numbers to be added into one string, project_euler*/
 
-	//reads text file PE013 into variable project_euler
-	ifstream project_euler("PE013.txt");
+	//the required numbers are stored in text file PE013.txt
+	ifstream fin("PE013.txt");
+	
+	//read file into string
+	string project_euler((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
 
-	string content((istreambuf_iterator<char>(project_euler)), (istreambuf_iterator<char>()));
+	//test
+	int size = project_euler.size();
+
+	for (int i = 0; i < size; i++)
+	{
+		cout << project_euler[i];
+	}
+
+	int Ian;
+
+	cin >> Ian;
+	//
 }
