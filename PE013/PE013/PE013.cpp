@@ -40,8 +40,10 @@ int main(void)
 		Carry(answer, carry);
 		//set the value of digit_sum equal to answer
 		Equivalence(digit_sum, answer);
-
 		n++;
+
+		int Ian;
+
 	}
 
 	Reverse(digit_sum, answer);
@@ -50,6 +52,7 @@ int main(void)
 	int Ian;
 	cout << answer;
 	cin >> Ian;
+	//
 }
 
 void Length_Calculator(string &project_euler, int &project_euler_number_length)
