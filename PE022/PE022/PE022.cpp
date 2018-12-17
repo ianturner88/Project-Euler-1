@@ -2,12 +2,19 @@
 #include <string>
 #include <iostream>
 #include <vector> 
+#include <algorithm>
 using namespace std;
 
 void Initialize_Alphabet_Array(string Alphabet[]);
 void Determine_String_Length(string &pe022_names, long long int &pe022_names_length);
 void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter,
 	long long int &pe022_names_length, char &name_end, vector<string> &Cleaned_Name_List);
+void Sort_Vector(vector<string> &Cleaned_Name_List);
+void Determine_Nth_Name(vector<string> &Cleaned_Name_List, string &current_name, 
+	int &current_word_index);
+void Length_Nth_Name(string &current_name, int &current_name_length);
+void Identify_Letters_of_Nth_Name(string &current_name, int &i, string &current_letter);
+void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_word_value);
 
 int main(void)
 {
@@ -16,13 +23,15 @@ int main(void)
 	//set string variable equal to fin, file contents
 	string pe022_names((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
 	//numerical value of the alphabet; 'cleaned' name
-	string Alphabet[26], current_name, Names;
+	string Alphabet[26], current_name, current_letter;
 	//counter for input file string
 	long long int pe022_names_counter = 0, pe022_names_length = 0;
 	//what separates names in the input file
 	char name_end = '"';
 	//where the polished names will be stored
 	vector<string> Cleaned_Name_List;
+	//used to cycle through the list of names
+	int current_word_index = 0, current_name_length = 0, current_word_value;
 
 	//stores the numerical value of every letter in the alphabet
 	Initialize_Alphabet_Array(Alphabet);
@@ -31,19 +40,69 @@ int main(void)
 	//separates the names in the list into a vector
 	Determine_Number_of_Names(pe022_names,pe022_names_counter, pe022_names_length, 
 		name_end, Cleaned_Name_List);
+	//sorts the content of the vector
+	Sort_Vector(Cleaned_Name_List);
+
+	while (current_word_index < pe022_names_counter)
+	{
+		/*loop to determine the numerical value of every name*/
+		
+		//set current_name equal to a nth name in vector
+		Determine_Nth_Name(Cleaned_Name_List, current_name, current_word_index);
+		//find the length of current_name 
+		Length_Nth_Name(current_name, current_name_length);
+
+		//test
+		//cout << current_name << " " << current_name_length << endl;
+
+		for (int i = 0; i < current_name_length; i++)
+		{
+			//identify the values 
+			Identify_Letters_of_Nth_Name(current_name, i, current_letter);
+			Numerical_Value_of_Letter(Alphabet, current_letter, current_word_value);
+			
+			//test
+			//cout << current_letter << endl;
+		}
+	}
 
 	//system pause
 	getchar();
 }
 
-/*
+void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_word_value)
+{
+	/*Determine the */
 
-	//print contents of vector
-	for (int i = 0; i < Cleaned_Name_List.size(); i++) {
-		cout << Cleaned_Name_List[i] << " ";
-	}
+	//test
+	//cout << current_letter << endl;
+}
 
-*/
+void Identify_Letters_of_Nth_Name(string &current_name, int &i, string &current_letter)
+{
+	//identify the individual letters of the current_name
+	current_letter = current_name[i];
+}
+
+void Length_Nth_Name(string &current_name, int &current_name_length)
+{
+	/*Establish upper boundary when determining numerical value of each word*/
+	current_name_length = current_name.length();
+}
+
+void Determine_Nth_Name(vector<string> &Cleaned_Name_List, string &current_name, 
+	int &current_word_index)
+{
+	/*Identify the current name to manipulate*/
+	current_name = Cleaned_Name_List[current_word_index];
+	current_word_index++;
+}
+
+void Sort_Vector(vector<string> &Cleaned_Name_List)
+{
+	/*Sorts the content of the vector into alphabetical order*/
+	sort(Cleaned_Name_List.begin(), Cleaned_Name_List.end());
+}
 
 void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter, 
 	long long int &pe022_names_length, char &name_end, vector<string> &Cleaned_Name_List)
