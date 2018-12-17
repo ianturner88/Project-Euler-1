@@ -7,31 +7,46 @@ using namespace std;
 void Initialize_Alphabet_Array(string Alphabet[]);
 void Determine_String_Length(string &pe022_names, long long int &pe022_names_length);
 void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter,
-	long long int &pe022_names_length, char &name_end);
+	long long int &pe022_names_length, char &name_end, vector<string> &Cleaned_Name_List);
 
 int main(void)
 {
 	//read input file into fin
 	ifstream fin("PE022.txt");
-	//set string variable equal to fin
+	//set string variable equal to fin, file contents
 	string pe022_names((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
-	//numerical value of the alphabet
+	//numerical value of the alphabet; 'cleaned' name
 	string Alphabet[26], current_name, Names;
 	//counter for input file string
 	long long int pe022_names_counter = 0, pe022_names_length = 0;
+	//what separates names in the input file
 	char name_end = '"';
-	vector<int> &bar;
+	//where the polished names will be stored
+	vector<string> Cleaned_Name_List;
 
+	//stores the numerical value of every letter in the alphabet
 	Initialize_Alphabet_Array(Alphabet);
+	//determines the length of the string
 	Determine_String_Length(pe022_names, pe022_names_length);
-	Determine_Number_of_Names(pe022_names,pe022_names_counter, pe022_names_length, name_end);
+	//separates the names in the list into a vector
+	Determine_Number_of_Names(pe022_names,pe022_names_counter, pe022_names_length, 
+		name_end, Cleaned_Name_List);
 
 	//system pause
 	getchar();
 }
 
+/*
+
+	//print contents of vector
+	for (int i = 0; i < Cleaned_Name_List.size(); i++) {
+		cout << Cleaned_Name_List[i] << " ";
+	}
+
+*/
+
 void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter, 
-	long long int &pe022_names_length, char &name_end)
+	long long int &pe022_names_length, char &name_end, vector<string> &Cleaned_Name_List)
 {
 	/*Determies the number of names in the file/string*/
 	
@@ -39,7 +54,6 @@ void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_c
 	long long int counter = 1;
 	//the current name being constructed
 	string current_name;
-	vector<string> Cleaned_Name_List;
 
 	while (counter < pe022_names_length)
 	{
