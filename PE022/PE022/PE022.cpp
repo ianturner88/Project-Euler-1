@@ -1,73 +1,104 @@
 #include <fstream>
 #include <string>
 #include <iostream>
+#include <vector> 
 using namespace std;
 
-void Initialize_Alphabet_Array(string Names[]);
-void Transfer_Names(string input_file, string pe022_names);
-void Chop_First_Apostrophe_of_File(string pe022_names);
+void Initialize_Alphabet_Array(string Alphabet[]);
+void Determine_String_Length(string &pe022_names, long long int &pe022_names_length);
+void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter,
+	long long int &pe022_names_length, char &name_end);
 
 int main(void)
 {
 	//read input file into fin
 	ifstream fin("PE022.txt");
 	//set string variable equal to fin
-	string input_file((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
+	string pe022_names((istreambuf_iterator<char>(fin)), istreambuf_iterator<char>());
 	//numerical value of the alphabet
-	string Names[26], pe022_names;
+	string Alphabet[26], current_name, Names;
+	//counter for input file string
+	long long int pe022_names_counter = 0, pe022_names_length = 0;
+	char name_end = '"';
+	vector<int> &bar;
 
-	Initialize_Alphabet_Array(Names);
-	Transfer_Names(input_file, pe022_names);
-	Chop_First_Apostrophe_of_File(pe022_names);
+	Initialize_Alphabet_Array(Alphabet);
+	Determine_String_Length(pe022_names, pe022_names_length);
+	Determine_Number_of_Names(pe022_names,pe022_names_counter, pe022_names_length, name_end);
 
 	//system pause
 	getchar();
 }
 
-void Chop_First_Apostrophe_of_File(string pe022_names)
+void Determine_Number_of_Names(string &pe022_names, long long int &pe022_names_counter, 
+	long long int &pe022_names_length, char &name_end)
 {
-	/*Erase the first apostrophe of the file*/
+	/*Determies the number of names in the file/string*/
 	
-	cout << pe022_names;
+	//skips the first char of the string which is an apostrophe
+	long long int counter = 1;
+	//the current name being constructed
+	string current_name;
+	vector<string> Cleaned_Name_List;
 
-	/*
-	pe022_names.erase(0, 1);
+	while (counter < pe022_names_length)
+	{
+		/*parse the string into individual words*/
+		if (pe022_names[counter] == name_end)
+		{
+			//one more name is identified
+			pe022_names_counter += 1;
+			//store the cleaned names in a vector
+			Cleaned_Name_List.push_back(current_name);
+			//reset new name
+			current_name = "";
+			//skip the "," in the string that separates names
+			counter += 3;
+		}
 
-	cout << pe022_names;
-	*/
+		else
+		{
+			//construct names as a summation of individual chars
+			current_name += pe022_names[counter];
+			//move along the name index
+			counter++;
+		}
+	}
 }
 
-void Transfer_Names(string input_file, string pe022_names)
+void Determine_String_Length(string &pe022_names, long long int &pe022_names_length)
 {
-	pe022_names = input_file;
+	/*Determine the total number of char in the string*/
+	pe022_names_length = pe022_names.length();
 }
 
-void Initialize_Alphabet_Array(string Names[])
+void Initialize_Alphabet_Array(string Alphabet[])
 {
-	Names[0] = "A";
-	Names[1] = "B";
-	Names[2] = "C";
-	Names[3] = "D";
-	Names[4] = "E";
-	Names[5] = "F";
-	Names[6] = "G";
-	Names[7] = "H";
-	Names[8] = "I";
-	Names[9] = "J";
-	Names[10] = "K";
-	Names[11] = "L";
-	Names[12] = "M";
-	Names[13] = "N";
-	Names[14] = "O";
-	Names[15] = "P";
-	Names[16] = "Q";
-	Names[17] = "R";
-	Names[18] = "S";
-	Names[19] = "T";
-	Names[20] = "U";
-	Names[21] = "V";
-	Names[22] = "W";
-	Names[23] = "X";
-	Names[24] = "Y";
-	Names[25] = "Z";
+	/*index the letters of the alphabet*/
+	Alphabet[0] = "A";
+	Alphabet[1] = "B";
+	Alphabet[2] = "C";
+	Alphabet[3] = "D";
+	Alphabet[4] = "E";
+	Alphabet[5] = "F";
+	Alphabet[6] = "G";
+	Alphabet[7] = "H";
+	Alphabet[8] = "I";
+	Alphabet[9] = "J";
+	Alphabet[10] = "K";
+	Alphabet[11] = "L";
+	Alphabet[12] = "M";
+	Alphabet[13] = "N";
+	Alphabet[14] = "O";
+	Alphabet[15] = "P";
+	Alphabet[16] = "Q";
+	Alphabet[17] = "R";
+	Alphabet[18] = "S";
+	Alphabet[19] = "T";
+	Alphabet[20] = "U";
+	Alphabet[21] = "V";
+	Alphabet[22] = "W";
+	Alphabet[23] = "X";
+	Alphabet[24] = "Y";
+	Alphabet[25] = "Z";
 }
