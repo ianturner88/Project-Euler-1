@@ -72,8 +72,8 @@ int main(void)
 			current_word_index, Numerical_Name_Value);
 		
 		//testing
-		cout << "name: " << current_name << " index number: " << current_word_index << 
-			" name value: " << current_word_value << " letter values: " << current_letter_value << endl;
+		//cout << "name: " << current_name << " index number: " << current_word_index << 
+			//" name value: " << current_word_value << " letter values: " << current_letter_value << endl;
 		
 		//clear out previous word's value
 		Reset_Varibales(current_letter_value);
@@ -128,7 +128,7 @@ void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &c
 	//set to true when the current_letter is matched with an element in the Alphabet
 	bool match = false;
 
-	for (int i = 0; (i < 25) && (match != true); i++)
+	for (int i = 0; (i < 26) && (match != true); i++)
 	{
 		/*cycle through the array Alphabet to find the letter's numerical value*/
 		if (current_letter == Alphabet[i])
