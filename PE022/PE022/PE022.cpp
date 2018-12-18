@@ -66,10 +66,15 @@ int main(void)
 			//identify the values of the letters compromising every word
 			Numerical_Value_of_Letter(Alphabet, current_letter, current_letter_value);
 		}
-		
+
 		//store in a vector a given name's total numerical value (= letter sum * spot in vector) 
 		Total_Numerical_Value_of_Word(current_letter_value, current_word_value,
 			current_word_index, Numerical_Name_Value);
+		
+		//testing
+		cout << "name: " << current_name << " index number: " << current_word_index << 
+			" name value: " << current_word_value << " letter values: " << current_letter_value << endl;
+		
 		//clear out previous word's value
 		Reset_Varibales(current_letter_value);
 	}
