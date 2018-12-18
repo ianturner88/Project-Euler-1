@@ -14,7 +14,11 @@ void Determine_Nth_Name(vector<string> &Cleaned_Name_List, string &current_name,
 	int &current_word_index);
 void Length_Nth_Name(string &current_name, int &current_name_length);
 void Identify_Letters_of_Nth_Name(string &current_name, int &i, string &current_letter);
-void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_word_value);
+void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_letter_value);
+void Total_Numerical_Value_of_Word(int &current_letter_value, int &current_word_value,
+	int &current_word_index, vector<int> &Numerical_Name_Value);
+void Final_Answer(long long int &pe022_names_counter, vector<int> &Numerical_Name_Value);
+void Reset_Varibales(int &current_letter_value);
 
 int main(void)
 {
@@ -30,9 +34,12 @@ int main(void)
 	char name_end = '"';
 	//where the polished names will be stored
 	vector<string> Cleaned_Name_List;
+	//stores numerical value of every name
+	vector<int> Numerical_Name_Value;
 	//used to cycle through the list of names
-	int current_word_index = 0, current_name_length = 0, current_word_value;
-
+	int current_word_index = 0, current_name_length = 0, current_word_value, 
+		current_letter_value = 0, pe022_answer = 0;
+	
 	//stores the numerical value of every letter in the alphabet
 	Initialize_Alphabet_Array(Alphabet);
 	//determines the length of the string
@@ -52,30 +59,81 @@ int main(void)
 		//find the length of current_name 
 		Length_Nth_Name(current_name, current_name_length);
 
-		//test
-		//cout << current_name << " " << current_name_length << endl;
-
 		for (int i = 0; i < current_name_length; i++)
 		{
-			//identify the values 
+			//identify the individual letters of each word
 			Identify_Letters_of_Nth_Name(current_name, i, current_letter);
-			Numerical_Value_of_Letter(Alphabet, current_letter, current_word_value);
-			
-			//test
-			//cout << current_letter << endl;
+			//identify the values of the letters compromising every word
+			Numerical_Value_of_Letter(Alphabet, current_letter, current_letter_value);
 		}
+		
+		//store in a vector a given name's total numerical value (= letter sum * spot in vector) 
+		Total_Numerical_Value_of_Word(current_letter_value, current_word_value,
+			current_word_index, Numerical_Name_Value);
+		//clear out previous word's value
+		Reset_Varibales(current_letter_value);
 	}
 
+	//calculates the final answer to the problem
+	Final_Answer(pe022_names_counter, Numerical_Name_Value);
+	
 	//system pause
 	getchar();
 }
 
-void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_word_value)
+void Reset_Varibales(int &current_letter_value)
 {
-	/*Determine the */
+	current_letter_value = 0;
+}
 
-	//test
-	//cout << current_letter << endl;
+void Final_Answer(long long int &pe022_names_counter, vector<int> &Numerical_Name_Value)
+{
+	/*The answer to the problem, #22*/
+	
+	int pe022_answer = 0;
+	
+	for (int i = 0; i < pe022_names_counter; i++)
+	{
+		/*sprint through all the vector's values*/
+		pe022_answer += Numerical_Name_Value[i];
+	}
+
+	cout << pe022_answer << endl;
+}
+
+void Total_Numerical_Value_of_Word(int &current_letter_value, int &current_word_value, 
+	int &current_word_index, vector<int> &Numerical_Name_Value)
+{
+	/*determine each word's numerical value (= (sum of letters) * (name's spot on list))*/
+
+	//current_word_value is the sum of the letters' values
+	current_word_value = current_letter_value;
+
+	//the word's final value
+	current_word_value *= current_word_index;
+
+	//store the word's final numerical value 
+	Numerical_Name_Value.push_back(current_word_value);
+}
+
+void Numerical_Value_of_Letter(string Alphabet[], string &current_letter, int &current_letter_value)
+{
+	/*Determines the numerical value of every given letter in every given name*/
+	
+	//set to true when the current_letter is matched with an element in the Alphabet
+	bool match = false;
+
+	for (int i = 0; (i < 25) && (match != true); i++)
+	{
+		/*cycle through the array Alphabet to find the letter's numerical value*/
+		if (current_letter == Alphabet[i])
+		{
+			//add 1 because Alphabet as A starting at 0
+			current_letter_value += (i + 1);
+			//indicates the letter's numerical value is determined
+			match = true;
+		}
+	}
 }
 
 void Identify_Letters_of_Nth_Name(string &current_name, int &i, string &current_letter)
