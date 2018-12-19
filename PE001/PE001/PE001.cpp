@@ -9,6 +9,7 @@ int main(void)
 {
 	int three = 0, five = 0, fifteen = 0;
 
+	//only multiples of 3, 5, & 15 below the variable upperlimit are considered
 	int upperlimit = Upperlimit();
 
 	//multiples of 3
