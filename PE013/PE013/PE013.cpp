@@ -6,12 +6,16 @@ using namespace std;
 
 int main(void)
 {
-	ifstream file("PE013.txt");
-	string line_x;
+	ifstream PE013_Input_File("PE013.txt");
+	string number_x;
 
-	while (getline(file, line_x))
+	while (getline(PE013_Input_File, number_x))
 	{
-		cout << line_x << endl;
+		/*programs driving algorithm...
+		numbers are fed in one at a time*/
+		
+		//test
+		cout << number_x << endl;
 	}
 
 	//system pause
