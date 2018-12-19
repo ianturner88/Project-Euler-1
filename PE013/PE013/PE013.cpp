@@ -7,6 +7,7 @@ using namespace std;
 void Compare_Size(string &number_x, string &current_sum);
 void Calculate_Length_Two_Strings(string &number_x, int &number_x_length);
 void Reverse_2_Strings(string &number_x, string &current_sum);
+void LSB(string &number_x, string &current_sum, string PE013_answer, int &carry, int &number_x_length);
 
 int main(void)
 {
@@ -25,15 +26,27 @@ int main(void)
 		Calculate_Length_Two_Strings(number_x, number_x_length);
 		//reverse the 2 strings
 		Reverse_2_Strings(number_x, current_sum);
+		//add the LSB of the 2 strings
+		LSB(number_x, current_sum, PE013_answer, carry, number_x_length);
 	}
 
 	//system pause
 	getchar();
 }
 
-void LSB(string &number_x, string &current_sum, int &carry)
+void LSB(string &number_x, string &current_sum, string PE013_answer, int &carry, int &number_x_length)
 {
+	/*add the LSB of the 2 strings*/
+	
+	//reset carry variable
+	carry = 0;
 
+	for (int i = 0; i < number_x_length; i++)
+	{
+		/*loop cycle through the full length of the smaller string*/
+		
+		int sum = ((number_x[i] - '0') + (current_sum[i] - '0') + carry);
+	}
 }
 
 void Reverse_2_Strings(string &number_x, string &current_sum)
@@ -45,7 +58,8 @@ void Reverse_2_Strings(string &number_x, string &current_sum)
 
 void Calculate_Length_Two_Strings(string &number_x, int &number_x_length)
 {
-	/*Calculate the length of the 2 strings*/
+	/*Calculate the length of the smaller string.
+	Used as the upperlimit when adding the LSB of the 2 numbers*/
 	
 	number_x_length = number_x.length();
 }
