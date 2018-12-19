@@ -7,19 +7,22 @@ int answer(int three, int five, int fifteen);
 
 int main(void)
 {
-	int three = 0;
-	int five = 0;
-	int fifteen = 0;
+	int three = 0, five = 0, fifteen = 0;
 
 	int upperlimit = Upperlimit();
 
+	//multiples of 3
 	three = multiples(3, upperlimit);
+	//multiples of 5
 	five = multiples(5, upperlimit);
+	//multiples of 15
 	fifteen = multiples(15, upperlimit);
 
 	cout << answer(three, five, fifteen) << endl;
 
-	system("pause");
+	//system pause
+	getchar();
+	getchar();
 }
 
 int Upperlimit()
