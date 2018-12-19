@@ -5,14 +5,14 @@
 using namespace std;
 
 void Compare_Size(string &number_x, string &current_sum);
-void Calculate_Length_Two_Strings(string &number_x, string &current_sum, int &number_x_length,
-	int &current_sum_length);
+void Calculate_Length_Two_Strings(string &number_x, int &number_x_length);
+void Reverse_2_Strings(string &number_x, string &current_sum);
 
 int main(void)
 {
 	ifstream PE013_Input_File("PE013.txt");
 	string number_x, current_sum = "", PE013_answer = "";
-	int number_x_length = 0, current_sum_length = 0;
+	int number_x_length = 0, carry = 0;
 
 	while (getline(PE013_Input_File, number_x))
 	{
@@ -22,11 +22,18 @@ int main(void)
 		//ensures current sum is the larger variable
 		Compare_Size(number_x, current_sum);
 		//calculate the length of the 2 strings
-		Calculate_Length_Two_Strings(number_x, current_sum, number_x_length, current_sum_length);
+		Calculate_Length_Two_Strings(number_x, number_x_length);
+		//reverse the 2 strings
+		Reverse_2_Strings(number_x, current_sum);
 	}
 
 	//system pause
 	getchar();
+}
+
+void LSB(string &number_x, string &current_sum, int &carry)
+{
+
 }
 
 void Reverse_2_Strings(string &number_x, string &current_sum)
@@ -36,13 +43,11 @@ void Reverse_2_Strings(string &number_x, string &current_sum)
 	reverse(current_sum.begin(), current_sum.end());
 }
 
-void Calculate_Length_Two_Strings(string &number_x, string &current_sum, int &number_x_length, 
-	int &current_sum_length)
+void Calculate_Length_Two_Strings(string &number_x, int &number_x_length)
 {
 	/*Calculate the length of the 2 strings*/
 	
 	number_x_length = number_x.length();
-	current_sum_length = current_sum.length();
 }
 
 void Compare_Size(string &number_x, string &current_sum)
