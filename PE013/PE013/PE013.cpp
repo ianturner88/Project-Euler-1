@@ -29,6 +29,13 @@ int main(void)
 	getchar();
 }
 
+void Reverse_2_Strings(string &number_x, string &current_sum)
+{
+	/*reverse the 2 strings*/
+	reverse(number_x.begin(), number_x.end());
+	reverse(current_sum.begin(), current_sum.end());
+}
+
 void Calculate_Length_Two_Strings(string &number_x, string &current_sum, int &number_x_length, 
 	int &current_sum_length)
 {
