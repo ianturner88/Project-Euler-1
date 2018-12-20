@@ -7,7 +7,7 @@ using namespace std;
 void Compare_Size(string &number_x, string &current_sum);
 void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
 	int &current_sum_length);
-void Reverse_2_Strings(string &number_x);
+void Reverse_2_Strings(string &number_x, string &current_sum);
 void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry, int &number_x_length);
 void MSB(string &current_sum, int number_x_length, int current_sum_length,
 	string &PE013_answer, int &carry);
@@ -31,7 +31,7 @@ int main(void)
 		//calculate the length of the 2 strings
 		Calculate_Length_Both_Strings(number_x, number_x_length, current_sum, current_sum_length);
 		//reverse the 2 strings
-		Reverse_2_Strings(number_x);
+		Reverse_2_Strings(number_x, current_sum);
 		//add the LSB of the 2 strings
 		LSB(number_x, current_sum, PE013_answer, carry, number_x_length);
 		//add the not summed digits of the longer string
@@ -51,9 +51,15 @@ int main(void)
 
 void Answer(string &PE013_answer, string &current_sum)
 {
+	/*the final answer requires only the first 10 digits of the final sum*/
+	
 	PE013_answer = current_sum;
 	
-	cout << PE013_answer << endl;
+	//output first 10 digits
+	for (int i = 0; i < 10; i++)
+	{
+		cout << PE013_answer[i];
+	}
 }
 
 void Reset_Current_Sum_AND_PE013_answer(string &PE013_answer, string &current_sum)
@@ -62,6 +68,8 @@ void Reset_Current_Sum_AND_PE013_answer(string &PE013_answer, string &current_su
 
 	//PE013_answer is used to store the sum of current_sum & number_x
 	current_sum = PE013_answer;
+	//current_sum needs to be reset since it'll be reversed at the start of the cycle again
+	reverse(current_sum.begin(), current_sum.end());
 	//clear this variable so a new cycle may begin
 	PE013_answer = "";
 }
@@ -119,10 +127,11 @@ void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry
 	}
 }
 
-void Reverse_2_Strings(string &number_x)
+void Reverse_2_Strings(string &number_x, string &current_sum)
 {
 	/*reverse the 2 strings*/
 	reverse(number_x.begin(), number_x.end());
+	reverse(current_sum.begin(), current_sum.end());
 }
 
 void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
