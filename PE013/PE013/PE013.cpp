@@ -7,13 +7,13 @@ using namespace std;
 void Compare_Size(string &number_x, string &current_sum);
 void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
 	int &current_sum_length);
-void Reverse_2_Strings(string &number_x, string &current_sum);
+void Reverse_2_Strings(string &number_x);
 void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry, int &number_x_length);
 void MSB(string &current_sum, int number_x_length, int current_sum_length,
 	string &PE013_answer, int &carry);
 void Carry(string &PE013_anwer, int &carry);
-void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum);
-void Answer(string &PE013_anwer);
+void Reset_Current_Sum_AND_PE013_answer(string &PE013_answer, string &current_sum);
+void Answer(string &PE013_answer, string &current_sum);
 
 int main(void)
 {
@@ -31,7 +31,7 @@ int main(void)
 		//calculate the length of the 2 strings
 		Calculate_Length_Both_Strings(number_x, number_x_length, current_sum, current_sum_length);
 		//reverse the 2 strings
-		Reverse_2_Strings(number_x, current_sum);
+		Reverse_2_Strings(number_x);
 		//add the LSB of the 2 strings
 		LSB(number_x, current_sum, PE013_answer, carry, number_x_length);
 		//add the not summed digits of the longer string
@@ -43,25 +43,27 @@ int main(void)
 	}
 
 	//outut the first 10 digits of the final sum
-	//Answer(PE013_anwer);
+	Answer(PE013_answer, current_sum);
 
 	//system pause
 	getchar();
 }
 
-void Answer(string &PE013_anwer)
+void Answer(string &PE013_answer, string &current_sum)
 {
-
+	PE013_answer = current_sum;
+	
+	cout << PE013_answer << endl;
 }
 
-void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum)
+void Reset_Current_Sum_AND_PE013_answer(string &PE013_answer, string &current_sum)
 {
 	/*at the end of one cycle, these two variables are reset*/
 
 	//PE013_answer is used to store the sum of current_sum & number_x
-	current_sum = PE013_anwer;
+	current_sum = PE013_answer;
 	//clear this variable so a new cycle may begin
-	PE013_anwer = "";
+	PE013_answer = "";
 }
 
 void Carry(string &PE013_anwer, int &carry)
@@ -117,11 +119,10 @@ void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry
 	}
 }
 
-void Reverse_2_Strings(string &number_x, string &current_sum)
+void Reverse_2_Strings(string &number_x)
 {
 	/*reverse the 2 strings*/
 	reverse(number_x.begin(), number_x.end());
-	reverse(current_sum.begin(), current_sum.end());
 }
 
 void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
