@@ -11,6 +11,8 @@ void Reverse_2_Strings(string &number_x, string &current_sum);
 void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry, int &number_x_length);
 void MSB(string &current_sum, int number_x_length, int current_sum_length,
 	string &PE013_answer, int &carry);
+void Carry(string &PE013_anwer, int &carry);
+void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum);
 
 int main(void)
 {
@@ -33,10 +35,34 @@ int main(void)
 		LSB(number_x, current_sum, PE013_answer, carry, number_x_length);
 		//add the not summed digits of the longer string
 		MSB(current_sum, number_x_length, current_sum_length, PE013_answer, carry);
+		//add carry
+		Carry(PE013_answer, carry);
+		//update and clear the two variables
+		Reset_Current_Sum_AND_PE013_answer(PE013_answer, current_sum);
 	}
 
 	//system pause
 	getchar();
+}
+
+void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum)
+{
+	/*at the end of one cycle, these two variables are reset*/
+
+	//PE013_answer is used to store the sum of current_sum & number_x
+	current_sum = PE013_anwer;
+	//clear this variable so a new cycle may begin
+	PE013_anwer = "";
+}
+
+void Carry(string &PE013_anwer, int &carry)
+{
+	/*add the final hierarchical digit, if the digit exists*/
+	
+	if (carry == 1)
+	{
+		PE013_anwer.push_back(carry + '0');
+	}
 }
 
 void MSB(string &current_sum, int number_x_length, int current_sum_length, 
