@@ -10,7 +10,7 @@ void LSB(string &number_2, string &current_sum, string &PE016_answer, int &carry
 void MSB(string &current_sum, int number_2_length, int current_sum_length,
 	string &PE016_answer, int &carry);
 void Carry(string &PE016_anwer, int &carry);
-void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_sum);
+void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_sum, string &number_2);
 void Answer(string &PE016_answer, string &current_sum);
 
 int main(void)
@@ -29,14 +29,21 @@ int main(void)
 		Calculate_Length_Both_Strings(number_2, number_2_length, current_sum, current_sum_length);
 		//reverse the 2 strings
 		Reverse_2_Strings(number_2, current_sum);
-		//add the LSB of the 2 strings
-		LSB(number_2, current_sum, PE016_answer, carry, number_2_length);
-		//add the not summed digits of the longer string
-		MSB(current_sum, number_2_length, current_sum_length, PE016_answer, carry);
-		//add carry
-		Carry(PE016_answer, carry);
+
+		for (int multiplication = 1; multiplication < exponent; multiplication++)
+		{
+			/*simulates multiplication by having the 2 numbers added multiple times*/
+			
+			//add the LSB of the 2 strings
+			LSB(number_2, current_sum, PE016_answer, carry, number_2_length);
+			//add the not summed digits of the longer string
+			MSB(current_sum, number_2_length, current_sum_length, PE016_answer, carry);
+			//add carry
+			Carry(PE016_answer, carry);
+		}
+
 		//update and clear the two variables
-		Reset_Current_Sum_AND_PE016_answer(PE016_answer, current_sum);
+		Reset_Current_Sum_AND_PE016_answer(PE016_answer, current_sum, number_2);
 
 		//upperbound
 		exponent++;
@@ -58,7 +65,7 @@ void Answer(string &PE016_answer, string &current_sum)
 	cout << PE016_answer;
 }
 
-void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_sum)
+void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_sum, string &number_2)
 {
 	/*at the end of one cycle, these two variables are reset*/
 
@@ -68,6 +75,8 @@ void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_su
 	reverse(current_sum.begin(), current_sum.end());
 	//clear this variable so a new cycle may begin
 	PE016_answer = "";
+	//reset number_2
+	number_2 = "2";
 }
 
 void Carry(string &PE016_anwer, int &carry)
