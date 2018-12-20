@@ -13,6 +13,7 @@ void MSB(string &current_sum, int number_x_length, int current_sum_length,
 	string &PE013_answer, int &carry);
 void Carry(string &PE013_anwer, int &carry);
 void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum);
+void Answer(string &PE013_anwer);
 
 int main(void)
 {
@@ -41,8 +42,16 @@ int main(void)
 		Reset_Current_Sum_AND_PE013_answer(PE013_answer, current_sum);
 	}
 
+	//outut the first 10 digits of the final sum
+	//Answer(PE013_anwer);
+
 	//system pause
 	getchar();
+}
+
+void Answer(string &PE013_anwer)
+{
+
 }
 
 void Reset_Current_Sum_AND_PE013_answer(string &PE013_anwer, string &current_sum)
@@ -73,8 +82,13 @@ void MSB(string &current_sum, int number_x_length, int current_sum_length,
 	//the MSB digits that need to be added to PE013_answer
 	for (int i = number_x_length; i < current_sum_length; i++)
 	{
+		//test
+		i;
+		int check = (current_sum[i] - '0');
+		carry;
+		
 		//sum remaining digits
-		int sum = (current_sum[i] + '0') + carry;
+		int sum = (current_sum[i] - '0') + carry;
 		//store sum in answer
 		PE013_answer.push_back((sum % 10) + '0');
 
