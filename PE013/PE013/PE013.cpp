@@ -34,15 +34,21 @@ int main(void)
 	getchar();
 }
 
-void MSB(string &current_sum, int &number_x_length, int current_sum_length, 
+void MSB(string &current_sum, int number_x_length, int current_sum_length, 
 	string &PE013_answer, int &carry)
 {
 	/*add MSB of the larger string to PE013_answer*/
 
 	//the MSB digits that need to be added to PE013_answer
-	for (int i = 0; ; );
+	for (int i = number_x_length; i < current_sum_length; i++)
+	{
+		//sum remaining digits
+		int sum = (current_sum[i] + '0') + carry;
+		//store sum in answer
+		PE013_answer.push_back((sum % 10) + '0');
 
-
+		carry = sum / 10;
+	}
 }
 
 void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry, int &number_x_length)
