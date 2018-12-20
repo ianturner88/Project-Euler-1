@@ -55,11 +55,7 @@ void Answer(string &PE016_answer, string &current_sum)
 
 	PE016_answer = current_sum;
 
-	//output first 10 digits
-	for (int i = 0; i < 10; i++)
-	{
-		cout << PE016_answer[i];
-	}
+	cout << PE016_answer;
 }
 
 void Reset_Current_Sum_AND_PE016_answer(string &PE016_answer, string &current_sum)
