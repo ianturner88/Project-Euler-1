@@ -5,15 +5,18 @@
 using namespace std;
 
 void Compare_Size(string &number_x, string &current_sum);
-void Calculate_Length_Smaller_String(string &number_x, int &number_x_length);
+void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
+	int &current_sum_length);
 void Reverse_2_Strings(string &number_x, string &current_sum);
 void LSB(string &number_x, string &current_sum, string &PE013_answer, int &carry, int &number_x_length);
+void MSB(string &current_sum, int number_x_length, int current_sum_length,
+	string &PE013_answer, int &carry);
 
 int main(void)
 {
 	ifstream PE013_Input_File("PE013.txt");
 	string number_x, current_sum = "", PE013_answer = "";
-	int number_x_length = 0, carry = 0;
+	int number_x_length = 0, carry = 0, current_sum_length = 0;
 
 	while (getline(PE013_Input_File, number_x))
 	{
@@ -23,11 +26,13 @@ int main(void)
 		//ensures current sum is the larger variable
 		Compare_Size(number_x, current_sum);
 		//calculate the length of the 2 strings
-		Calculate_Length_Smaller_String(number_x, number_x_length);
+		Calculate_Length_Both_Strings(number_x, number_x_length, current_sum, current_sum_length);
 		//reverse the 2 strings
 		Reverse_2_Strings(number_x, current_sum);
 		//add the LSB of the 2 strings
 		LSB(number_x, current_sum, PE013_answer, carry, number_x_length);
+		//add the not summed digits of the longer string
+		MSB(current_sum, number_x_length, current_sum_length, PE013_answer, carry);
 	}
 
 	//system pause
@@ -47,6 +52,7 @@ void MSB(string &current_sum, int number_x_length, int current_sum_length,
 		//store sum in answer
 		PE013_answer.push_back((sum % 10) + '0');
 
+		//check if sum exceeds 9
 		carry = sum / 10;
 	}
 }
@@ -78,11 +84,13 @@ void Reverse_2_Strings(string &number_x, string &current_sum)
 	reverse(current_sum.begin(), current_sum.end());
 }
 
-void Calculate_Length_Smaller_String(string &number_x, int &number_x_length)
+void Calculate_Length_Both_Strings(string &number_x, int &number_x_length, string &current_sum,
+	int &current_sum_length)
 {
 	/*Calculate the length of the smaller string.
 	Used as the upperlimit when adding the LSB of the 2 numbers*/
 	
+	current_sum_length = current_sum.length();
 	number_x_length = number_x.length();
 }
 
