@@ -12,6 +12,8 @@ void Determine_Length_of_String(string &PE016_power_digit, int &PE016_answer_len
 void Identify_Character_to_be_Added(string &PE016_answer_length, int &i, string &digit_to_sum);
 void MSB(string &digit_to_sum, string &current_sum, string &PE016_answer, int &carry);
 void Add_Remainder_of_Variable_Current_Sum(string &PE013_answer, int &carry, string &current_sum);
+void Reset_Variables(string &PE016_answer, string &current_sum);
+void Carry_Answer(string &PE016_answer, int &carry);
 
 int main(void)
 {
@@ -22,7 +24,7 @@ int main(void)
 	//initialize the variables
 	Reset_Variables(multiple_two, duplicate_multiple_two, PE016_power_digit, carry);
 
-	while (exponent < 25)
+	while (exponent < 1001)
 	{
 		/*driving algorithm to determine the number whose
 		digits are to be summed*/
@@ -53,10 +55,35 @@ int main(void)
 		MSB(digit_to_sum, current_sum, PE016_answer, carry);
 		//add 1st to nth digit of current sum to the final answer
 		Add_Remainder_of_Variable_Current_Sum(PE016_answer, carry, current_sum);
+		//add carry, if carry exists
+		Carry_Answer(PE016_answer, carry);
+		//clean variables to store sum determined by next cycle
+		Reset_Variables(PE016_answer, current_sum);
 	}
+
+	reverse(current_sum.begin(), current_sum.end());
+	cout << current_sum;
 
 	//system pause
 	getchar();
+}
+
+void Carry_Answer(string &PE016_answer, int &carry)
+{
+	/*add the final nth digit, if the digit exists*/
+
+	if (carry == 1)
+	{
+		PE016_answer.push_back(carry + '0');
+	}
+}
+
+void Reset_Variables(string &PE016_answer, string &current_sum)
+{
+	//most update-to-date answer
+	current_sum = PE016_answer;
+	//clear variable where next more update-to-date answer is stored
+	PE016_answer = "";
 }
 
 void Add_Remainder_of_Variable_Current_Sum(string &PE016_answer, int &carry, string &current_sum)
@@ -112,7 +139,7 @@ void Reverse(string &PE016_power_digit, string &multiple_two)
 	//prep number
 	reverse(PE016_power_digit.begin(), PE016_power_digit.end());
 	//present number
-	cout << PE016_power_digit;
+	cout << PE016_power_digit << endl << endl;
 }
 
 void Carry(string &PE016_power_digit, int &carry)
