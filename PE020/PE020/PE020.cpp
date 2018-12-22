@@ -2,7 +2,6 @@
 #include<string>
 #include <time.h>
 #include <vector>
-#include <algorithm>
 using namespace std;
 
 void Program_Execution_Time(clock_t total_time);
@@ -11,13 +10,14 @@ void LSB(string &current_sum, string previous_n_factorial, string &n_factorial, 
 void Carry(string &n_factorial, int carry);
 void Reset_Variables(string &n_factorial, int &carry, string &current_sum);
 void Reverse(string &previous_n_factorial, string &current_sum);
+void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial);
 
 int main(void)
 {
 	clock_t total_time;
 	int n_factorial_counter = 4, carry = 0;
-	string n_factorial = "", previous_n_factorial = "24", current_sum = "0";
-	vector<string> n_factorial;
+	string n_factorial = "5", previous_n_factorial = "24", current_sum = "0";
+	vector<string> vector_n_factorial;
 
 	//start clock
 	total_time = clock();
@@ -48,7 +48,8 @@ int main(void)
 			Reset_Variables(n_factorial, carry, current_sum);
 		}
 
-		//add in vector to store factorials of every number... contents will be outputted later in code
+		//store factorials of every number... contents will be outputted at the end
+		Store_N_Factorial_in_Vector(vector_n_factorial, n_factorial);
 	}
 	
 	//output program's execution time
@@ -57,9 +58,9 @@ int main(void)
 	getchar();
 }
 
-void Store_N_Factorial_in_Vector(int &n_factorial_counter, vector<string> &N_Factorial)
+void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial)
 {
-	N_Factorial.push_back(n_factorial_counter);
+	vector_n_factorial.push_back(n_factorial);
 }
 
 void Reset_Variables(string &n_factorial, int &carry, string &current_sum)
