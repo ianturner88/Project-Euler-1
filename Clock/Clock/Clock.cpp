@@ -2,7 +2,7 @@
 #include <time.h>
 using namespace std;
 
-void Time(clock_t &total_time);
+void Time(clock_t total_time);
 
 int main(void)
 {
@@ -29,7 +29,7 @@ int main(void)
 	getchar();
 }
 
-void Time(clock_t &total_time)
+void Time(clock_t total_time)
 {
 	//total execution time
 	total_time = clock() - total_time;
