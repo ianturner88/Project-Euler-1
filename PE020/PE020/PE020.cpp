@@ -11,12 +11,13 @@ void Carry(string &n_factorial, int carry);
 void Reset_Variables(string &n_factorial, int &carry, string &current_sum);
 void Reverse(string &previous_n_factorial, string &current_sum);
 void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial);
+void Reset_previous_n_factorial(string &previous_n_factorial, string &current_sum);
 
 int main(void)
 {
 	clock_t total_time;
 	int n_factorial_counter = 4, carry = 0;
-	string n_factorial = "5", previous_n_factorial = "24", current_sum = "0";
+	string n_factorial = "", previous_n_factorial = "24", current_sum = "0";
 	vector<string> vector_n_factorial;
 
 	//start clock
@@ -24,7 +25,6 @@ int main(void)
 
 	//initialize current_sum & reverse the hard-coded input for previous_n_factorial of 4!
 	Reverse(previous_n_factorial, current_sum);
-
 
 	while (n_factorial_counter < 11)
 	{
@@ -48,14 +48,28 @@ int main(void)
 			Reset_Variables(n_factorial, carry, current_sum);
 		}
 
+		//reset previous_n_factorial to be added (n-1) times to current_sum
+		Reset_previous_n_factorial(previous_n_factorial, current_sum);
 		//store factorials of every number... contents will be outputted at the end
-		Store_N_Factorial_in_Vector(vector_n_factorial, n_factorial);
+		Store_N_Factorial_in_Vector(vector_n_factorial, current_sum);
+	}
+
+	for (int i = 0; i < vector_n_factorial.size(); i++)
+	{
+		cout << vector_n_factorial[i] << endl;
 	}
 	
 	//output program's execution time
 	Program_Execution_Time(total_time);
 	//system pause
 	getchar();
+}
+
+void Reset_previous_n_factorial(string &previous_n_factorial, string &current_sum)
+{
+	/*new number to be added (n-1) times to current_sum*/
+
+	previous_n_factorial = current_sum;
 }
 
 void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial)
