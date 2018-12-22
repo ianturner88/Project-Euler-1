@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-void Add(int &a, int &b);
+void Add(int &a, int b);
 
 int main(void)
 {
@@ -15,10 +15,10 @@ int main(void)
 	getchar();
 }
 
-void Add(int &a, int &b)
+void Add(int &a, int b)
 {
 	cout << a << endl;
-	cout << b << endl;
+	cout << b << endl << endl;
 
 	a -= 2;
 	b -= 2;
