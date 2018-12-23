@@ -28,8 +28,8 @@ int main(void)
 
 	//initialize current_sum & reverse the hard-coded input for previous_n_factorial of 4!
 	Reverse(previous_n_factorial, current_sum);
-
-	while (n_factorial_counter < 100)
+	 
+	while (n_factorial_counter < 1000)
 	{
 		/*driving algorithm to determine n_factorial*/
 		
