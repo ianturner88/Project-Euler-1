@@ -11,13 +11,16 @@ void Carry(string &n_factorial, int carry);
 void Reset_Variables(string &n_factorial, int &carry, string &current_sum);
 void Reverse(string &previous_n_factorial, string &current_sum);
 void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial);
-void Reset_previous_n_factorial(string &previous_n_factorial, string &current_sum);
+void Calculate_n_factorial_length(string previous_n_factorial, int &n_factorial_length);
+void Identify_Digit_of_n_factorial_To_Add_To_Digit_Sum(string n_factorial, 
+	string &n_factorial_digit_to_add, int &digit_counter);
 
 int main(void)
 {
 	clock_t total_time;
-	int n_factorial_counter = 4, carry = 0;
-	string n_factorial = "", previous_n_factorial = "24", current_sum = "0";
+	int n_factorial_counter = 4, carry = 0, n_factorial_length, digit_counter = 0;
+	string n_factorial = "", previous_n_factorial = "0", current_sum = "24", n_factorial_digit_to_add = "", 
+		PE020_answer = "";
 	vector<string> vector_n_factorial;
 
 	//start clock
@@ -26,7 +29,7 @@ int main(void)
 	//initialize current_sum & reverse the hard-coded input for previous_n_factorial of 4!
 	Reverse(previous_n_factorial, current_sum);
 
-	while (n_factorial_counter < 11)
+	while (n_factorial_counter < 100)
 	{
 		/*driving algorithm to determine n_factorial*/
 		
@@ -49,14 +52,21 @@ int main(void)
 		}
 
 		//reset previous_n_factorial to be added (n-1) times to current_sum
-		Reset_previous_n_factorial(previous_n_factorial, current_sum);
+		Reverse(previous_n_factorial, current_sum);
 		//store factorials of every number... contents will be outputted at the end
 		Store_N_Factorial_in_Vector(vector_n_factorial, current_sum);
+		//numbers reset to reverse for adding purposes
+		Reverse(previous_n_factorial, current_sum);
 	}
 
-	for (int i = 0; i < vector_n_factorial.size(); i++)
+	//establish upperbound for when summing the digits of 100!
+	Calculate_n_factorial_length(previous_n_factorial, n_factorial_length);
+
+	for (int i = 0; i < n_factorial_length; i++)
 	{
-		cout << vector_n_factorial[i] << endl;
+		Identify_Digit_of_n_factorial_To_Add_To_Digit_Sum(previous_n_factorial, n_factorial_digit_to_add,
+			digit_counter);
+
 	}
 	
 	//output program's execution time
@@ -65,11 +75,20 @@ int main(void)
 	getchar();
 }
 
-void Reset_previous_n_factorial(string &previous_n_factorial, string &current_sum)
+void Identify_Digit_of_n_factorial_To_Add_To_Digit_Sum(string n_factorial, 
+	string &n_factorial_digit_to_add, int &digit_counter)
 {
-	/*new number to be added (n-1) times to current_sum*/
+	/*the nth digit to add to PE020_answer*/
+	
+	n_factorial_digit_to_add = n_factorial[digit_counter];
+	//to identify next digit to be summed
+	digit_counter++;
+}
 
-	previous_n_factorial = current_sum;
+void Calculate_n_factorial_length(string previous_n_factorial, int &n_factorial_length)
+{
+	/*establish upperbound for when summing the digits of 100!*/
+	n_factorial_length = previous_n_factorial.length();
 }
 
 void Store_N_Factorial_in_Vector(vector<string> &vector_n_factorial, string n_factorial)
@@ -94,9 +113,9 @@ void Reverse(string &previous_n_factorial, string &current_sum)
 	/*the code's structure depends on the initial numerical string input being reversed*/
 
 	//reverse first hard-coded previous_n_factorial, 4!
-	reverse(previous_n_factorial.begin(), previous_n_factorial.end());
+	reverse(current_sum.begin(), current_sum.end());
 	//current sum is initially blank
-	current_sum = previous_n_factorial;
+	previous_n_factorial = current_sum;
 }
 
 void Carry(string &n_factorial, int carry)
