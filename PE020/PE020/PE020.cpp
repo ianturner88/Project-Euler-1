@@ -61,14 +61,28 @@ int main(void)
 
 	//establish upperbound for when summing the digits of 100!
 	Calculate_n_factorial_length(previous_n_factorial, n_factorial_length);
+	//reverse number... not necessary, but made easier to debug
+	Reverse(previous_n_factorial, current_sum);
+
+	//clear
+	current_sum = "0";
 
 	for (int i = 0; i < n_factorial_length; i++)
 	{
 		Identify_Digit_of_n_factorial_To_Add_To_Digit_Sum(previous_n_factorial, n_factorial_digit_to_add,
 			digit_counter);
-
+		MSB(current_sum, n_factorial_digit_to_add, PE020_answer, carry);
+		LSB(current_sum, n_factorial_digit_to_add, PE020_answer, carry);
+		Carry(PE020_answer, carry);
+		Reset_Variables(PE020_answer, carry, current_sum);
 	}
 	
+	//prep answer
+	Reverse(current_sum, current_sum);
+
+	//output answer
+	cout << "The answer is: "<< current_sum << endl;
+
 	//output program's execution time
 	Program_Execution_Time(total_time);
 	//system pause
