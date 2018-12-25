@@ -28,7 +28,7 @@ int main(void)
 	cout << answer(three, five, fifteen) << endl;
 
 	//output program's execution time
-	Program_Execution_Time(total_time);
+	//Program_Execution_Time(total_time);
 
 	//system pause
 	getchar();
