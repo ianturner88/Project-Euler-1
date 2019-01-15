@@ -41,7 +41,7 @@ int main(void)
 
 	system("pause");
 }
-
+ 
 void Is_Prime(bool prime[], const int &upperlimit)
 {
 	/*Identify all primes below 1 000 000*/
