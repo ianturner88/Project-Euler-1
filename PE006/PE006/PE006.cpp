@@ -19,7 +19,7 @@ int main()
 
 	system("pause");
 }
-
+//test
 void Sum_Squares(int &x, int &sum1)
 {
 	while (x < 101)
