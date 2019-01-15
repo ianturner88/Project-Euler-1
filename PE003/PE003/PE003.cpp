@@ -20,7 +20,7 @@ int main(void)
 
 	system("pause");
 }
-
+//test
 void Is_Prime(bool prime[], int &testcase, const int &parray)
 {
 	/*A seive that identifies primes*/
