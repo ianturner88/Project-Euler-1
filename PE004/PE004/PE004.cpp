@@ -104,7 +104,7 @@ void Condition_Check(int &testcase, int &flag, int &first_divisor, int &second_d
 	{
 		flag = 1;
 	}
-
+	//test
 	else
 	{
 		flag = 0;
