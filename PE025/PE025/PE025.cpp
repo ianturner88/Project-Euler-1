@@ -133,7 +133,7 @@ void ReverseFNext(string &fibonacci_next)
 
 	reverse(fibonacci_next.begin(), fibonacci_next.end());
 }
-
+//test
 void ReverseAllFibonacciNumbers(string &fibonacci1, string &fibonacci2, string &fibonacci_next)
 {
 	/*Reverses the digits of all numbers to all the algorithm to work*/
