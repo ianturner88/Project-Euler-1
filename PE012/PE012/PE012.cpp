@@ -71,6 +71,6 @@ void Answer(int &triangle_number, bool &condition)
 	/*Prints the answer*/
 
 	cout << triangle_number << endl << endl;
-
+	
 	condition = false;
 }
