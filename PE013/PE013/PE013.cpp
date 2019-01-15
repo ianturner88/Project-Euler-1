@@ -61,7 +61,7 @@ void Answer(string &PE013_answer, string &current_sum)
 		cout << PE013_answer[i];
 	}
 }
-
+//test
 void Reset_Current_Sum_AND_PE013_answer(string &PE013_answer, string &current_sum)
 {
 	/*at the end of one cycle, these two variables are reset*/
