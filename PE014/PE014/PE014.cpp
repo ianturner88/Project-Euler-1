@@ -62,4 +62,4 @@ void Answer(int collatz[], int &i, int &k, int &n, int &answer)
 	{
 		answer = i;
 	}
-}
+}//test
