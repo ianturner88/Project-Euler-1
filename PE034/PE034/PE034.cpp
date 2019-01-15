@@ -45,7 +45,7 @@ void Factorials(const int &n, int factorial_sum[])
 		}
 	}
 }
-
+//test
 void Digit_Factorials_Sum(int &testcase, int factorial_sum[], int &sum)
 {
 	/*Check if the sum of the given number's digits'
