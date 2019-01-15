@@ -4,7 +4,7 @@ using namespace std;
 
 void Pythagorean_Triplet(int &a, int &b, int &c);
 void Product(int &a, int &b, int &c);
-
+//test
 int main()
 {
 	int a = 0, b = 5, c = 10;
