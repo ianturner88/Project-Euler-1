@@ -1,6 +1,7 @@
 #include<iostream>
 #include <vector>
 #include <array>
+#include <string>
 //#include <algorithm>
 using namespace std;
 
@@ -11,7 +12,7 @@ void Store_Fingerprint(int fingerprint_int, string fingerprint_string, vector<st
 
 int main(void)
 {
-	int six_digit_number = 567567, number_counter = 0, zero_through_nine[10] = { 0 }, power_10[6], fingerprint_int;
+	int six_digit_number = 100000, number_counter = 0, zero_through_nine[10] = { 0 }, power_10[6], fingerprint_int;
 	string fingerprint_string = "";
 	vector<string> fingerprint;
 
@@ -22,7 +23,14 @@ int main(void)
 		Parse_Six_Digit_Number(six_digit_number, number_counter, zero_through_nine);
 		fingerprint_int = Create_Fingerprint(zero_through_nine, power_10);
 		Store_Fingerprint(fingerprint_int, fingerprint_string, fingerprint, number_counter);
+		six_digit_number++;
 	}
+
+	//test
+	for (int i = 0; i < fingerprint.size(); ++i)
+		std::cout << i << " " << fingerprint[i] << endl;
+
+	getchar();
 }
 
 void Store_Fingerprint(int fingerprint_int, string fingerprint_string, vector<string> &fingerprint, int number_counter)
@@ -41,7 +49,7 @@ void Store_Fingerprint(int fingerprint_int, string fingerprint_string, vector<st
 	}
 
 	//store the individual number's fingerprint 
-	fingerprint[number_counter] = fingerprint_string;
+	fingerprint.push_back(fingerprint_string);
 }
 
 int Create_Fingerprint(int zero_through_nine[], int power_10[])
