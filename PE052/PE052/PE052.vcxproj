@@ -20,8 +20,8 @@
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>15.0</VCProjectVersion>
-    <ProjectGuid>{125FDF22-5C9F-415D-B9AF-F52E76D3776C}</ProjectGuid>
-    <RootNamespace>PE002</RootNamespace>
+    <ProjectGuid>{ED9FB96E-51CF-44D9-A1E3-4CE3BDE5F7BB}</ProjectGuid>
+    <RootNamespace>PE052</RootNamespace>
     <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
@@ -115,7 +115,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="PE002.cpp" />
+    <ClCompile Include="PE052.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
