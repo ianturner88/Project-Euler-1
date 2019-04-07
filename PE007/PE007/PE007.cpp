@@ -36,7 +36,7 @@ void Is_Prime(bool prime[], const int &upperlimit)
 		}
 	}
 }
-//test
+
 void Answer(bool prime[], int &i)
 {
 	int count = 0;
