@@ -40,4 +40,58 @@ namespace Euler
 
 		return is_digit;
 	}
+
+	int String_to_Int(std::string input)
+	{
+		/*converts a string to an integer*/
+		int input_length = input.length(), counter = 0, number = 0, digit_value;
+		char character;
+		//reverse the string
+		std::string number_string = Reverse_String(input);
+
+		for (int i = 0; i < input_length; i++)
+		{
+			//cycle through the enter line
+			character = number_string[i];
+			//return the character's/digit's value
+			digit_value = Char_to_Int(character);
+			//the digit multiplied by a base of 10
+			number += digit_value * pow(10, counter);
+			//increment to the next base of 10
+			counter++;
+		}
+
+		//the number is converted from string to int
+		return number;
+	}
+
+	std::string Reverse_String(std::string input)
+	{
+		/*reverses the string*/
+		reverse(input.begin(), input.end());
+
+		//o
+		return input;
+	}
+
+	int Char_to_Int(char character)
+	{
+		/*returns a character's ascii value*/
+		int ASCII_value = (int)character - '0';
+		//check if digit is between 0 and 9
+		Is_Digit(ASCII_value);
+
+		return ASCII_value;
+	}
+
+	void Is_Digit(int ASCII_value)
+	{
+		/*determines if char is not 0, 9 or any
+		digit in between*/
+
+		if ((ASCII_value < 0) || (ASCII_value > 9))
+		{
+			std::cout << "The character does not have an ASCII value between 0 (48) and 9 (57)";
+		}
+	}
 }
