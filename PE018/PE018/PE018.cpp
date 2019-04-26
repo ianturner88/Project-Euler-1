@@ -3,7 +3,7 @@
 #include <string>
 #include <vector>
 
-int Clean_Input(std::vector <std::vector<int>> pyramid, int& row_counter, std::string input_line_x);
+int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::string input_line_x);
 
 int main(void)
 {
@@ -17,7 +17,17 @@ int main(void)
 		Clean_Input(pyramid, row_counter, input_line_x);
 	}
 
-	std::cout << row_counter << std::endl;
+	for (int i = 0; i < row_counter; i++)
+	{
+		for (int j = 0; j <= i; j++)
+		{
+			std::cout << pyramid[i][j] << " ";
+		}
+
+		std::cout << std::endl;
+	}
+
+	std::cout << "row counter: " << row_counter << std::endl;
 
 	getchar();
 }

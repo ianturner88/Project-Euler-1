@@ -4,10 +4,12 @@
 #include "Functions_Input.h"
 #include "ProjectEulerLibrary/ProjectEulerLibrary.h"
 
-int Clean_Input(std::vector <std::vector<int>> pyramid, int& row_counter, std::string input_line_x)
+int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::string input_line_x)
 {
 	std::string output, two_digit_number;
 	int number_int;
+	std::vector<int> row;
+
 	   
 	for (int i = 0; i < row_counter; i++)
 	{
@@ -29,20 +31,15 @@ int Clean_Input(std::vector <std::vector<int>> pyramid, int& row_counter, std::s
 		//converts string_int to int
 		number_int = Euler::String_to_Int(two_digit_number);
 
+		//store the number 
+		row.push_back(number_int);
 	}
+
+	//store the newest row vector within the pyramid
+	pyramid.push_back(row);
 
 	//indentifies the new number of numbers to be retrieved
 	row_counter++;
 
 	return 0;
 }
-
-/*
-// declare 2D vector
-vector< vector<int> > myVector;
-// make new row (arbitrary example)
-vector<int> myRow(1,5);
-myVector.push_back(myRow);
-// add element to row
-myVector[0].push_back(1);
-*/
