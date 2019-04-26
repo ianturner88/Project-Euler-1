@@ -3,14 +3,14 @@
 #include <string>
 #include <vector>
 
-int Clean_Input(std::vector<int> pyramid, int& row_counter, std::string input_line_x);
+int Clean_Input(std::vector <std::vector<int>> pyramid, int& row_counter, std::string input_line_x);
 
 int main(void)
 {
 	std::ifstream file("PE018.txt");
 	std::string input_line_x;
-	std::vector<int> pyramid;
-	int row_counter = 0;
+	std::vector <std::vector<int>> pyramid;
+	int row_counter = 1;
 
 	while (std::getline(file, input_line_x))
 	{

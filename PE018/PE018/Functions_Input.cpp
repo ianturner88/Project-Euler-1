@@ -13,6 +13,8 @@ std::string Remove_Whitespace(std::string input_line_x)
 
 	while (input_line_x[i] == Delimiter)
 	{
+		//erases the white space from the string
+		input_line_x.erase(0, 1);
 		//continues until whitespace is gone
 		i++;
 	}
