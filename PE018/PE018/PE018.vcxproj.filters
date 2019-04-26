@@ -24,9 +24,15 @@
     <ClCompile Include="Functions_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Main_Input.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Functions_Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

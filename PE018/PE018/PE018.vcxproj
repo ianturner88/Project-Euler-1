@@ -125,10 +125,12 @@
   <ItemGroup>
     <ClCompile Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary.cpp" />
     <ClCompile Include="Functions_Input.cpp" />
+    <ClCompile Include="Main_Input.cpp" />
     <ClCompile Include="PE018.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary.h" />
+    <ClInclude Include="Functions_Input.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

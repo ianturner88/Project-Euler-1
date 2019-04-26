@@ -18,7 +18,7 @@ int main()
 
 	ReverseAllFibonacciNumbers(fibonacci1, fibonacci2, fibonacci_next);
 
-	while (n3 != 1000)
+	while (count != 329468)
 	{
 		Fibonacci_Generator(fibonacci1, fibonacci2, fibonacci_next);
 		Fibonacci_Next(fibonacci_next);
@@ -28,6 +28,8 @@ int main()
 		Carry(fibonacci_next, carry);
 		Length_Calculator(n1, n2, n3, length_difference, fibonacci1, fibonacci2, fibonacci_next);
 
+		cout << "count: " << count << " length: " << fibonacci_next.length() << endl;
+			
 		count++;
 	}
 
