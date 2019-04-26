@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
+#include "Functions_Input.h"
+
 std::string Remove_Whitespace(std::string input_line_x)
 {
 	/*removes the whitespace found between the numbers */

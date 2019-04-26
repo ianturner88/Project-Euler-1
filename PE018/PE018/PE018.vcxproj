@@ -76,6 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary;$(SolutionDir)ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -87,6 +88,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary;$(SolutionDir)ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -100,6 +102,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary;$(SolutionDir)ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -115,6 +118,7 @@
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary;$(SolutionDir)ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -123,14 +127,17 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary.cpp" />
     <ClCompile Include="Functions_Input.cpp" />
     <ClCompile Include="Main_Input.cpp" />
     <ClCompile Include="PE018.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary.h" />
     <ClInclude Include="Functions_Input.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary\ProjectEulerLibrary.vcxproj">
+      <Project>{d65422d5-dc1b-4b1d-ad23-7b1be59a1a56}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
