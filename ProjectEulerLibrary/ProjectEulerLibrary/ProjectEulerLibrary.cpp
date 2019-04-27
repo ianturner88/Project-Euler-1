@@ -70,7 +70,6 @@ namespace Euler
 		/*reverses the string*/
 		reverse(input.begin(), input.end());
 
-		//o
 		return input;
 	}
 
