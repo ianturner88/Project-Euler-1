@@ -9,6 +9,7 @@ int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::
 	std::string output, two_digit_number;
 	int number_int;
 	std::vector<int> row;
+	output = input_line_x;
 
 	   
 	for (int i = 0; i < row_counter; i++)
@@ -17,7 +18,7 @@ int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::
 		numbers has it's row count + 1 --> example: row 2 has 3 numbers */
 
 		//remove the whitespace infront of the number
-		output = Remove_Whitespace(input_line_x);
+		output = Remove_Whitespace(output);
 
 		for (int i = 0; i < 2; i++)
 		{
@@ -33,6 +34,11 @@ int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::
 
 		//store the number 
 		row.push_back(number_int);
+
+		//reset
+		two_digit_number.clear();
+		//delete extracted number from the input line
+		output.erase(0, 2);
 	}
 
 	//store the newest row vector within the pyramid

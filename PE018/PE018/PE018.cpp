@@ -17,7 +17,7 @@ int main(void)
 		Clean_Input(pyramid, row_counter, input_line_x);
 	}
 
-	for (int i = 0; i < row_counter; i++)
+	for (int i = 0; (i < (row_counter - 1)); i++)
 	{
 		for (int j = 0; j <= i; j++)
 		{
