@@ -127,12 +127,16 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Functions_Algorithm.cpp" />
     <ClCompile Include="Functions_Input.cpp" />
+    <ClCompile Include="Main_Algorithm.cpp" />
     <ClCompile Include="Main_Input.cpp" />
     <ClCompile Include="PE018.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Functions_Algorithm.h" />
     <ClInclude Include="Functions_Input.h" />
+    <ClInclude Include="PE018.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary\ProjectEulerLibrary.vcxproj">

@@ -3,7 +3,8 @@
 #include <string>
 #include <vector>
 
-int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::string input_line_x);
+#include "Functions_Input.h"
+#include "PE018.h"
 
 int main(void)
 {
@@ -14,17 +15,17 @@ int main(void)
 
 	while (std::getline(file, input_line_x))
 	{
+		/*reads file in & converts to integer*/
 		Clean_Input(pyramid, row_counter, input_line_x);
 	}
 
-	for (int i = 0; (i < (row_counter - 1)); i++)
-	{
-		for (int j = 0; j <= i; j++)
-		{
-			std::cout << pyramid[i][j] << " ";
-		}
+	//ensures every row n has one fewer elements than (n + 1)
+	bool is_valid_vector = Is_Valid_Vector(pyramid, row_counter);
 
-		std::cout << std::endl;
+	if (is_valid_vector == true)
+	{
+		//identifies the maximal sum 
+		Algorithm(pyramid, row_counter);
 	}
 
 	std::cout << "row counter: " << row_counter << std::endl;
