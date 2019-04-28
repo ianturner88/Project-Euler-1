@@ -2,9 +2,12 @@
 #include <fstream>
 #include <string>
 #include <vector>
+#include <time.h>
+#include <iostream>
 
 #include "Functions_Input.h"
 #include "PE018.h"
+#include "ProjectEulerLibrary/ProjectEulerLibrary.h"
 
 int main(void)
 {
@@ -12,6 +15,11 @@ int main(void)
 	std::string input_line_x;
 	std::vector <std::vector<int>> pyramid;
 	int row_counter = 1, final_answer;
+	clock_t time_total;
+	double duration;
+
+	//start clock
+	time_total = clock();
 
 	while (std::getline(file, input_line_x))
 	{
@@ -29,6 +37,9 @@ int main(void)
 	}
 
 	std::cout << "The answer is: " << final_answer << std::endl;
+
+	//output time
+	Euler::Time(time_total);
 
 	getchar();
 }
