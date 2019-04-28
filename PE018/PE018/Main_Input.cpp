@@ -4,7 +4,7 @@
 #include "Functions_Input.h"
 #include "ProjectEulerLibrary/ProjectEulerLibrary.h"
 
-int Clean_Input(std::vector <std::vector<int>> &pyramid, int& row_counter, std::string input_line_x)
+int Clean_Input(std::vector <std::vector<int>> &pyramid, int &row_counter, std::string input_line_x)
 {
 	std::string output, two_digit_number;
 	int number_int;

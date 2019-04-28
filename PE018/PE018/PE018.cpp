@@ -11,7 +11,7 @@ int main(void)
 	std::ifstream file("PE018.txt");
 	std::string input_line_x;
 	std::vector <std::vector<int>> pyramid;
-	int row_counter = 1;
+	int row_counter = 1, final_answer;
 
 	while (std::getline(file, input_line_x))
 	{
@@ -25,10 +25,10 @@ int main(void)
 	if (is_valid_vector == true)
 	{
 		//identifies the maximal sum 
-		Algorithm(pyramid, row_counter);
+		final_answer = Algorithm(pyramid, row_counter);
 	}
 
-	std::cout << "row counter: " << row_counter << std::endl;
+	std::cout << "The answer is: " << final_answer << std::endl;
 
 	getchar();
 }
