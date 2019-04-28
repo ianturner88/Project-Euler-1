@@ -1,4 +1,5 @@
 #pragma once
+#include <time.h>
 
 namespace Euler
 {
@@ -11,4 +12,6 @@ namespace Euler
 	std::string Reverse_String(std::string input);
 	
 	bool Is_Digit(char digit_char);
+
+	void Time(clock_t time_total);
 }

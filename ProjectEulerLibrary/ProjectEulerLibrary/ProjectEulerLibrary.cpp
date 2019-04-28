@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <time.h>
 
 #include "ProjectEulerLibrary.h"
 
@@ -92,5 +93,12 @@ namespace Euler
 		{
 			std::cout << "The character does not have an ASCII value between 0 (48) and 9 (57)";
 		}
+	}
+
+	void Time(clock_t time_total)
+	{
+		//outputs execution time to point where called
+		time_total = (clock() - time_total) / (double)CLOCKS_PER_SEC;
+		std::cout << "time stamp: " << time_total << std::endl;
 	}
 }
