@@ -99,6 +99,6 @@ namespace Euler
 	{
 		//outputs execution time to point where called
 		time_total = (clock() - time_total) / (double)CLOCKS_PER_SEC;
-		std::cout << "time stamp: " << time_total << std::endl;
+		std::cout << "time stamp (seconds): " << time_total << std::endl;
 	}
 }
