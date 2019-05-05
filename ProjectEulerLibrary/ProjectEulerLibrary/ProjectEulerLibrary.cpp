@@ -101,4 +101,22 @@ namespace Euler
 		time_total = (clock() - time_total) / (double)CLOCKS_PER_SEC;
 		std::cout << "time stamp (seconds): " << time_total << std::endl;
 	}
+
+	int Numbers_Length(int input_number)
+	{
+		/*determines a number's length*/
+		int digit, numbers_length = 0;
+
+		while (input_number > 0)
+		{
+			//shave off the LSB digit 'shaved off'
+			digit = input_number % 10;
+			//truncate the variable by deleting the LSB digit
+			input_number /= 10;
+			//the length of the input number
+			numbers_length++;
+		}
+
+		return numbers_length;
+	}
 }

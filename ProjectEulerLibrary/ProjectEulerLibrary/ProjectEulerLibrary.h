@@ -8,6 +8,7 @@ namespace Euler
 
 	int Char_to_Int(char character);
 	int String_to_Int(std::string input);
+	int Numbers_Length(int input_number);
 	
 	std::string Reverse_String(std::string input);
 	
