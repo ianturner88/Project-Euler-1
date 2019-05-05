@@ -1,20 +1,53 @@
 #include <iostream>
+#include <vector>
+
 bool Is_Pandigital(int input_number);
-int Numbers_Length(int input_number);
+int Numbers_Length(int input_number, bool is_pandigital[]);
 
 int main(void)
 {
-	int input_number = 54321;
-
+	int input_number = 987654321;
 	std::cout << Is_Pandigital(input_number) << std::endl;
 
 	getchar();
 }
 
-int Numbers_Length(int input_number)
+bool Is_Pandigital(int input_number)
+{
+	/*determines if a number is pandigital*/
+	bool is_number_pandigital = true;
+
+	if (input_number > 987654321)
+	{
+		is_number_pandigital = false;
+		return is_number_pandigital;
+	}
+
+	bool is_pandigital[10] = { false };
+
+	int input_numbers_length = Numbers_Length(input_number, is_pandigital);
+
+	for (int i = 1; (i < input_numbers_length) && (is_number_pandigital = true); i++)
+	{
+		if (is_pandigital[i] == true)
+		{
+			is_number_pandigital = false;
+			return is_number_pandigital;
+		}
+		
+		if (is_pandigital[i] != true)
+		{
+			is_number_pandigital = false;
+		}
+	}
+
+	return is_number_pandigital;
+}
+
+int Numbers_Length(int input_number, bool is_pandigital[])
 {
 	/*determines a number's length*/
-	int digit, numbers_length = 0;
+	int digit = 0, numbers_length = 0;
 
 	while (input_number > 0)
 	{
@@ -24,53 +57,9 @@ int Numbers_Length(int input_number)
 		input_number /= 10;
 		//the length of the input number
 		numbers_length++;
+		//mark the digit has existing
+		is_pandigital[digit] = true;
 	}
 
 	return numbers_length;
-}
-
-bool Is_Pandigital(int input_number)
-{
-	/*determines if a number is pandigital*/
-	int numbers_length = Numbers_Length(input_number);
-	bool pandigital_check[9] = { false }, is_pandigital = true;
-	int digit;
-
-	if (numbers_length > 9)
-	{
-		/*a pandigital number may only have the digits 1 through 9 ->
-		a pandigital number's length is capped at 9 digits*/
-		is_pandigital = false;
-		//the number is not pandigital
-		return is_pandigital;
-	}
-
-	while (input_number > 0)
-	{
-		/*identify the numbers that exist in the number*/
-		//identify the LSB digit
-		digit = input_number % 10;
-		//truncate the number by removing the LSB digit
-		input_number /= 10;
-		if (pandigital_check[digit] == true)
-		{
-			//the digit occurs twice in the number --> number != pandigital
-			is_pandigital = false;
-		}
-
-		//'slice' off the LSB digit and mark has existing in the numer
-		pandigital_check[digit] = true;
-	}
-
-	for (int i = 0; i < numbers_length; i++)
-	{
-		/*check if all digits below the number's length exist in the number*/
-		if (pandigital_check[i] == false)
-		{
-			//a digit below the number's total length did not occur
-			is_pandigital = false;
-		}
-	}
-
-	return is_pandigital;
 }
