@@ -6,7 +6,7 @@ int Numbers_Length(int input_number, bool is_pandigital[]);
 
 int main(void)
 {
-	int input_number = 987654322;
+	int input_number = 1;
 	std::cout << Is_Pandigital(input_number) << std::endl;
 
 	getchar();
