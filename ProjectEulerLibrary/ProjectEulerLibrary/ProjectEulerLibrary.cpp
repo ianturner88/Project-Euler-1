@@ -6,19 +6,20 @@
 
 namespace Euler
 {
-	void Digit_Factorial_Chains(int n, std::vector<int>& digit_factorial_chains)
+	void Digit_Factorial_Chains(std::vector <int>& digit_factorial_chains, int upperlimit)
 	{
-		/*Calculates the factorials up to the digit n*/
+		/*calculate the factorials of the numbers less than the upperlimit*/
+		int digit = 0;
+		//set 0! equal to 1
+		digit_factorial_chains.push_back(1);
 
-		int digit_factorial_sum = 1;
-
-		for (int i = 1; i < n; i++)
+		while (digit <= upperlimit)
 		{
-			//(i-1)'s sum multipled with i for i's digit factorial 
-			digit_factorial_sum *= i;
+			/*determine the factorial of every digit*/
+			digit++;
 
-			//store the result 
-			digit_factorial_chains.push_back(digit_factorial_sum);
+			//multiply the previous result with the current digit to get the next factorial
+			digit_factorial_chains.push_back(digit_factorial_chains[(digit - 1)] * digit);
 		}
 	}
 

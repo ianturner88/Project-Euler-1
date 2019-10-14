@@ -13,7 +13,6 @@ int main(void)
 	//only multiples of 3, 5, & 15 below the variable upperlimit are considered
 	int upperlimit = Upperlimit();
 
-
 	//multiples of 3
 	three = multiples(3, upperlimit);
 	//multiples of 5
@@ -24,7 +23,6 @@ int main(void)
 	cout << answer(three, five, fifteen) << endl;
 
 	//system pause
-	getchar();
 	getchar();
 }
 

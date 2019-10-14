@@ -2,12 +2,15 @@
 #include <vector>
 
 int Digit_Sum(int n_digit_number);
+void Unique_Sums(std::vector<int> unique_sums, int digit_sum);
 void Clean_Vector_Contents(std::vector<int> sums);
+
+
 
 int main(void)
 {
 	int two_digit_number = 0, tens, counter = 0, sum;
-	std::vector<int> sums;
+	std::vector<int> unique_sums;
 
 	std::cout << "number: " << " counter: " << " digit's sum: " << std::endl;
 
@@ -25,15 +28,24 @@ int main(void)
 
 			std::cout << two_digit_number << "        " << counter << "         " << sum << std::endl;
 
-			//store the digit sum results in a vector
-			sums.push_back(sum);
-
+			//store the unique digit sum results in a vector
+			
+			if (unique_sums.back() != sum)
+			{
+				Unique_Sums(unique_sums, sum);
+			}
+			
 			//identify the index spot
 			counter++;
 		}
 	}
 
-	Clean_Vector_Contents(sums);
+	std::cout << "Output Vector: " << std::endl;
+
+	for (int i = 0; i < unique_sums.size(); i++)
+	{
+		std::cout << unique_sums[i] << std::endl;
+	}
 
 	//system pause
 	getchar();
@@ -52,6 +64,22 @@ void Clean_Vector_Contents(std::vector<int> sums)
 		{
 			std::cout << sums[i - 1] << std::endl;
 		}
+	}
+}
+
+void Unique_Sums(std::vector<int> unique_sums, int digit_sum)
+{
+	bool is_match = false;
+
+	for (int i = 0; (i < unique_sums.size()) && (is_match == false); i++)
+	{
+		//(condition) ? true-clause : false-clause
+		(digit_sum == unique_sums[i]) ? (is_match = true) : (is_match = false);
+	}
+
+	if (is_match == false)
+	{
+		unique_sums.push_back(digit_sum);
 	}
 }
 

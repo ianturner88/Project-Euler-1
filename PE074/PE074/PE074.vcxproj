@@ -119,11 +119,6 @@
     <ClCompile Include="PE074.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ProjectEulerLibrary\ProjectEulerLibrary.vcxproj">
-      <Project>{9a7eb635-0599-437d-9883-0be7f3954c6a}</Project>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <ClInclude Include="PE074.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
