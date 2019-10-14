@@ -36,7 +36,8 @@ int main(void)
 			//chain length increased by 1
 			chain_length_counter++;
 
-			chain_results.push_back(chain_length_counter, factorial_sum);
+
+
 		}
 
 
