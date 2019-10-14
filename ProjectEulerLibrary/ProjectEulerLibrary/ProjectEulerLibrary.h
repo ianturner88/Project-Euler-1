@@ -4,7 +4,7 @@
 
 namespace Euler
 {
-	void Digit_Factorial_Chains(int n, std::vector<int>& digit_factorial_chains);
+	void Digit_Factorial_Chains(std::vector <int>& digit_factorial_chains, int upperlimit);
 	void Is_Digit(int ASCII_value);
 
 	int Char_to_Int(char character);
