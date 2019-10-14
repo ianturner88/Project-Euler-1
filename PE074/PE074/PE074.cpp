@@ -11,5 +11,10 @@ enum PE074
 
 int main(void)
 {
+	std::vector <int>  digit_factorial_chains;
+}
+
+void Digit_Factorial_Chains(std::vector <int>  digit_factorial_chains, int upperlimit)
+{
 
 }
