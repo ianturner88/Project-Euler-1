@@ -34,10 +34,10 @@ int main(void)
 	*/
 
 	Add_Numbers(example, 0);
-	Print(example);
+	//Print(example);
 
 	Add_Numbers(example, 1);
-	Print(example);
+	//Print(example);
 
 	std::sort(example.begin(), example.end());
 	Print(example);

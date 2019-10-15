@@ -20,7 +20,7 @@ int main(void)
 	std::vector<int> digit_factorial_chains;
 	std::vector<std::vector<int>> chain_results;
 	std::vector<int> temp;
-	bool starting_numbers_chain_lengths_known[100000] = { false };
+	bool is_starting_numbers_chain_lengths_known[100000] = { false };
 	int starting_numbers_chain_lengths[100000] = {0};
 	
 	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, upperlimit);
@@ -31,7 +31,7 @@ int main(void)
 		//increment to the next number
 		starting_number++;
 
-		Chain_Length(digit_factorial_chains, starting_numbers_chain_lengths_known, starting_number);
+		Chain_Length(digit_factorial_chains, is_starting_numbers_chain_lengths_known, starting_number);
 
 		//identify the next starting number
 		starting_number++;
