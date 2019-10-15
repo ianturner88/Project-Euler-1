@@ -1,31 +1,52 @@
 #include <vector>
 #include <iostream>
+#include <algorithm>
+
+void Insert_Numbers(std::vector<int>& temp, int starting_number);
+void Print_All_Contents(std::vector <std::vector <int>> example);
 
 int main()
 {
 	//define a vector of vectors
-	std::vector <std::vector <int>> sample;
+	std::vector <std::vector <int>> example;
+	std::vector<int> temp;
 
-	for (int i = 0; i < 3; i++)
+	Insert_Numbers(temp, 6);
+	example.push_back(temp);
+
+	Insert_Numbers(temp, 3);
+	example.push_back(temp);
+	
+	Insert_Numbers(temp, 0);
+	example.push_back(temp);
+
+	//Print_All_Contents(example);
+
+	std::sort(example.begin(), example.end());
+	Print_All_Contents(example);
+}
+
+void Print_All_Contents(std::vector <std::vector <int>> example)
+{
+	for (int i = 0; i < example.size(); i++)
 	{
-		std::vector <int> temp;
-
-		for (int j = 0; j < 3; j++)
+		for (int j = 0; j < example[i].size(); j++)
 		{
-			temp.push_back(i);
+			std::cout << example[i][j];
 		}
 
-		sample.push_back(temp);
+		std::cout << std::endl;
 	}
+}
 
-	for (int i = 0; i < sample.size(); i++)
+void Insert_Numbers(std::vector<int>& temp, int starting_number)
+{
+	temp.clear();
+
+	//store numbers in the vector
+	for (int j = 0; j < 3; j++)
 	{
-		for (int j = 0; j < sample[i].size(); j++)
-		{
-			std::cout << sample[i][j];
-		}
-
-		std::cout<< std::endl;
+		temp.push_back(starting_number);
+		starting_number++;
 	}
-
 }
