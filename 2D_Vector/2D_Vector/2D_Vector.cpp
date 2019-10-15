@@ -20,7 +20,11 @@ int main()
 	Insert_Numbers(temp, 0);
 	example.push_back(temp);
 
-	//Print_All_Contents(example);
+	std::cout << "Unsorted: " << std::endl;
+
+	Print_All_Contents(example);
+
+	std::cout << "Sorted: " << std::endl;
 
 	std::sort(example.begin(), example.end());
 	Print_All_Contents(example);
