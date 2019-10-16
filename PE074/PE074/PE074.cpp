@@ -6,8 +6,10 @@ void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factoria
 /*sum the starting number into its digits' factorials*/
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
 /*determine the starting number's resulting chain length*/
-void Chain_Length(std::vector <int> digit_factorial_chains, bool starting_numbers_chain_lengths_known[],
-	int starting_number);
+void Chain_Length(std::vector <int> digit_factorial_chains, int starting_number,
+	std::vector<std::vector<int>> known_chain_length_results);
+/*return the location of the target*/
+int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target);
 
 enum
 {
@@ -18,10 +20,8 @@ int main(void)
 {
 	int upperlimit = 10, starting_number = 68, starting_number_sum = 0, digit, chain_length_counter;
 	std::vector<int> digit_factorial_chains;
-	std::vector<std::vector<int>> chain_results;
+	std::vector<std::vector<int>> known_chain_length_results;
 	std::vector<int> temp;
-	bool is_starting_numbers_chain_lengths_known[100000] = { false };
-	int starting_numbers_chain_lengths[100000] = {0};
 	
 	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, upperlimit);
 
@@ -31,7 +31,7 @@ int main(void)
 		//increment to the next number
 		starting_number++;
 
-		Chain_Length(digit_factorial_chains, is_starting_numbers_chain_lengths_known, starting_number);
+		Chain_Length(digit_factorial_chains, starting_number, known_chain_length_results);
 
 		//identify the next starting number
 		starting_number++;
@@ -40,19 +40,19 @@ int main(void)
 	getchar();
 }
 
-void Chain_Length(std::vector <int> digit_factorial_chains, bool starting_numbers_chain_lengths_known[],
-	int starting_number)
+void Chain_Length(std::vector <int> digit_factorial_chains,	int starting_number, 
+	std::vector<std::vector<int>> known_chain_length_results)
 {
 	/*determine every starting number chain length*/
 	int factorial_sum, chain_length_counter = 0;
 	std::vector<int> temp;
+	std::vector<std::vector<int>> current_chain_length_vector;
 
 	//identify the factorial sum of the starting number
 	factorial_sum = Numbers_Digits_Factorial_Sum(starting_number, digit_factorial_chains);
 
-	std::cout << starting_numbers_chain_lengths_known[factorial_sum] << std::endl;
-
-	while (starting_numbers_chain_lengths_known[factorial_sum] == false)
+	while ((TwoD_Vector_BinarySearch(current_chain_length_vector, 0, factorial_sum) != -1) &&
+		(TwoD_Vector_BinarySearch(known_chain_length_results, 0, factorial_sum)) != -1)
 	{
 		/*determines the chain resulting from a given starting point*/
 		factorial_sum = Numbers_Digits_Factorial_Sum(factorial_sum, digit_factorial_chains);
@@ -62,6 +62,8 @@ void Chain_Length(std::vector <int> digit_factorial_chains, bool starting_number
 		temp.push_back(factorial_sum);
 		//the number of 'numbers' into the chain
 		temp.push_back(chain_length_counter);
+		//the number is stored first in the 2D vector, then the number's chain length
+		current_chain_length_vector.push_back(temp);
 	}
 }
 
@@ -99,4 +101,34 @@ void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factoria
 		//multiply the previous result with the current digit to get the next factorial
 		digit_factorial_chains.push_back(digit_factorial_chains[(digit - 1)] * digit);
 	}
+}
+
+int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target)
+{
+	/*return the location of the target*/
+
+	int upper_bound = (example.size() - 1), midpoint, lower_bound = 0;
+
+	while (lower_bound <= upper_bound)
+	{
+		//the binary search algorithm
+
+		//update midpoint
+		midpoint = (lower_bound + upper_bound) / 2;
+
+		if (example[midpoint][0] == target)
+			//the target is located in the middle
+			return midpoint;
+
+		else if (example[midpoint][0] < target)
+			//the target is to the right of the middle
+			lower_bound = midpoint + 1;
+
+		else
+			//the target is to the left of the middle
+			upper_bound = midpoint - 1;
+	}
+
+	//the element is not present in the array
+	return -1;
 }
