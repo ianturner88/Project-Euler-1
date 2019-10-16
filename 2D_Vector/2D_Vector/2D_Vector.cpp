@@ -4,6 +4,7 @@
 
 void Insert_Numbers(std::vector<int>& temp, int starting_number);
 void Print_All_Contents(std::vector <std::vector <int>> example);
+void Print_Requested_Items(std::vector <std::vector <int>> example, int column);
 
 int main()
 {
@@ -28,6 +29,17 @@ int main()
 
 	std::sort(example.begin(), example.end());
 	Print_All_Contents(example);
+
+	Print_Requested_Items(example, 0);
+}
+
+void Print_Requested_Items(std::vector <std::vector <int>> example, int column)
+{
+	//print only the requested columns
+	for (int i = 0; i < example.size(); i++)
+	{
+		std::cout << example[i][column] << std::endl;
+	}
 }
 
 void Print_All_Contents(std::vector <std::vector <int>> example)
