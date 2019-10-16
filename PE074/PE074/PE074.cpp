@@ -16,7 +16,7 @@ enum
 
 int main(void)
 {
-	int upperlimit = 10, starting_number = 567, starting_number_sum = 0, digit, chain_length_counter;
+	int upperlimit = 10, starting_number = 68, starting_number_sum = 0, digit, chain_length_counter;
 	std::vector<int> digit_factorial_chains;
 	std::vector<std::vector<int>> chain_results;
 	std::vector<int> temp;
@@ -49,6 +49,8 @@ void Chain_Length(std::vector <int> digit_factorial_chains, bool starting_number
 
 	//identify the factorial sum of the starting number
 	factorial_sum = Numbers_Digits_Factorial_Sum(starting_number, digit_factorial_chains);
+
+	std::cout << starting_numbers_chain_lengths_known[factorial_sum] << std::endl;
 
 	while (starting_numbers_chain_lengths_known[factorial_sum] == false)
 	{
