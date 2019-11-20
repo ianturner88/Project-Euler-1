@@ -1,14 +1,9 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 
-/*determine every starting number chain length*/
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit);
-/*sum the starting number into its digits' factorials*/
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
-/*determine the starting number's resulting chain length*/
-void Chain_Length(std::vector <int> digit_factorial_chains, int starting_number,
-	std::vector<std::vector<int>> known_chain_length_results);
-/*return the location of the target*/
 int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target);
 
 enum
@@ -18,72 +13,49 @@ enum
 
 int main(void)
 {
-	int upperlimit = 10, starting_number = 68, starting_number_sum = 0, digit, chain_length_counter;
-	std::vector<int> digit_factorial_chains;
-	std::vector<std::vector<int>> known_chain_length_results;
-	std::vector<int> temp;
+	std::vector<int> digit_factorial_chains, temp; 
+	std::vector<std::vector<int>> stored_chain_lengths, temporary_storage_chain_lengths;
+	int starting_number = 68, digit_factorial_sum, chain_length_counter = 0;
+	bool is_match = true;
 	
-	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, upperlimit);
+	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, 10);
 
 	while (starting_number < UPPERLIMIT)
 	{
-		//driving algorithm
-		//increment to the next number
+		//identify the next starting point
 		starting_number++;
 
-		Chain_Length(digit_factorial_chains, starting_number, known_chain_length_results);
+		//reset
+		chain_length_counter = 1;
+		is_match = false;
+		digit_factorial_sum = starting_number;
 
-		//identify the next starting number
-		starting_number++;
-	}
-
-	getchar();
-}
-
-void Chain_Length(std::vector <int> digit_factorial_chains,	int starting_number, 
-	std::vector<std::vector<int>> known_chain_length_results)
-{
-	/*determine every starting number chain length*/
-	int factorial_sum, chain_length_counter = 0;
-	std::vector<int> temp;
-	std::vector<std::vector<int>> current_chain_length_vector;
-
-	//identify the factorial sum of the starting number
-	factorial_sum = Numbers_Digits_Factorial_Sum(starting_number, digit_factorial_chains);
-
-	while ((TwoD_Vector_BinarySearch(current_chain_length_vector, 0, factorial_sum) != -1) &&
-		(TwoD_Vector_BinarySearch(known_chain_length_results, 0, factorial_sum)) != -1)
-	{
-		/*determines the chain resulting from a given starting point*/
-		factorial_sum = Numbers_Digits_Factorial_Sum(factorial_sum, digit_factorial_chains);
-		//chain length increased by 1
-		chain_length_counter++;
-		//the next cog in the chain
-		temp.push_back(factorial_sum);
-		//the number of 'numbers' into the chain
+		//store the results of the first starting number
+		temp.push_back(digit_factorial_sum);
 		temp.push_back(chain_length_counter);
-		//the number is stored first in the 2D vector, then the number's chain length
-		current_chain_length_vector.push_back(temp);
-	}
-}
 
-int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains)
-{
-	/*sum the starting number into its digits' factorials*/
-	int digit, factorial_sum = 0;
-	
-	while (starting_number > 0)
-	{
-		//slice the starting number into its individual digits 
-		digit = starting_number % 10;
-		//shrink the starting number
-		starting_number = starting_number / 10;
-		//the sum of the starting number's digits' factorials
-		factorial_sum += digit_factorial_chains[digit];
-	}
+		while (is_match == false)
+		{
+			digit_factorial_sum = Numbers_Digits_Factorial_Sum(digit_factorial_sum, digit_factorial_chains);
+			//chain length increased by 1
+			chain_length_counter++;
+			//the next cog in the chain
+			temp.push_back(digit_factorial_sum);
+			//the number of 'numbers' into the chain
+			temp.push_back(chain_length_counter);
+			//the number is stored first in the 2D vector, then the number's chain length
+			temporary_storage_chain_lengths.push_back(temp);
 
-	//the factorial sum of the number's digits
-	return factorial_sum;
+			//check if 'digit_factorial_sum' is in the master list 
+			is_match = TwoD_Vector_BinarySearch(stored_chain_lengths, 0, digit_factorial_sum) != -1;
+			//if 'digit_factorial_sum' is not in the master list, enter
+			if (is_match != true)
+			{
+				//check if 'digit_factorial_sum' is in the temporary list 
+				is_match = TwoD_Vector_BinarySearch(temporary_storage_chain_lengths, 0, digit_factorial_sum) != -1;
+			}			
+		}		
+	}
 }
 
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit)
@@ -103,11 +75,35 @@ void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factoria
 	}
 }
 
-int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target)
+int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains)
+{
+	/*sum the starting number into its digits' factorials*/
+	int digit, factorial_sum = 0;
+
+	while (starting_number > 0)
+	{
+		//slice the starting number into its individual digits 
+		digit = starting_number % 10;
+		//shrink the starting number
+		starting_number = starting_number / 10;
+		//the sum of the starting number's digits' factorials
+		factorial_sum += digit_factorial_chains[digit];
+	}
+
+	//the factorial sum of the number's digits
+	return factorial_sum;
+}
+
+int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int column_to_search, int target)
 {
 	/*return the location of the target*/
 
-	int upper_bound = (example.size() - 1), midpoint, lower_bound = 0;
+	//sort the vector to allow for a successful binary search 
+	std::sort(chain_lengths.begin(), chain_lengths.end());
+
+
+
+	int upper_bound = (chain_lengths.size() - 1), midpoint, lower_bound = 0;
 
 	while (lower_bound <= upper_bound)
 	{
@@ -116,11 +112,11 @@ int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column
 		//update midpoint
 		midpoint = (lower_bound + upper_bound) / 2;
 
-		if (example[midpoint][0] == target)
+		if (chain_lengths[midpoint][0] == target)
 			//the target is located in the middle
 			return midpoint;
 
-		else if (example[midpoint][0] < target)
+		else if (chain_lengths[midpoint][0] < target)
 			//the target is to the right of the middle
 			lower_bound = midpoint + 1;
 
