@@ -14,7 +14,7 @@ enum
 int main(void)
 {
 	std::vector<int> digit_factorial_chains, temp; 
-	std::vector<std::vector<int>> stored_chain_lengths, temporary_storage_chain_lengths;
+	std::vector<std::vector<int>> the_bank_vault, temporary_storage_chain_lengths;
 	int starting_number = 68, digit_factorial_sum, chain_length_counter = 0;
 	bool is_match = true;
 	
@@ -29,13 +29,17 @@ int main(void)
 		chain_length_counter = 1;
 		is_match = false;
 		digit_factorial_sum = starting_number;
+		temp.clear();
 
 		//store the results of the first starting number
 		temp.push_back(digit_factorial_sum);
 		temp.push_back(chain_length_counter);
+		temporary_storage_chain_lengths.push_back(temp);
 
 		while (is_match == false)
 		{
+			//reset
+			temp.clear();
 			digit_factorial_sum = Numbers_Digits_Factorial_Sum(digit_factorial_sum, digit_factorial_chains);
 			//chain length increased by 1
 			chain_length_counter++;
@@ -47,7 +51,7 @@ int main(void)
 			temporary_storage_chain_lengths.push_back(temp);
 
 			//check if 'digit_factorial_sum' is in the master list 
-			is_match = TwoD_Vector_BinarySearch(stored_chain_lengths, 0, digit_factorial_sum) != -1;
+			is_match = TwoD_Vector_BinarySearch(the_bank_vault, 0, digit_factorial_sum) != -1;
 			//if 'digit_factorial_sum' is not in the master list, enter
 			if (is_match != true)
 			{
@@ -100,8 +104,6 @@ int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int 
 
 	//sort the vector to allow for a successful binary search 
 	std::sort(chain_lengths.begin(), chain_lengths.end());
-
-
 
 	int upper_bound = (chain_lengths.size() - 1), midpoint, lower_bound = 0;
 
