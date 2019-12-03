@@ -5,6 +5,7 @@
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit);
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
 int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target);
+bool sortcol(const std::vector<int>& v1, const std::vector<int>& v2);
 
 enum
 {
@@ -50,6 +51,8 @@ int main(void)
 			//the number is stored first in the 2D vector, then the number's chain length
 			temporary_storage_chain_lengths.push_back(temp);
 
+			sortcol(the_bank_vault.begin(), the_bank_vault.end());
+
 			//check if 'digit_factorial_sum' is in the master list 
 			is_match = TwoD_Vector_BinarySearch(the_bank_vault, 0, digit_factorial_sum) != -1;
 			//if 'digit_factorial_sum' is not in the master list, enter
@@ -60,6 +63,11 @@ int main(void)
 			}			
 		}		
 	}
+}
+
+bool sortcol(const std::vector<int>& v1, const std::vector<int>& v2)
+{
+	return v1[1] < v2[1];
 }
 
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit)
