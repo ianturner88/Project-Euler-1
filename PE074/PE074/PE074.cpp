@@ -6,6 +6,8 @@ void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factoria
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
 int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target);
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2);
+void Update_the_Bank_Vault(std::vector <int> temporary_storage_chain_lengths,
+	std::vector <std::vector <int>>& the_bank_vault);
 
 enum
 {
@@ -65,13 +67,20 @@ int main(void)
 	}
 }
 
-void Update_the_Bank_Vault(std::vector <int> temporary_storage_chain_lengths, std::vector <std::vector <int>>& the_bank_vault)
+void Update_the_Bank_Vault(std::vector <int> temporary_storage_chain_lengths, 
+	std::vector <std::vector <int>>& the_bank_vault)
 {
 	/*shift the contents of the digit_factorial_chains to the_bank_vault*/
+	std::vector<int> temp;
 
 	for (int i = 0; i < temporary_storage_chain_lengths.size(); i++)
 	{
+		temp.push_back(temporary_storage_chain_lengths[i]);
+		the_bank_vault.push_back(temp);
 	}
+
+	//sort the vector
+	sort(the_bank_vault.begin(), the_bank_vault.end(), Sort_Column);
 }
 
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2)
