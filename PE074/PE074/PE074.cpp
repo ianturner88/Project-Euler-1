@@ -2,23 +2,27 @@
 #include <vector>
 #include <algorithm>
 
+
+void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_chain_lengths,
+	std::vector <std::vector <int>>& the_bank_vault);
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit);
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
-int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> example, int column_to_search, int target);
+int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int column_to_search, int target,
+	int& chain_length_counter);
+int Answer(int chain_length_counter);
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2);
-void Update_the_Bank_Vault(std::vector <int> temporary_storage_chain_lengths,
-	std::vector <std::vector <int>>& the_bank_vault);
+void Print(std::vector<std::vector<int>> testcase);
 
 enum
 {
-	UPPERLIMIT = 1000000
+	UPPERLIMIT = 1000000, ANSWER = 60
 };
 
 int main(void)
 {
 	std::vector<int> digit_factorial_chains, temp; 
 	std::vector<std::vector<int>> the_bank_vault, temporary_storage_chain_lengths;
-	int starting_number = 68, digit_factorial_sum, chain_length_counter = 0;
+	int starting_number = 0, digit_factorial_sum, chain_length_counter = 0, answer = 0;
 	bool is_match = true;
 	
 	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, 10);
@@ -28,11 +32,17 @@ int main(void)
 		//identify the next starting point
 		starting_number++;
 
+		//test
+		if (starting_number == 236)
+			int test = 0;
+		//test
+
 		//resets
 		chain_length_counter = 1;
 		is_match = false;
 		digit_factorial_sum = starting_number;
 		temp.clear();
+		temporary_storage_chain_lengths.clear();
 
 		//store the results of the first starting number
 		temp.push_back(digit_factorial_sum);
@@ -49,38 +59,95 @@ int main(void)
 			//identify the next digit factorial sum in the chain
 			digit_factorial_sum = Numbers_Digits_Factorial_Sum(digit_factorial_sum, digit_factorial_chains);
 
+			//test
+			if (digit_factorial_sum == 45362)
+			{
+				int test9 = 0;
+			}
+			//test
+
 			//check if 'digit_factorial_sum' is in the master list 
-			is_match = TwoD_Vector_BinarySearch(the_bank_vault, 0, digit_factorial_sum);
+			is_match = TwoD_Vector_BinarySearch(the_bank_vault, 0, digit_factorial_sum, chain_length_counter);
 			if (is_match != true)
 			{
 				//check if 'digit_factorial_sum' is in the temporary list 
-				is_match = TwoD_Vector_BinarySearch(temporary_storage_chain_lengths, 0, digit_factorial_sum);
+				is_match = TwoD_Vector_BinarySearch(temporary_storage_chain_lengths, 0, digit_factorial_sum, 
+					chain_length_counter);
 			}
 			
-			//the next cog in the chain
-			temp.push_back(digit_factorial_sum);
-			//the number of 'numbers' into the chain
-			temp.push_back(chain_length_counter);
-			//the number is stored first in the 2D vector, then the number's chain length
-			temporary_storage_chain_lengths.push_back(temp);	
+			if (is_match == false)
+			{
+				//the next cog in the chain
+				temp.push_back(digit_factorial_sum);
+				//the number of 'numbers' into the chain
+				temp.push_back(chain_length_counter);
+				//the number is stored first in the 2D vector, then the number's chain length
+				temporary_storage_chain_lengths.push_back(temp);
+			}	
 		}		
+
+		//test
+		std::cout << "Starting Number: " << starting_number << " Counter: " 
+			<< chain_length_counter << std::endl;
+		//test
+
+		Update_the_Bank_Vault(temporary_storage_chain_lengths, the_bank_vault);
+
+		//test
+		if (starting_number == 236)
+			Print(the_bank_vault);
+		//test
+
+		answer += Answer(chain_length_counter);
+	}
+
+	std::cout << answer;
+}
+
+void Print(std::vector<std::vector<int>> testcase)
+{
+	for (int i = 0; i < testcase.size(); i++)
+	{
+		std::cout << "Index " << i << ": " << testcase[i][0] << " -> " << testcase[i][1];
+
+		std::cout << std::endl;
 	}
 }
 
-void Update_the_Bank_Vault(std::vector <int> temporary_storage_chain_lengths, 
+int Answer(int chain_length_counter)
+{
+	/*iff the counter is equal to 60, answer should be incremented by 1*/
+
+	int answer = 0;
+
+	if (chain_length_counter == ANSWER)
+	{
+		answer++;
+	}
+
+	return answer;
+}
+
+void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_chain_lengths,
 	std::vector <std::vector <int>>& the_bank_vault)
 {
 	/*shift the contents of the digit_factorial_chains to the_bank_vault*/
-	std::vector<int> temp;
+	std::vector <std::vector <int>> temp;
 
 	for (int i = 0; i < temporary_storage_chain_lengths.size(); i++)
 	{
+		//empty out the ith piece from the current chain being examined
 		temp.push_back(temporary_storage_chain_lengths[i]);
-		the_bank_vault.push_back(temp);
+		//take the ith element and place in the calculated vector
+		the_bank_vault.push_back(temp[0]);
+		//reset temp
+		temp.clear();
 	}
 
 	//sort the vector
 	sort(the_bank_vault.begin(), the_bank_vault.end(), Sort_Column);
+	//erase duplicates
+	the_bank_vault.erase(std::unique(the_bank_vault.begin(), the_bank_vault.end()), the_bank_vault.end());
 }
 
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2)
@@ -124,7 +191,8 @@ int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_fa
 	return factorial_sum;
 }
 
-int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int column_to_search, int target)
+int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int column_to_search, int target,
+	int& chain_length_counter)
 {
 	/*return the location of the target*/
 
@@ -147,8 +215,11 @@ int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int 
 		midpoint = (lower_bound + upper_bound) / 2;
 
 		if (chain_lengths[midpoint][0] == target)
+		{
 			//the target is located in the middle
+			chain_length_counter += chain_lengths[midpoint][1];
 			return true;
+		}
 
 		else if (chain_lengths[midpoint][0] < target)
 			//the target is to the right of the middle
