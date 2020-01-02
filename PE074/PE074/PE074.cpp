@@ -91,6 +91,9 @@ int main(void)
 			<< chain_length_counter << std::endl;
 		//test
 
+		//ERASE THE LAST ELEMENT OF THE VECTOR HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+		//transfer current chain lengths to the bank vault
 		Update_the_Bank_Vault(temporary_storage_chain_lengths, the_bank_vault);
 
 		//test
