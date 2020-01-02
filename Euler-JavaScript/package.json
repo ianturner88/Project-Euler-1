@@ -1,0 +1,16 @@
+{
+  "name": "euler-javascript",
+  "version": "1.0.0",
+  "description": "Project Euler questions solved in JavaScript",
+  "main": "Q1.js",
+  "scripts": {
+    "test": "jest --watchAll"
+  },
+  "author": "Ian Turner",
+  "license": "ISC",
+  "devDependencies": {
+    "@babel/preset-env": "^7.7.7",
+    "esm": "^3.2.25",
+    "jest": "^24.9.0"
+  }
+}
