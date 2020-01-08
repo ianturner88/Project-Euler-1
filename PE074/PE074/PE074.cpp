@@ -149,8 +149,6 @@ void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_cha
 
 	//sort the vector
 	sort(the_bank_vault.begin(), the_bank_vault.end(), Sort_Column);
-	//erase duplicates
-	the_bank_vault.erase(std::unique(the_bank_vault.begin(), the_bank_vault.end()), the_bank_vault.end());
 }
 
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2)
