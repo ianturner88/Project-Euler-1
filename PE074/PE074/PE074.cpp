@@ -2,16 +2,20 @@
 #include <vector>
 #include <algorithm>
 
-
 void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_chain_lengths,
 	std::vector <std::vector <int>>& the_bank_vault);
 void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit);
+void Print(std::vector<std::vector<int>> testcase);
+
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
 int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int column_to_search, int target,
 	int& chain_length_counter);
 int Answer(int chain_length_counter);
+
+std::vector<int> Corrected_Chain_Lengths(std::vector <std::vector <int>> temporary_storage_chain_lengths);
+std::vector<int> Starting_Number(std::vector <std::vector <int>> temporary_storage_chain_lengths);
+
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2);
-void Print(std::vector<std::vector<int>> testcase);
 
 enum
 {
@@ -22,7 +26,7 @@ int main(void)
 {
 	std::vector<int> digit_factorial_chains, temp; 
 	std::vector<std::vector<int>> the_bank_vault, temporary_storage_chain_lengths;
-	int starting_number = 0, digit_factorial_sum, chain_length_counter = 0, answer = 0;
+	int starting_number = 68, digit_factorial_sum, chain_length_counter = 0, answer = 0;
 	bool is_match = true;
 	
 	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, 10);
@@ -31,11 +35,6 @@ int main(void)
 	{
 		//identify the next starting point
 		starting_number++;
-
-		//test
-		if (starting_number == 236)
-			int test = 0;
-		//test
 
 		//resets
 		chain_length_counter = 1;
@@ -59,14 +58,7 @@ int main(void)
 			//identify the next digit factorial sum in the chain
 			digit_factorial_sum = Numbers_Digits_Factorial_Sum(digit_factorial_sum, digit_factorial_chains);
 
-			//test
-			if (digit_factorial_sum == 45362)
-			{
-				int test9 = 0;
-			}
-			//test
-
-			//check if 'digit_factorial_sum' is in the master list 
+			//check if 'digit_factorial_sum' is in the master list, the the_bank_vault vector
 			is_match = TwoD_Vector_BinarySearch(the_bank_vault, 0, digit_factorial_sum, chain_length_counter);
 			if (is_match != true)
 			{
@@ -86,20 +78,8 @@ int main(void)
 			}	
 		}		
 
-		//test
-		std::cout << "Starting Number: " << starting_number << " Counter: " 
-			<< chain_length_counter << std::endl;
-		//test
-
-		//ERASE THE LAST ELEMENT OF THE VECTOR HERE!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-
 		//transfer current chain lengths to the bank vault
 		Update_the_Bank_Vault(temporary_storage_chain_lengths, the_bank_vault);
-
-		//test
-		if (starting_number == 236)
-			Print(the_bank_vault);
-		//test
 
 		answer += Answer(chain_length_counter);
 	}
@@ -135,16 +115,22 @@ void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_cha
 	std::vector <std::vector <int>>& the_bank_vault)
 {
 	/*shift the contents of the digit_factorial_chains to the_bank_vault*/
-	std::vector <std::vector <int>> temp;
 
-	for (int i = 0; i < temporary_storage_chain_lengths.size(); i++)
+	//flip the chain lengths so they can be matched with the correct starting number
+	std::vector<int> corrected_chain_lengths = Corrected_Chain_Lengths(temporary_storage_chain_lengths);
+	//isolate the starting numbers so they can be paired with the correct chain length
+	std::vector<int> starting_numbers = Starting_Number(temporary_storage_chain_lengths);
+	//clean temporary_storage_chain_lengths for re-population
+	temporary_storage_chain_lengths.clear();
+
+	if (starting_numbers.size() != corrected_chain_lengths.size())
 	{
-		//empty out the ith piece from the current chain being examined
-		temp.push_back(temporary_storage_chain_lengths[i]);
-		//take the ith element and place in the calculated vector
-		the_bank_vault.push_back(temp[0]);
-		//reset temp
-		temp.clear();
+		std::cout << "There is a flaw in the system";
+	}
+
+	for (int i = 0; i < starting_numbers.size(); i++)
+	{
+		the_bank_vault.push_back(starting_numbers[i]);
 	}
 
 	//sort the vector
@@ -233,4 +219,38 @@ int TwoD_Vector_BinarySearch(std::vector <std::vector <int>> chain_lengths, int 
 
 	//the element is not present in the array
 	return false;
+}
+
+std::vector<int> Corrected_Chain_Lengths(std::vector <std::vector <int>> temporary_storage_chain_lengths)
+{
+	/*the calculated chain lengths of the starting numbers
+	must be matched to their corresponding starting number*/
+
+	std::vector<int> calculated_chain_length, temp_vector;
+	int temp_int;
+
+	for (int i = 0; i < temporary_storage_chain_lengths.size(); i++)
+	{
+		temp_vector = temporary_storage_chain_lengths[i];
+		temp_int = temp_vector[1];
+		calculated_chain_length.push_back(temp_int);
+	}
+
+	std::reverse(calculated_chain_length.begin(), calculated_chain_length.end());
+	return calculated_chain_length;
+}
+
+std::vector<int> Starting_Number(std::vector <std::vector <int>> temporary_storage_chain_lengths)
+{
+	std::vector<int> starting_number_vector, temp_vector;
+	int starting_number_int;
+
+	for (int i = 0; i < temporary_storage_chain_lengths.size(); i++)
+	{
+		temp_vector = temporary_storage_chain_lengths[i];
+		starting_number_int = temp_vector[0];
+		starting_number_vector.push_back(starting_number_int);
+	}
+
+	return starting_number_vector;
 }
