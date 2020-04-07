@@ -129,11 +129,6 @@
   <ItemGroup>
     <ClCompile Include="PE041.cpp" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\..\ProjectEulerLibrary\ProjectEulerLibrary\ProjectEulerLibrary.vcxproj">
-      <Project>{d65422d5-dc1b-4b1d-ad23-7b1be59a1a56}</Project>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
