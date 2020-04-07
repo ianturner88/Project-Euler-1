@@ -1,57 +1,38 @@
-#include <iostream>
-#include <time.h>
 #include <vector>
+#include <iostream>
 
-#include "ProjectEulerLibrary.h"
+std::vector<int> SieveOfEratosthenes();
 
-void Is_Prime(bool prime[], const int array_size);
-int User_Input_Prime_Number();
+int main(void) {
+	const long long int upperlimit = 9999999;
+	bool prime[upperlimit] = { 0 };
+	std::vector<int> prime_sieve;
+	int prime_number;
 
-int main(void)
-{
-	std::vector<bool> is_prime;
-	
-	getchar();
-}
-
-void Is_Prime(std::vector<bool>& is_prime, int& time)
-{
-	/*Produces a list of prime numbers*/
-
-	//request user's desired upperlimit for prime number identification
-	User_Input_Prime_Number();
-	long long int prime_upperlimit = User_Input_Prime_Number();
-
-
-}
-
-int User_Input_Prime_Number()
-{
-	//ask user for the upperlimit for primes to be found
-
-	long long int user_input;
-
-	std::cout << "Up to what number do you want prime numbers to be found?";
-	//the user's desired upperlimit
-	std::cin >> user_input;
-
-	return user_input;
-}
-
-
-void Is_Prime(bool prime[], const int array_size)
-{
-	/*A seive that identifies primes*/
-
-	//parameters
-	long long int p, i;
-
-	for (p = 2; p <= array_size; p++)
+	for (int i = 2; i * i <= upperlimit; i++)
 	{
-		for (i = 2 * p; i <= array_size; i += p)
+		if (prime[i] == false)
 		{
-			//multiplies of a given number of deemed false
-			prime[i] = false;
+			for (int multiple = i * i; multiple <= upperlimit; multiple += i)
+			{
+				prime[multiple] = true;
+			}
 		}
 	}
+
+	for (int i = 0; i <= upperlimit; i++)
+	{
+		if (prime[i] == false)
+		{
+			prime_number = i;
+			prime_sieve.push_back(prime_number);
+		}
+	}
+
+	for (int i = 2; i < prime_sieve.size(); i++)
+	{
+		std::cout << prime_sieve[i] << std::endl;
+	}
+
+	getchar();
 }

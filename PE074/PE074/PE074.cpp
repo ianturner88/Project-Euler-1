@@ -4,7 +4,6 @@
 
 void Update_the_Bank_Vault(std::vector <std::vector <int>> temporary_storage_chain_lengths,
 	std::vector <std::vector <int>>& the_bank_vault);
-void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit);
 void Print(std::vector<std::vector<int>> testcase);
 
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains);
@@ -14,6 +13,7 @@ int Answer(int chain_length_counter);
 
 std::vector<int> Corrected_Chain_Lengths(std::vector <std::vector <int>> temporary_storage_chain_lengths);
 std::vector<int> Starting_Number(std::vector <std::vector <int>> temporary_storage_chain_lengths);
+std::vector<int> Single_Digit_Factorial_Values(int upperlimit);
 
 bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2);
 
@@ -28,13 +28,15 @@ int main(void)
 	std::vector<std::vector<int>> the_bank_vault, temporary_storage_chain_lengths;
 	int starting_number = 68, digit_factorial_sum, chain_length_counter = 0, answer = 0;
 	bool is_match = true;
-	
-	Factorial_Values_of_Numbers_less_than_Ten(digit_factorial_chains, 10);
+
+	digit_factorial_chains = Single_Digit_Factorial_Values(10);
 
 	while (starting_number < UPPERLIMIT)
 	{
 		//identify the next starting point
 		starting_number++;
+
+		
 
 		//resets
 		chain_length_counter = 1;
@@ -159,12 +161,13 @@ bool Sort_Column(const std::vector<int>& v1, const std::vector<int>& v2)
 	return v1[0] < v2[0];
 }
 
-void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factorial_chains, int upperlimit)
+std::vector<int> Single_Digit_Factorial_Values(int upperlimit)
 {
 	/*calculate the factorials of the numbers less than the upperlimit*/
 	int digit = 0;
 	//set 0! equal to 1
-	digit_factorial_chains.push_back(1);
+	std::vector<int> digit_factorials;
+	digit_factorials.push_back(1);
 
 	while (digit < upperlimit)
 	{
@@ -172,8 +175,10 @@ void Factorial_Values_of_Numbers_less_than_Ten(std::vector <int>& digit_factoria
 		digit++;
 
 		//multiply the previous result with the current digit to get the next factorial
-		digit_factorial_chains.push_back(digit_factorial_chains[(digit - 1)] * digit);
+		digit_factorials.push_back(digit_factorials[(digit - 1)] * digit);
 	}
+
+	return digit_factorials;
 }
 
 int Numbers_Digits_Factorial_Sum(int starting_number, std::vector <int> digit_factorial_chains)
