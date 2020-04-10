@@ -1,18 +1,21 @@
 #include <vector>
 #include <algorithm>
 #include <iostream>
+#include <ctime>
 
 std::vector<int> Sieve_Of_Eratosthenes();
 bool Is_Pandigital(int input_number);
 
 std::vector<int> prime_sieve;
-const long long int upperlimit = 7654321;
+const long long int upperlimit = 10000000;
 bool prime[upperlimit] = { 0 };
 unsigned long long int prime_number;
 
 int main(void) {
 
 	bool is_prime_pandigital = false;
+	//start the clock
+	clock_t timeStamp = clock();
 
 	std::vector<int> prime_numbers_less_than_upperlimit = Sieve_Of_Eratosthenes();
 
@@ -20,17 +23,15 @@ int main(void) {
 	{
 		int prime_pandigital = prime_numbers_less_than_upperlimit[i - 1];
 
-		if (prime_pandigital = 7652413)
-		{
-			int test = 0;
-		}
 
 		if (Is_Pandigital(prime_pandigital) == true)
 		{
 			is_prime_pandigital = true;
-			std::cout << "The largest pandigital prime is: " << prime_pandigital;
+			std::cout << "The largest pandigital prime is: " << prime_pandigital << std::endl;
 		}
 	}
+
+	std::cout << "Total executon time: " << timeStamp;
 
 	getchar();
 }
@@ -82,6 +83,7 @@ std::vector<int> Sieve_Of_Eratosthenes()
 			for (unsigned long long int multiple = i * i; multiple <= upperlimit; multiple += i)
 			{
 				//mark all subsequent multiples as non-prime
+				unsigned long long int test = multiple;
 				prime[multiple] = true;
 			}
 		}
