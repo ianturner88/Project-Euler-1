@@ -1,7 +1,7 @@
-#include "CentralLibrary.h"
-
 #include <vector>
 #include <algorithm>
+
+#include "CentralLibrary.h"
 
 bool Is_Pandigital(int input_number);
 
