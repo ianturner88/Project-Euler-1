@@ -22,8 +22,7 @@ int main(void) {
 	for (int i = prime_numbers_less_than_upperlimit.size(); (i > 0) && (is_prime_pandigital == false); i--)
 	{
 		int prime_pandigital = prime_numbers_less_than_upperlimit[i - 1];
-
-
+		
 		if (Is_Pandigital(prime_pandigital) == true)
 		{
 			is_prime_pandigital = true;
@@ -31,7 +30,7 @@ int main(void) {
 		}
 	}
 
-	std::cout << "Total executon time: " << timeStamp;
+	std::cout << "Total executon time: " << (float)timeStamp/CLOCKS_PER_SEC << " seconds.";
 
 	getchar();
 }
@@ -42,7 +41,7 @@ bool Is_Pandigital(int input_number)
 
 	std::vector<int> temp;
 	int single_digit;
-	bool is_match = true;
+	bool is_pandigital = true;
 
 	while (input_number > 0)
 	{
@@ -57,20 +56,19 @@ bool Is_Pandigital(int input_number)
 	//sort the numbers from descending to increasing
 	std::sort(temp.begin(), temp.end());
 
-	for (int i = 0; (i < temp.size()) && (is_match == true); i++)
+	for (int i = 0; (i < temp.size()) && (is_pandigital == true); i++)
 	{
 		//check if the i-th vector element equals i
 		//example slot 3 should have a value of 3
 		if ((i + 1) != temp[i])
 		{
 			//the number is not pandigital
-			is_match = false;
+			is_pandigital = false;
 		}
 	}
 
-	return is_match;
+	return is_pandigital;
 }
-
 
 std::vector<int> Sieve_Of_Eratosthenes()
 {

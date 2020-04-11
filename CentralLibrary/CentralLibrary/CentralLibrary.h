@@ -1,4 +1,6 @@
 #pragma once
-#include <vector>
 
-std::vector<int> Single_Digit_Factorial_Values(int upperlimit)
+namespace Euler
+{
+	bool Is_Pandigital(int input_number);
+}

@@ -1,0 +1,25 @@
+A) 9 + 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 45
+B) 8 + 7 + 6 + 5 + 4 + 3 + 2 + 1 = 36
+C) 7 + 6 + 5 + 4 + 3 + 2 + 1 = 28
+D) 6 + 5 + 4 + 3 + 2 + 1 = 21
+E) 5 + 4 + 3 + 2 + 1 = 15
+F) 4 + 3 + 2 + 1 = 10
+G) 3 + 2 + 1 = 6
+H) 2 + 1 = 3
+I) 1
+
+The question is to find the largest pandigital prime number.
+A pandigital number is an n-digit number that makes use of
+all digits 1 to n exactly once.
+
+The above cases of A, B, D, E, G, and H are divisible by 3. 
+Example: the sum of the numbers 9 through 1 is 45 - which is
+divisible by 3, so a pandigital number with 9 digits can NOT
+be a prime numnber.
+
+This means that the answer will fall into case I, F or C.
+
+First, we identify all prime numbers less than 10^8. Next, 
+we work downwards from the largst prime number checking to
+see if the prime number is pandigital. The code stops when
+the first prime is found to be pandigital. 

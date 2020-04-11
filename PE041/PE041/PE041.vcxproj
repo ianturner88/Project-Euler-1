@@ -76,7 +76,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\CentralLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -88,7 +88,7 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\ProjectEulerLibrary\ProjectEulerLibrary</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\Ian\Desktop\Courses\ProjectEuler\CentralLibrary</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

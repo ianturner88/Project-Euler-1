@@ -1,24 +1,47 @@
+#include "CentralLibrary.h"
+
 #include <vector>
+#include <algorithm>
 
-namespace ProjectEuler
+bool Is_Pandigital(int input_number);
+
+namespace Euler
 {
-	std::vector<int> Single_Digit_Factorial_Values(int upperlimit)
+	////////////////////////////////////////////////////////////////////////////////
+	// DETERMINES IF A NUMBER IS PANDIGITAL OR NOT
+
+	bool Is_Pandigital(int input_number)
 	{
-		/*calculate the factorials of the numbers less than the upperlimit*/
-		int digit = 0;
-		//set 0! equal to 1
-		std::vector<int> digit_factorials;
-		digit_factorials.push_back(1);
+		/*determines if a number is pandigital*/
 
-		while (digit < upperlimit)
+		std::vector<int> temp;
+		int single_digit;
+		bool is_pandigital = true;
+
+		while (input_number > 0)
 		{
-			/*determine the factorial of every digit*/
-			digit++;
-
-			//multiply the previous result with the current digit to get the next factorial
-			digit_factorials.push_back(digit_factorials[(digit - 1)] * digit);
+			//identify the last digit 
+			single_digit = input_number % 10;
+			//store the last digit
+			temp.push_back(single_digit);
+			//shrink the input number so that the next 'last' digit may be found
+			input_number /= 10;
 		}
 
-		return digit_factorials;
+		//sort the numbers from descending to increasing
+		std::sort(temp.begin(), temp.end());
+
+		for (int i = 0; (i < temp.size()) && (is_pandigital == true); i++)
+		{
+			//check if the i-th vector element equals i
+			//example slot 3 should have a value of 3
+			if ((i + 1) != temp[i])
+			{
+				//the number is not pandigital
+				is_pandigital = false;
+			}
+		}
+
+		return is_pandigital;
 	}
 }
