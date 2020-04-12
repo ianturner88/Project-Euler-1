@@ -3,10 +3,36 @@
 #include <math.h>
 
 #include "Clean_Input.h"
+#include "enum.h"
 
 enum Digits {
 	ZERO = 48, NINE = 57
 };
+
+void PE081_Matrix(int pe081_array[][NUMBER_OF_COLUMNS], std::vector<std::vector<int>> pe081_matrix)
+{
+	int number;
+
+	for (int i = 0; i < NUMBER_OF_ROWS; i++)
+	{
+		for (int j = 0; j < NUMBER_OF_COLUMNS; j++)
+		{
+			number = pe081_matrix[i][j];
+			pe081_array[i][j] = number;
+		}
+	}
+
+	for (int i = 0; i < NUMBER_OF_ROWS; i++)
+	{
+		for (int j = 0; j < NUMBER_OF_COLUMNS; j++)
+		{
+			std::cout << pe081_array[i][j] << " ";
+		}
+		std::cout << std::endl;
+	}
+
+	int test0 = 0;
+}
 
 std::vector<int> Tokenize_String(std::string input)
 {

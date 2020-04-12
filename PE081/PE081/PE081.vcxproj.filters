@@ -26,5 +26,8 @@
     <ClInclude Include="Clean_Input.h">
       <Filter>Source Files</Filter>
     </ClInclude>
+    <ClInclude Include="enum.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
