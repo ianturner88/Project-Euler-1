@@ -12,7 +12,8 @@
 int main() {
 	std::string input_line;
 	std::ifstream input_file("test.txt");
-	std::vector<int> input_row, triangle_layer;
+	std::vector<int> input_row, triangle_layer, top_triangle_minimal_paths, 
+		bottom_triangle_minimal_paths;
 	std::vector<std::vector<int>> pe081_matrix, top_triangle, bottom_triangle;
 	int pe081_array[NxN][NxN], triangle_layer_counter = NxN,
 		bottom_triangle_column_counter, row_stopper = NxN - 1;
@@ -60,7 +61,11 @@ int main() {
 		row_stopper--;
 	}
 
+	//the left most minimal path route
+	top_triangle_minimal_paths.push_back(Minimal_Path_Left_EndPoint(top_triangle, (NxN - 1)));
+
 	int sum = Minimal_Path_Left_EndPoint(top_triangle, (NxN - 1));
+	sum = Minimal_Path_Right_EndPoint(top_triangle);
 
 	return 0;
 }
