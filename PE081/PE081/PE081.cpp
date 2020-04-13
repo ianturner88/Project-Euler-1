@@ -30,8 +30,6 @@ int main() {
 	// the file did not exist
 	else std::cout << "Unable to open file";
 
-
-
 	Top_Triangle(pe081_array);
 
 	return 0;
