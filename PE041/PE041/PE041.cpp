@@ -9,7 +9,7 @@ std::vector<int> Sieve_Of_Eratosthenes();
 bool Is_Pandigital(int input_number);
 
 std::vector<int> prime_sieve;
-const long long int upperlimit = 10000000;
+const long long int upperlimit = 100000000000;
 bool prime[upperlimit] = { 0 };
 unsigned long long int prime_number;
 

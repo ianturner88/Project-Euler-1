@@ -2,7 +2,7 @@
 
 #include "PE081_enum.h"
 
-std::vector<int> Top_Triangle(int pe081_array[][5])
+std::vector<int> Top_Triangle(int pe081_array[][5], int triangle_layer_counter)
 {
 	/* partitions the specified half of the array into a triangle
 	(see documentation for a more rigorous explanation) */
@@ -10,7 +10,7 @@ std::vector<int> Top_Triangle(int pe081_array[][5])
 	std::vector<int> top_triangle_layer;
 	int number, row, column = 0;
 
-	for (int counter = (NxN - 1); counter >= 0; counter--)
+	for (int counter = triangle_layer_counter; counter >= 0; counter--)
 	{
 		/*identify the number to be placed in the triangle vector*/
 
