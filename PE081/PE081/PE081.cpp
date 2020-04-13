@@ -13,7 +13,8 @@ int main() {
 	std::ifstream input_file("test.txt");
 	std::vector<int> input_row, triangle_layer;
 	std::vector<std::vector<int>> pe081_matrix, top_triangle, bottom_triangle;
-	int pe081_array[NxN][NxN], triangle_layer_counter = NxN;
+	int pe081_array[NxN][NxN], triangle_layer_counter = NxN, 
+		bottom_triangle_column_counter, row_stopper = NxN - 1;
 
 	if (input_file.is_open())
 	{
@@ -30,8 +31,6 @@ int main() {
 	// the file did not exist
 	else std::cout << "Unable to open file";
 
-	//std::vector<int> Top_Triangle(int pe081_array[][5], int layer_starting_point)
-
 	while (triangle_layer_counter > 0)
 	{
 		//identify the left most corner to start constructing the next triangle layer
@@ -42,8 +41,24 @@ int main() {
 		top_triangle.push_back(triangle_layer);
 	}
 
+	//invert the triangle so the base is on the bottom
 	std::reverse(top_triangle.begin(), top_triangle.end());
-	int test = 0;
+
+	//reset triangle counter
+	bottom_triangle_column_counter = NxN;
+
+	while (bottom_triangle_column_counter > 0)
+	{
+		//identify the left most corner (column) to start constructing the next triangle layer
+		bottom_triangle_column_counter--;
+		//construct a layer of the bottom triangle (see documentation)
+		triangle_layer = Bottom_Triangle(pe081_array, bottom_triangle_column_counter, row_stopper);
+		//build the bottom triangle
+		bottom_triangle.push_back(triangle_layer);
+		//the right cutoff for the new layer
+		row_stopper--;
+	}
+
 
 	return 0;
 }
