@@ -3,35 +3,26 @@
 #include <math.h>
 
 #include "Clean_Input.h"
-#include "enum.h"
+#include "PE081_enum.h"
 
 enum Digits {
 	ZERO = 48, NINE = 57
 };
 
-void PE081_Matrix(int pe081_array[][NUMBER_OF_COLUMNS], std::vector<std::vector<int>> pe081_matrix)
+void PE081_Matrix(int pe081_array[][NxN], std::vector<std::vector<int>> pe081_matrix)
 {
+	/* Transposes the read-in vector to its initial form */
+	// the transposed matrix is stored in a matrix that is passed by reference
 	int number;
 
-	for (int i = 0; i < NUMBER_OF_ROWS; i++)
+	for (int i = 0; i < NxN; i++)
 	{
-		for (int j = 0; j < NUMBER_OF_COLUMNS; j++)
+		for (int j = 0; j < NxN; j++)
 		{
 			number = pe081_matrix[i][j];
 			pe081_array[i][j] = number;
 		}
 	}
-
-	for (int i = 0; i < NUMBER_OF_ROWS; i++)
-	{
-		for (int j = 0; j < NUMBER_OF_COLUMNS; j++)
-		{
-			std::cout << pe081_array[i][j] << " ";
-		}
-		std::cout << std::endl;
-	}
-
-	int test0 = 0;
 }
 
 std::vector<int> Tokenize_String(std::string input)
@@ -90,6 +81,7 @@ int String_to_Int(std::string input)
 
 void Is_Valid_Digit(char digit)
 {
+	/* Outputs an error message if the digit in question is not a between 0 and 9 */
 	if ((digit < ZERO) || (digit > NINE))
 	{
 		std::cout << "The input is not a valid numerical number." << std::endl;

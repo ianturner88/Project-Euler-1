@@ -5,15 +5,15 @@
 #include <vector>
 
 #include "Clean_Input.h"
-#include "enum.h"
+#include "PE081_enum.h"
+#include "Triangles.h"
 
 int main() {
 	std::string input_line;
-	std::ifstream input_file("PE081.txt");
-	std::vector<int> input_row;
-	int row_counter = 0;
+	std::ifstream input_file("test.txt");
+	std::vector<int> input_row, top_triangle, bottom_triangle;
 	std::vector<std::vector<int>> pe081_matrix;
-	int pe081_array[NUMBER_OF_ROWS][NUMBER_OF_COLUMNS];
+	int pe081_array[NxN][NxN], triangle_layer_counter = NxN;
 
 	if (input_file.is_open())
 	{
@@ -26,11 +26,13 @@ int main() {
 		input_file.close();
 
 		PE081_Matrix(pe081_array, pe081_matrix);
-
 	}
 	// the file did not exist
 	else std::cout << "Unable to open file";
 
+
+
+	Top_Triangle(pe081_array);
 
 	return 0;
 }
