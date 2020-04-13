@@ -7,13 +7,14 @@
 #include "Clean_Input.h"
 #include "PE081_enum.h"
 #include "Triangles.h"
+#include "Minimal_Paths.h"
 
 int main() {
 	std::string input_line;
 	std::ifstream input_file("test.txt");
 	std::vector<int> input_row, triangle_layer;
 	std::vector<std::vector<int>> pe081_matrix, top_triangle, bottom_triangle;
-	int pe081_array[NxN][NxN], triangle_layer_counter = NxN, 
+	int pe081_array[NxN][NxN], triangle_layer_counter = NxN,
 		bottom_triangle_column_counter, row_stopper = NxN - 1;
 
 	if (input_file.is_open())
@@ -59,6 +60,7 @@ int main() {
 		row_stopper--;
 	}
 
+	int sum = Minimal_Path_Left_EndPoint(top_triangle, (NxN - 1));
 
 	return 0;
 }

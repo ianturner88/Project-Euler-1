@@ -138,11 +138,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Minimal_Paths.cpp" />
     <ClCompile Include="Clean_Input.cpp" />
     <ClCompile Include="PE081.cpp" />
     <ClCompile Include="Triangles.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="Minimal_Paths.h" />
     <ClInclude Include="Clean_Input.h" />
     <ClInclude Include="PE081_enum.h" />
     <ClInclude Include="Triangles.h" />
