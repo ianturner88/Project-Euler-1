@@ -1,10 +1,9 @@
 #pragma once
 
 #include <vector>
+#include <string>
 
-#include "PE081_enum.h"
+#include "PE081.h"
 
-std::vector<int> Tokenize_String(std::string input);
-int String_to_Int(std::string input);
-void Is_Valid_Digit(char digit);
-void PE081_Matrix(int pe081_array[][NxN], std::vector<std::vector<int>> pe081_matrix);
+void PE081_Matrix(std::vector<std::string> pe081_matrix_string, int pe081_matrix[][NxN]);
+int String_to_Int(std::string input_number);

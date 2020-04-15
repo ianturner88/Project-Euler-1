@@ -21,24 +21,12 @@
     <ClCompile Include="Clean_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Triangles.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Minimal_Paths.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clean_Input.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PE081_enum.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Triangles.h">
-      <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="Minimal_Paths.h">
+    <ClInclude Include="PE081.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
