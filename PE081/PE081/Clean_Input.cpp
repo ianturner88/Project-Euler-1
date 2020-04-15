@@ -23,12 +23,6 @@ void PE081_Matrix(std::vector<std::string> pe081_matrix_string, int pe081_matrix
 
 			if ((character == ',') || (character == '\0'))
 			{
-				//test
-				int test = String_to_Int(number_string);
-				std::string test0 = number_string;
-				int test1 = row;
-				int test2 = column;
-
 				//store the numbers in the integer array
 				pe081_matrix[row][column] = String_to_Int(number_string);
 				//reset the string where the numbers are re-constructed

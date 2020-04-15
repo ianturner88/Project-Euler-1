@@ -5,6 +5,7 @@
 
 #include "Clean_Input.h"
 #include "PE081.h"
+#include "Minimal_Path.h"
 
 int main()
 {
@@ -27,15 +28,7 @@ int main()
 
 	PE081_Matrix(pe081_matrix_string, pe081_matrix);
 
-	for (int i = 0; i < NxN; i++)
-	{
-		for (int j = 0; j < NxN; j++)
-		{
-			std::cout << pe081_matrix[i][j] << " ";
-		}
-
-		std::cout << std::endl;
-	}
+	Minimal_Path(pe081_matrix);
 
 	return 0;
 }
