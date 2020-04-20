@@ -15,18 +15,18 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Clean_Input.cpp">
+    <ClCompile Include="PE081.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PE081.cpp">
+    <ClCompile Include="Clean_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Clean_Input.h">
+    <ClInclude Include="PE081.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PE081.h">
+    <ClInclude Include="Clean_Input.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
