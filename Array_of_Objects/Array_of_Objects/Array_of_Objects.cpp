@@ -9,14 +9,23 @@ public:
 
 void main()
 {
-    MyClass obs[4];
-    int i;
+    MyClass obs[4][4];
+ 
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            obs[i][j].setX(i);
+        }
+    }
 
-    for (i = 0; i < 4; i++)
-        obs[i].setX(i);
-
-    for (i = 0; i < 4; i++)
-        std::cout << "obs[" << i << "].getX(): " << obs[i].getX() << "\n";
-
+    for (int i = 0; i < 4; i++)
+    {
+        for (int j = 0; j < 4; j++)
+        {
+            std::cout << "obs[" << i << "].getX(): " << obs[i][j].getX() << "\n";
+        }
+    }
+     
     getchar();
 }
