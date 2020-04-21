@@ -14,3 +14,5 @@ currently being calculated, the new minimum value is updated.
 The cheapest path to every element is stored in a vector and displayed
 at the end of the program's execution.
 
+The output can be seen here:
+![](images/PE081.png)
