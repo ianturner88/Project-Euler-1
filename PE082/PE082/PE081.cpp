@@ -10,7 +10,7 @@
 int main()
 {
 	std::string input_line;
-	std::ifstream input_file("test.txt");
+	std::ifstream input_file("PE081.txt");
 	std::vector<std::string> pe081_matrix_string;
 	PE081_Matrix pe081_matrix[NxN][NxN];
 
@@ -31,7 +31,7 @@ int main()
 	//initialize the first element's minimal path
 	pe081_matrix[0][0].current_minimual_sum = pe081_matrix[0][0].element_value;
 
-	Minimal_Path_Sum(pe081_matrix);
+	std::cout << "The minimal path across the " << NxN << " x " << NxN << " matrix is: " << Minimal_Path_Sum(pe081_matrix);
 
 	getchar();
 

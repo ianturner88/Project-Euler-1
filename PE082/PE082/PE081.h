@@ -3,7 +3,7 @@
 #include <vector>
 
 enum PE081 {
-	NxN = 3
+	NxN = 80
 };
 
 class PE081_Matrix
