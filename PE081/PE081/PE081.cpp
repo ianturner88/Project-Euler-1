@@ -35,10 +35,10 @@ int main()
 	//initialize the first element's cheapest path
 	pe081_matrix[0][0].cheapest_path.push_back(pe081_matrix[0][0].element_value);
 
-	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl;
+	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl << std::endl;
 
 	std::cout << "The minimal path across the " << NxN << " x " << NxN << " matrix is: " 
-		<< Minimal_Path_Sum(pe081_matrix) << std::endl;
+		<< Minimal_Path_Sum(pe081_matrix) << std::endl << std::endl;
 
 	Print_Shortest_Path(pe081_matrix);
 
