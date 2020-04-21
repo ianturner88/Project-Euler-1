@@ -21,12 +21,18 @@
     <ClCompile Include="Clean_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Minimal_Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="PE081.h">
       <Filter>Source Files</Filter>
     </ClInclude>
     <ClInclude Include="Clean_Input.h">
+      <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Minimal_Path.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

@@ -4,7 +4,7 @@
 #include "PE081.h"
 #include "Clean_Input.h"
 
-void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE081_Matrix PE081Object_array[NxN][NxN])
+void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE081_Matrix pe081_matrix[NxN][NxN])
 {
 	/* Convert the string matrix to an integer matrix */
 	std::string input_line, number_string;
@@ -24,7 +24,7 @@ void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE081_
 			if ((character == ',') || (character == '\0'))
 			{
 				//store the numbers in the integer array
-				PE081Object_array[row][column].set_Indice(String_to_Int(number_string));
+				pe081_matrix[row][column].set_Indice(String_to_Int(number_string));
 				//reset the string where the numbers are re-constructed
 				number_string.clear();
 				//move to the next int holding slot
