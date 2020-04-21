@@ -14,18 +14,11 @@ int Minimal_Path_Sum(PE081_Matrix pe081_matrix[NxN][NxN])
 		for (column; column < (NxN - 1); column++)
 		{
 			// start in the top left corner of the matrix
-
-			//test
-			int test = pe081_matrix[row][column].element_value;
-
 			//right-ward sum
 			Rightward_Path(pe081_matrix, row, column);
 			// downward sum
 			Downward_Path(pe081_matrix, row, column);
 		}
-		//test
-		int test0 = pe081_matrix[row][column].element_value;
-
 		// downward sum
 		Downward_Path(pe081_matrix, row, column);
 
@@ -34,9 +27,6 @@ int Minimal_Path_Sum(PE081_Matrix pe081_matrix[NxN][NxN])
 
 	for (int i = 0; i < (NxN - 1); i++)
 	{
-		//test
-		int test1 = pe081_matrix[row][column].element_value;
-
 		Rightward_Path(pe081_matrix, row, column);
 		column++;
 	}

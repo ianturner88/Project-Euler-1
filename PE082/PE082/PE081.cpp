@@ -2,6 +2,7 @@
 #include <fstream>
 #include <iostream>
 #include <vector>
+#include <ctime>
 
 #include "PE081.h"
 #include "Clean_Input.h"
@@ -13,6 +14,7 @@ int main()
 	std::ifstream input_file("PE081.txt");
 	std::vector<std::string> pe081_matrix_string;
 	PE081_Matrix pe081_matrix[NxN][NxN];
+	clock_t timeStamp = clock();
 
 	if (input_file.is_open())
 	{
@@ -30,6 +32,8 @@ int main()
 
 	//initialize the first element's minimal path
 	pe081_matrix[0][0].current_minimual_sum = pe081_matrix[0][0].element_value;
+
+	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl;
 
 	std::cout << "The minimal path across the " << NxN << " x " << NxN << " matrix is: " << Minimal_Path_Sum(pe081_matrix);
 
