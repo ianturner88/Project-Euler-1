@@ -15,13 +15,13 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="PE081.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Clean_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Minimal_Path.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PE081.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClInclude Include="Clean_Input.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PE081.h">
+    <ClInclude Include="Minimal_Path.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Minimal_Path.h">
+    <ClInclude Include="PE081.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
