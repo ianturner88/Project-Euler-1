@@ -1,10 +1,10 @@
 #include <iostream>
 #include <vector>
 
-#include "PE081.h"
+#include "PE082.h"
 #include "Minimal_Path.h"
 
-int Minimal_Path_Sum(PE081_Matrix pe081_matrix[NxN][NxN])
+int Minimal_Path_Sum(PE082_Matrix pe081_matrix[NxN][NxN])
 {
 	/* Determines the minimal path starting from the top left corner of the matrix
 	to bottom right corner of the matrix */
@@ -40,7 +40,7 @@ int Minimal_Path_Sum(PE081_Matrix pe081_matrix[NxN][NxN])
 	return pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_sum;
 }
 
-std::vector<int> Cheapest_Path(PE081_Matrix pe081_matrix[NxN][NxN], int row, int column)
+std::vector<int> Cheapest_Path(PE082_Matrix pe081_matrix[NxN][NxN], int row, int column)
 {
 	/* returns a vector containing the cheapest path across the matrix */
 
@@ -55,7 +55,7 @@ std::vector<int> Cheapest_Path(PE081_Matrix pe081_matrix[NxN][NxN], int row, int
 }
 
 //the right-ward sum
-void Rightward_Path(PE081_Matrix pe081_matrix[NxN][NxN], int row, int column)
+void Rightward_Path(PE082_Matrix pe081_matrix[NxN][NxN], int row, int column)
 {
 	int test0 = pe081_matrix[row][(column + 1)].element_value;
 
@@ -74,7 +74,7 @@ void Rightward_Path(PE081_Matrix pe081_matrix[NxN][NxN], int row, int column)
 	pe081_matrix[row][(column + 1)].round++;
 }
 
-void Downward_Path(PE081_Matrix pe081_matrix[NxN][NxN], int row, int column)
+void Downward_Path(PE082_Matrix pe081_matrix[NxN][NxN], int row, int column)
 {
 	// downward sum
 	int temp_sum = pe081_matrix[row][column].cheapest_sum +

@@ -4,7 +4,7 @@
 #include <vector>
 #include <ctime>
 
-#include "PE081.h"
+#include "PE082.h"
 #include "Clean_Input.h"
 #include "Minimal_Path.h"
 
@@ -12,8 +12,8 @@ int main()
 {
 	std::string input_line;
 	std::ifstream input_file("PE081.txt");
-	std::vector<std::string> pe081_matrix_string;
-	PE081_Matrix pe081_matrix[NxN][NxN];
+	std::vector<std::string> pe082_matrix_string;
+	PE082_Matrix pe082_matrix[NxN][NxN];
 	clock_t timeStamp = clock();
 
 	if (input_file.is_open())
@@ -21,33 +21,33 @@ int main()
 		//read in the file
 		while (getline(input_file, input_line))
 		{
-			pe081_matrix_string.push_back(input_line);
+			pe082_matrix_string.push_back(input_line);
 		}
 		input_file.close();
 	}
 	// the file did not exist
 	else std::cout << "Unable to open file";
 
-	Construct_Object_Array(pe081_matrix_string, pe081_matrix);
+	Construct_Object_Array(pe082_matrix_string, pe082_matrix);
 
 	//initialize the first element's minimal path
-	pe081_matrix[0][0].cheapest_sum = pe081_matrix[0][0].element_value;
+	pe082_matrix[0][0].cheapest_sum = pe082_matrix[0][0].element_value;
 	//initialize the first element's cheapest path
-	pe081_matrix[0][0].cheapest_path.push_back(pe081_matrix[0][0].element_value);
+	pe082_matrix[0][0].cheapest_path.push_back(pe082_matrix[0][0].element_value);
 
 	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl;
 
 	std::cout << "The minimal path across the " << NxN << " x " << NxN << " matrix is: " 
-		<< Minimal_Path_Sum(pe081_matrix) << std::endl;
+		<< Minimal_Path_Sum(pe082_matrix) << std::endl;
 
-	Print_Shortest_Path(pe081_matrix);
+	Print_Shortest_Path(pe082_matrix);
 
 	getchar();
 
 	return 0;
 }
 
-void Print_Shortest_Path(PE081_Matrix pe081_matrix[NxN][NxN])
+void Print_Shortest_Path(PE082_Matrix pe081_matrix[NxN][NxN])
 {
 	/*Prints the shortest path across the matrix*/
 

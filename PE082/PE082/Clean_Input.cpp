@@ -1,10 +1,10 @@
 #include <vector>
 #include <string>
 
-#include "PE081.h"
+#include "PE082.h"
 #include "Clean_Input.h"
 
-void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE081_Matrix pe081_matrix[NxN][NxN])
+void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE082_Matrix pe081_matrix[NxN][NxN])
 {
 	/* Convert the string matrix to an integer matrix */
 	std::string input_line, number_string;

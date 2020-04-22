@@ -140,12 +140,12 @@
   <ItemGroup>
     <ClCompile Include="Clean_Input.cpp" />
     <ClCompile Include="Minimal_Path.cpp" />
-    <ClCompile Include="PE081.cpp" />
+    <ClCompile Include="PE082.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Clean_Input.h" />
     <ClInclude Include="Minimal_Path.h" />
-    <ClInclude Include="PE081.h" />
+    <ClInclude Include="PE082.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

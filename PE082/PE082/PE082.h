@@ -2,11 +2,11 @@
 
 #include <vector>
 
-enum PE081 {
+enum PE082 {
 	NxN = 80
 };
 
-class PE081_Matrix
+class PE082_Matrix
 {
 public:
 	int element_value;
@@ -18,4 +18,4 @@ public:
 	int get_Indice() { return element_value; }
 };
 
-void Print_Shortest_Path(PE081_Matrix pe081_matrix[NxN][NxN]);
+void Print_Shortest_Path(PE082_Matrix pe081_matrix[NxN][NxN]);
