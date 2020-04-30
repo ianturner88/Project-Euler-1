@@ -18,10 +18,10 @@
     <ClCompile Include="Clean_Input.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="Minimal_Path.cpp">
+    <ClCompile Include="PE082.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="PE082.cpp">
+    <ClCompile Include="Minimal_Path.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
@@ -29,10 +29,10 @@
     <ClInclude Include="Clean_Input.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="Minimal_Path.h">
+    <ClInclude Include="PE082.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-    <ClInclude Include="PE082.h">
+    <ClInclude Include="Minimal_Path.h">
       <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>

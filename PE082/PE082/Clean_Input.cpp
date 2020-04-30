@@ -4,17 +4,17 @@
 #include "PE082.h"
 #include "Clean_Input.h"
 
-void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE082_Matrix pe081_matrix[NxN][NxN])
+void Construct_Object_Array(std::vector<std::string> pe082_matrix_string, PE082_Matrix pe082_matrix[NxN][NxN])
 {
 	/* Convert the string matrix to an integer matrix */
 	std::string input_line, number_string;
 	char character;
 	int number_counter = 0, row = 0, column = 0;
 
-	for (int i = 0; i < pe081_matrix_string.size(); i++)
+	for (int i = 0; i < pe082_matrix_string.size(); i++)
 	{
 		// extract the input lines to identify/convert the numbers from strings to integers
-		input_line = pe081_matrix_string[i];
+		input_line = pe082_matrix_string[i];
 
 		for (int j = 0; (j <= input_line.size()) && (number_counter <= NxN); j++)
 		{
@@ -24,7 +24,9 @@ void Construct_Object_Array(std::vector<std::string> pe081_matrix_string, PE082_
 			if ((character == ',') || (character == '\0'))
 			{
 				//store the numbers in the integer array
-				pe081_matrix[row][column].set_Indice(String_to_Int(number_string));
+				pe082_matrix[row][column].set_Indice(String_to_Int(number_string));
+				//initalize the cheapest path for every starting point in the integer array
+				pe082_matrix[row][column].set_Cheapest_Sum(String_to_Int(number_string));
 				//reset the string where the numbers are re-constructed
 				number_string.clear();
 				//move to the next int holding slot

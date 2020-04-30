@@ -11,7 +11,7 @@
 int main()
 {
 	std::string input_line;
-	std::ifstream input_file("PE081.txt");
+	std::ifstream input_file("test.txt");
 	std::vector<std::string> pe082_matrix_string;
 	PE082_Matrix pe082_matrix[NxN][NxN];
 	clock_t timeStamp = clock();
@@ -30,15 +30,9 @@ int main()
 
 	Construct_Object_Array(pe082_matrix_string, pe082_matrix);
 
-	//initialize the first element's minimal path
-	pe082_matrix[0][0].cheapest_sum = pe082_matrix[0][0].element_value;
-	//initialize the first element's cheapest path
-	pe082_matrix[0][0].cheapest_path.push_back(pe082_matrix[0][0].element_value);
+	Minimal_Path_Sum(pe082_matrix);
 
-	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl;
-
-	std::cout << "The minimal path across the " << NxN << " x " << NxN << " matrix is: " 
-		<< Minimal_Path_Sum(pe082_matrix) << std::endl;
+	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl << std::endl;
 
 	Print_Shortest_Path(pe082_matrix);
 
@@ -51,13 +45,12 @@ void Print_Shortest_Path(PE082_Matrix pe081_matrix[NxN][NxN])
 {
 	/*Prints the shortest path across the matrix*/
 
-	int test = pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path.size();
-	int test0 = pe081_matrix[(NxN - 1)][(NxN - 1)].element_value;
-
-	for (int i = 1; i < pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path.size(); i++)
+	for (int i = 1; i <= pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path.size(); i++)
 	{
+		//the cheapest path across matrix
 		std::cout << pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path[i] << " -> ";
 	}
 
+	//the sum of the cheapest path across the matrix
 	std::cout << pe081_matrix[(NxN - 1)][(NxN - 1)].element_value;
 }
