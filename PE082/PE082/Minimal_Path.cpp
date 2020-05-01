@@ -12,9 +12,33 @@ int Minimal_Path_Sum(PE082_Matrix pe082_matrix[NxN][NxN])
 
 	for (row; row < NxN; row++)
 	{
-		/* start the minimal path search by finding the right-ward path of 
+		/* start the minimal path search by finding the right-ward path of
 		every point in column 0 */
 		Rightward_Path(pe082_matrix, row, column);
+	}
+
+	// main algorithm starts in column 1
+	column = 1;
+
+	for (int i = 0; i < (NxN - 1); i++)
+	{
+		// algorithm always starts in the top left corner
+		row = 0;
+
+		for (int j = row; j < (NxN - 2); j++)
+		{
+			Downward_Path(pe082_matrix, row, column);
+		}
+
+		for (int j = (NxN - 1); j > 1; j--)
+		{
+			Upward_Path(pe082_matrix, row, column);
+		}
+
+		for (int j = row; j < (NxN - 1); j++)
+		{
+			Rightward_Path(pe082_matrix, row, column);
+		}
 	}
 
 	/* the cheapest path from the top left corner
@@ -22,11 +46,30 @@ int Minimal_Path_Sum(PE082_Matrix pe082_matrix[NxN][NxN])
 	return pe082_matrix[(NxN - 1)][(NxN - 1)].cheapest_sum;
 }
 
+void Upward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int row, int column)
+{
+	//calculates the sum in the right-ward direction
+	int	temp_sum = pe082_matrix[row][column].cheapest_sum +
+		pe082_matrix[(row + 1)][column].element_value;
+
+	if ((temp_sum < pe082_matrix[row][column].cheapest_sum) ||
+		(pe082_matrix[row][(column + 1)].is_untouched == true))
+	{
+		//the new sum is cheaper OR the element has not yet been touched
+		pe082_matrix[row][column].cheapest_sum = temp_sum;
+		//stores the cheapest path to the current element
+		pe082_matrix[row][column].cheapest_path = Cheapest_Path(pe082_matrix, row, column);
+	}
+
+	// indicates the element has alread been travesered at least once
+	pe082_matrix[row][column].is_untouched = true;
+}
+
 void Downward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int row, int column)
 {
 	//calculates the sum in the right-ward direction
 	int	temp_sum = pe082_matrix[row][column].cheapest_sum +
-		pe082_matrix[row][(column + 1)].element_value;
+		pe082_matrix[(row + 1)][column].element_value;
 
 	if ((temp_sum < pe082_matrix[row][column].cheapest_sum) ||
 		(pe082_matrix[row][(column + 1)].is_untouched == true))
