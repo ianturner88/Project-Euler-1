@@ -18,8 +18,6 @@ int Minimal_Path_Sum(PE082_Matrix pe082_matrix[NxN][NxN])
 	for (int row = 0; row < (NxN - 1); row++)
 	{
 		// algorithm always starts in the top left corner
-		row = 0;
-
 		Downward_Path(pe082_matrix, column);
 		Upward_Path(pe082_matrix, column);
 		Rightward_Path(pe082_matrix, column);
@@ -76,27 +74,29 @@ void Downward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column)
 	}
 }
 
-std::vector<int> Cheapest_Path(PE082_Matrix pe082_matrix[NxN][NxN], int row, int column)
+std::vector<int> Identify_Cheapest_Path(PE082_Matrix pe082_matrix[NxN][NxN], int row, int column)
 {
 	/*identifies to shortest path to a given point */
 	std::vector<std::vector<int>> cheapest_path;
 	std::vector<int> path;
 
+	// the downward path option
 	path.push_back(pe082_matrix[row][column].downward_sum);
 	path.push_back(DOWNWARDS);
 	cheapest_path.push_back(path);
 	path.clear();
 
+	// the upward path option
 	path.push_back(pe082_matrix[row][column].upward_sum);
 	path.push_back(UPWARDS);
 	cheapest_path.push_back(path);
 	path.clear();
 
+	// the rightward path option
 	path.push_back(pe082_matrix[row][column].rightward_sum);
 	path.push_back(RIGHT);
 	cheapest_path.push_back(path);
 	path.clear();
-
 
 	return path;
 }
