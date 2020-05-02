@@ -19,12 +19,7 @@ public:
 	// the cheapest path to traverse the matrix rightwards
 	int rightward_sum = 0;
 	// the overall cheapest sum
-	int cheapest_overall_sum = 0;
-
-	/* indicates if the shortest path to that point has yet to investigated ->
-	since the cheapest sum is initialized to 0, this variable is needed to indicate
-	that 0 not the cheapest path*/
-	bool is_untouched = true;
+	int cheapest_sum = 0;
 
 	// contains the cheapest path down a column
 	std::vector<int> downward_path;
@@ -33,7 +28,7 @@ public:
 	// contains the cheapest path rightwards across a column
 	std::vector<int> rightward_path;
 	// the cheapest path
-	std::vector<int> cheapest_overall_path;
+	std::vector<int> cheapest_path;
 
 	// sets the value of the matrix at a given point
 	void set_Indice(int input_number) { element_value = input_number; }
