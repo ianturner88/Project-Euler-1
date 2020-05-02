@@ -34,23 +34,7 @@ int main()
 
 	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl << std::endl;
 
-	Print_Shortest_Path(pe082_matrix);
-
 	getchar();
 
 	return 0;
-}
-
-void Print_Shortest_Path(PE082_Matrix pe081_matrix[NxN][NxN])
-{
-	/*Prints the shortest path across the matrix*/
-
-	for (int i = 1; i <= pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path.size(); i++)
-	{
-		//the cheapest path across matrix
-		std::cout << pe081_matrix[(NxN - 1)][(NxN - 1)].cheapest_path[i] << " -> ";
-	}
-
-	//the sum of the cheapest path across the matrix
-	std::cout << pe081_matrix[(NxN - 1)][(NxN - 1)].element_value;
 }
