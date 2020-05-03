@@ -6,8 +6,8 @@ enum Paths {
 
 std::vector<int> Minimal_Path(PE082_Matrix pe082_matrix[NxN][NxN]);
 
-void Rightward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
-void Upward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
-void Downward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
-void Identify_Cheapest_Path(std::vector<std::vector<int>> paths, PE082_Matrix pe082_matrix[NxN][NxN],
+std::vector<int> Rightward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
+std::vector<int> Upward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
+std::vector<int> Downward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row);
+void Set_Cheapest_Path(std::vector<std::vector<int>> paths, PE082_Matrix pe082_matrix[NxN][NxN],
 	int row, int column);
