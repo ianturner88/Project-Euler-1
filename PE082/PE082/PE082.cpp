@@ -30,7 +30,7 @@ int main()
 
 	Construct_Object_Array(pe082_matrix_string, pe082_matrix);
 
-	Minimal_Path_Sum(pe082_matrix);
+	Minimal_Path(pe082_matrix);
 
 	std::cout << "Total executon time: " << (float)timeStamp / CLOCKS_PER_SEC << " seconds." << std::endl << std::endl;
 

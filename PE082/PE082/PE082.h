@@ -33,7 +33,7 @@ public:
 	// sets the value of the matrix at a given point
 	void set_Indice(int input_number) { element_value = input_number; }
 	// sets initializes the cheapest path with every possible starting point
-	void set_Cheapest_Sum(int input_number) { downward_sum = input_number; }
+	void set_Cheapest_Sum(int input_number) { cheapest_sum = input_number; }
 	// returns the value of the matrix at a given point
 	int get_Indice() { return element_value; }
 };

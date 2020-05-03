@@ -4,7 +4,7 @@ enum Paths {
 	DOWNWARD = 0, UPWARD = 1, RIGHT = 2
 };
 
-int Minimal_Path_Sum(PE082_Matrix pe081_matrix[NxN][NxN]);
+std::vector<int> Minimal_Path(PE082_Matrix pe082_matrix[NxN][NxN]);
 
 void Rightward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column);
 void Upward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column);
