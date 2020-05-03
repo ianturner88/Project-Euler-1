@@ -9,7 +9,7 @@ void Construct_Object_Array(std::vector<std::string> pe082_matrix_string, PE082_
 	/* Convert the string matrix to an integer matrix */
 	std::string input_line, number_string;
 	char character;
-	int number_counter = 0, row = 0, column = 0;
+	int number_counter = 0, row = 0, column = 0, input_number;
 
 	for (int i = 0; i < pe082_matrix_string.size(); i++)
 	{
@@ -23,10 +23,13 @@ void Construct_Object_Array(std::vector<std::string> pe082_matrix_string, PE082_
 
 			if ((character == ',') || (character == '\0'))
 			{
+				input_number = String_to_Int(number_string);
+
 				//store the numbers in the integer array
-				pe082_matrix[row][column].set_Indice(String_to_Int(number_string));
+				pe082_matrix[row][column].set_Indice(input_number);
 				//initalize the cheapest path for every starting point in the integer array
-				pe082_matrix[row][column].set_Cheapest_Sum(String_to_Int(number_string));
+				pe082_matrix[row][column].set_Cheapest_Sum(input_number);
+
 				//reset the string where the numbers are re-constructed
 				number_string.clear();
 				//move to the next int holding slot
