@@ -16,12 +16,13 @@ std::vector<int> Minimal_Path(PE082_Matrix pe082_matrix[NxN][NxN])
 	int row;
 	std::vector<std::vector<int>> approaches;
 
-	for (int column = 0; column < NxN; column++)
+	for (int column = 0; column < (NxN - 1); column++)
 	{
 		// reset to the top most row
 		row = 0;
+		approaches.clear();
 
-		//identify the cheapest approach to indicies in the top row
+		// identify the cheapest approach to indicies in the top row
 		approaches.push_back(Rightward_Path(pe082_matrix, column, row));
 		approaches.push_back(Upward_Path(pe082_matrix, column, row));
 		Set_Cheapest_Path(approaches, pe082_matrix, row, (column + 1));
@@ -42,15 +43,18 @@ std::vector<int> Minimal_Path(PE082_Matrix pe082_matrix[NxN][NxN])
 			Set_Cheapest_Path(approaches, pe082_matrix, row, (column + 1));
 		}
 
-		row++;
+		// reset
 		approaches.clear();
 
-		//identify the cheapest approach to indicies in the bottom row
-		Downward_Path(pe082_matrix, column, row);
-		Rightward_Path(pe082_matrix, column, row);
+		// identify the cheapest approach to indicies in the bottom row
+		approaches.push_back(Downward_Path(pe082_matrix, column, row));
+		approaches.push_back(Rightward_Path(pe082_matrix, column, row));
+		Set_Cheapest_Path(approaches, pe082_matrix, row, (column + 1));
 	}
 
-	return pe082_matrix[0][0].cheapest_path;
+	pe082_matrix[0][(NxN - 1)].cheapest_sum;
+
+	return pe082_matrix[0][(NxN - 1)].cheapest_path;
 }
 
 void Set_Cheapest_Path(std::vector<std::vector<int>> paths, PE082_Matrix pe082_matrix[NxN][NxN],
@@ -63,20 +67,20 @@ void Set_Cheapest_Path(std::vector<std::vector<int>> paths, PE082_Matrix pe082_m
 	// sort the vector to identify the cheapest path
 	std::sort(paths.begin(), paths.end(), Sort_Vector);
 	// the shortest direction to approach the index from
-	int shortest_path = paths[(paths.size() - 1)][1];
+	int shortest_path = paths[0][1];
 
 	switch (shortest_path)
 	{
 		case DOWNWARD:
 			// set the cheapest path/sum to the approach from the downward direction
-			pe082_matrix[row][column].cheapest_path = pe082_matrix[row][(column + 1)].downward_path;
-			pe082_matrix[row][column].cheapest_sum = pe082_matrix[row][(column + 1)].downward_sum;
+			pe082_matrix[row][column].cheapest_path = pe082_matrix[row][column].downward_path;
+			pe082_matrix[row][column].cheapest_sum = pe082_matrix[row][column].downward_sum;
 			break;
 
 		case UPWARD:
 			// set the cheapest path/sum to the approach from the upward direction
-			pe082_matrix[row][column].cheapest_path = pe082_matrix[row][(column + 1)].upward_path;
-			pe082_matrix[row][column].cheapest_sum = pe082_matrix[row][(column + 1)].upward_sum;
+			pe082_matrix[row][column].cheapest_path = pe082_matrix[row][column].upward_path;
+			pe082_matrix[row][column].cheapest_sum = pe082_matrix[row][column].upward_sum;
 			break;
 
 		case RIGHTWARD:
@@ -85,15 +89,13 @@ void Set_Cheapest_Path(std::vector<std::vector<int>> paths, PE082_Matrix pe082_m
 			pe082_matrix[row][column].cheapest_sum = pe082_matrix[row][column].rightward_sum;
 			break;
 	}
-
-	//test
-	int test = pe082_matrix[row][column].element_value;
-	test = 0;
 }
 
 bool Sort_Vector(const std::vector<int>& v1, const std::vector<int>& v2)
 {
-	return v1[1] < v2[1];
+	/* sort the rows on basis of column 0, the column containing the
+	cost acquired to reach a particular point */
+	return v1[0] < v2[0];
 }
 
 std::vector<int> Rightward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, int row)
@@ -114,12 +116,6 @@ std::vector<int> Rightward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column,
 	rightward_cost.push_back(pe082_matrix[row][(column + 1)].rightward_sum);
 	rightward_cost.push_back(RIGHTWARD);
 
-	//test
-	int test1 = pe082_matrix[row][(column + 1)].element_value;
-	std::vector<int> test = pe082_matrix[row][(column + 1)].rightward_path;
-	int test0 = pe082_matrix[row][(column + 1)].rightward_sum;
-	test0 = 9;
-
 	return rightward_cost;
 }
 
@@ -139,12 +135,6 @@ std::vector<int> Upward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, in
 	upward_cost.push_back(pe082_matrix[row][(column + 1)].upward_sum);
 	upward_cost.push_back(UPWARD);
 
-	//test
-	int test1 = pe082_matrix[row][(column + 1)].element_value;
-	std::vector<int> test = pe082_matrix[row][(column + 1)].upward_path;
-	int test0 = pe082_matrix[row][(column + 1)].upward_sum;
-	test0 = 9;
-
 	return upward_cost;
 }
 
@@ -163,16 +153,6 @@ std::vector<int> Downward_Path(PE082_Matrix pe082_matrix[NxN][NxN], int column, 
 
 	downward_cost.push_back(pe082_matrix[row][(column + 1)].downward_sum);
 	downward_cost.push_back(DOWNWARD);
-
-	//test
-	int test2 = pe082_matrix[(row - 1)][column].element_value;
-	int test3 = pe082_matrix[(row - 1)][(column + 1)].element_value;
-	int test1 = pe082_matrix[row][(column + 1)].element_value;
-	int test5 = pe082_matrix[(row - 1)][(column - 1)].element_value;
-	int test6 = pe082_matrix[(row - 1)][column].element_value;
-	std::vector<int> test = pe082_matrix[row][(column + 1)].downward_path;
-	int test0 = pe082_matrix[row][(column + 1)].downward_sum;
-	test0 = 4;
 
 	return downward_cost;
 }
